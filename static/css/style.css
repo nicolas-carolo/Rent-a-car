@@ -43,3 +43,38 @@ footer {
     text-align: center;
     font-size: 0.8em;
 }
+
+img {
+    display: block;
+    margin-left: 50px;
+    margin-right: 0px;
+}
+
+.logo-and-title {
+    text-align: center;
+    width: 100%;
+}
+
+table {
+    // background-color: lightgreen;
+    width: 50%;
+    // border: 1px solid black;
+    margin: auto;
+    padding: 0px;
+}
+
+td {
+    // border: 1px solid black;
+    padding: 0px;
+}
+
+tr {
+    padding: 0px;
+}
+
+h1 {
+    font-size: 6.5em;
+    color: #476b6b;
+    text-align: left;
+}
+
