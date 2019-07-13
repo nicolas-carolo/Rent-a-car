@@ -98,3 +98,39 @@ h1 {
     text-align: left;
 }
 
+.company-description p {
+    font-size: 1.4em;
+}
+
+div.company-description {
+    margin-left: 20px;
+    padding-left: 10px;
+    width: 50%;
+    float: left;
+    text-align: justify;
+}
+
+div.news {
+    margin-right: 20px;
+    padding: 10px 10px 10px 20px;
+    width: 40%;
+    float: right;
+    background-color: #c1d7d7;
+    text-align: justify;
+    border-radius: 15px;
+}
+
+.news li {
+    font-size: 1.2em;
+}
+
+.company-description h2 {
+    font-size: 1.7em;
+    color: #3c5d5d;
+}
+
+.news h2 {
+    font-size: 1.7em;
+    color: #3c5d5d;
+}
+
