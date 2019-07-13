@@ -75,7 +75,7 @@ img.small-logo {
     width: 100%;
 }
 
-table {
+.logo-and-title table {
     // background-color: lightgreen;
     width: 50%;
     // border: 1px solid black;
@@ -83,12 +83,12 @@ table {
     padding: 0px;
 }
 
-td {
+.logo-and-title td {
     // border: 1px solid black;
     padding: 0px;
 }
 
-tr {
+.logo-and-title tr {
     padding: 0px;
 }
 
@@ -135,11 +135,60 @@ div.news {
     color: #3c5d5d;
 }
 
-.preview-cars {
-    width: 100%;
+div.preview-cars {
+    width: 90%;
     text-align: center;
-    margin-bottom: auto;
-    margin-top: 200px;
-    background-color: lightgreen;
+    margin: 200px auto 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #c1d7d7;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #aaaaaa;
 }
 
+.preview-cars td {
+    width: 25%;
+    border: 2px solid #3c5d5d;
+}
+
+.preview-cars td.car-image {
+    text-align: center;
+    padding: 10px;
+}
+
+.preview-cars td.car-description {
+    font-size: 2em;
+    text-align: left;
+    padding: 10px;
+    border-left: hidden;
+    border-bottom: hidden;
+}
+
+.preview-cars td.car-price {
+    font-size: 2em;
+    text-align: left;
+    padding: 10px;
+    border-left: hidden;
+    border-top: hidden;
+}
+
+.preview-cars td.car-engine {
+    font-size: 2em;
+    text-align: left;
+    padding: 10px;
+    border-left: hidden;
+    border-top: hidden;
+    border-bottom: hidden;
+}
+
+.preview-cars tr {
+    border: 2px solid #3c5d5d;
+}
+
+.preview-cars table {
+    margin: auto;
+    width: 96%;
+    border: 3px solid #3c5d5d;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
