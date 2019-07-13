@@ -118,6 +118,7 @@ div.news {
     background-color: #c1d7d7;
     text-align: justify;
     border-radius: 15px;
+    box-shadow: 5px 5px 5px #aaaaaa;
 }
 
 .news li {
@@ -132,5 +133,13 @@ div.news {
 .news h2 {
     font-size: 1.7em;
     color: #3c5d5d;
+}
+
+.preview-cars {
+    width: 100%;
+    text-align: center;
+    margin-bottom: auto;
+    margin-top: 200px;
+    background-color: lightgreen;
 }
 
