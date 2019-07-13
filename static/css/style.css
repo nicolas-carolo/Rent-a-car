@@ -7,9 +7,23 @@ body {
 .navbar a {
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 16px 8px;
+    text-decoration: none;
+    font-size: 18px;
+    height: 30px;
+}
+
+.navbar a.a-logo {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 0px auto 0px;
     text-decoration: none;
     font-size: 17px;
+}
+
+.navbar a.a-logo:hover {
+    background-color: #92b9b9;
 }
 
 .navbar a.a-left {
@@ -44,10 +58,16 @@ footer {
     font-size: 0.8em;
 }
 
-img {
+img.big-logo {
     display: block;
     margin-left: 50px;
     margin-right: 0px;
+}
+
+img.small-logo {
+    display: block;
+    margin: -5px;
+    padding: 0px;
 }
 
 .logo-and-title {
