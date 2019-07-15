@@ -47,32 +47,32 @@
     <div class="preview-cars">
         <table>
             <tr>
-                <td rowspan="3" class="car-image"><img src="/static/media/cars/vw-tiguan.jpg" width="320" height="240"></td>
-                <td class="car-description">VW Tiguan 2017</td>
-                <td rowspan="3" class="car-image"><img src="/static/media/cars/mercedes-a180d.jpg" width="320" height="240"></td>
-                <td class="car-description">Mercedes A180d 2018</td>
+                <td rowspan="3" class="car-image"><img src="{{ cars_list[0].photo_link }}" width="320" height="240"></td>
+                <td class="car-description">{{ cars_list[0].brand }} {{ cars_list[0].model }}</td>
+                <td rowspan="3" class="car-image"><img src="{{ cars_list[1].photo_link }}" width="320" height="240"></td>
+                <td class="car-description">{{ cars_list[1].brand }} {{ cars_list[1].model }}</td>
             </tr>
             <tr>
-                <td class="car-engine">Engine: 2.0 Diesel 150 cv</td>
-                <td class="car-engine">Engine: 1.5 Diesel 116 cv</td>
+                <td class="car-engine">{{ cars_list[0].engine }} {{ cars_list[0].fuel }} {{ cars_list[0].power }} cv</td>
+                <td class="car-engine">{{ cars_list[1].engine }} {{ cars_list[1].fuel }} {{ cars_list[1].power }} cv</td>
             </tr>
             <tr>
-                <td class="car-price">Price: 70 per day</td>
-                <td class="car-price">Price: 80 per day</td>
+                <td class="car-price">Price: €{{ cars_list[0].price }} per day</td>
+                <td class="car-price">Price: €{{ cars_list[1].price }} per day</td>
             </tr>
             <tr>
-                <td rowspan="3" class="car-image"><img src="/static/media/cars/bmw-x1-2016.jpg" width="320" height="240"></td>
-                <td class="car-description">BMW X1 2016</td>
-                <td rowspan="3" class="car-image"><img src="/static/media/cars/peugeot-3008.jpg" width="320" height="240"></td>
-                <td class="car-description">Peugeot 3008 2019</td>
+                <td rowspan="3" class="car-image"><img src="{{ cars_list[2].photo_link }}" width="320" height="240"></td>
+                <td class="car-description">{{ cars_list[2].brand }} {{ cars_list[2].model }}</td>
+                <td rowspan="3" class="car-image"><img src="{{ cars_list[3].photo_link }}" width="320" height="240"></td>
+                <td class="car-description">{{ cars_list[3].brand }} {{ cars_list[3].model }}</td>
             </tr>
             <tr>
-                <td class="car-engine">Engine: 1.5 Diesel 116 cv</td>
-                <td class="car-engine">Engine: 2.0 Diesel 150 cv</td>
+                <td class="car-engine">{{ cars_list[2].engine }} {{ cars_list[2].fuel }} {{ cars_list[2].power }} cv</td>
+                <td class="car-engine">{{ cars_list[3].engine }} {{ cars_list[3].fuel }} {{ cars_list[3].power }} cv</td>
             </tr>
             <tr>
-                <td class="car-price">Price: 65 per day</td>
-                <td class="car-price">Price: 55 per day</td>
+                <td class="car-price">Price: €{{ cars_list[2].price }} per day</td>
+                <td class="car-price">Price: €{{ cars_list[3].price }} per day</td>
             </tr>
         </table>
     </div>
