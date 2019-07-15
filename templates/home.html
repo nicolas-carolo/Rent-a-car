@@ -46,34 +46,24 @@
     </div>
     <div class="preview-cars">
         <table>
-            <tr>
-                <td rowspan="3" class="car-image"><img src="{{ cars_list[0].photo_link }}" width="320" height="240"></td>
-                <td class="car-description">{{ cars_list[0].brand }} {{ cars_list[0].model }}</td>
-                <td rowspan="3" class="car-image"><img src="{{ cars_list[1].photo_link }}" width="320" height="240"></td>
-                <td class="car-description">{{ cars_list[1].brand }} {{ cars_list[1].model }}</td>
-            </tr>
-            <tr>
-                <td class="car-engine">{{ cars_list[0].engine }} {{ cars_list[0].fuel }} {{ cars_list[0].power }} cv</td>
-                <td class="car-engine">{{ cars_list[1].engine }} {{ cars_list[1].fuel }} {{ cars_list[1].power }} cv</td>
-            </tr>
-            <tr>
-                <td class="car-price">Price: €{{ cars_list[0].price }} per day</td>
-                <td class="car-price">Price: €{{ cars_list[1].price }} per day</td>
-            </tr>
-            <tr>
-                <td rowspan="3" class="car-image"><img src="{{ cars_list[2].photo_link }}" width="320" height="240"></td>
-                <td class="car-description">{{ cars_list[2].brand }} {{ cars_list[2].model }}</td>
-                <td rowspan="3" class="car-image"><img src="{{ cars_list[3].photo_link }}" width="320" height="240"></td>
-                <td class="car-description">{{ cars_list[3].brand }} {{ cars_list[3].model }}</td>
-            </tr>
-            <tr>
-                <td class="car-engine">{{ cars_list[2].engine }} {{ cars_list[2].fuel }} {{ cars_list[2].power }} cv</td>
-                <td class="car-engine">{{ cars_list[3].engine }} {{ cars_list[3].fuel }} {{ cars_list[3].power }} cv</td>
-            </tr>
-            <tr>
-                <td class="car-price">Price: €{{ cars_list[2].price }} per day</td>
-                <td class="car-price">Price: €{{ cars_list[3].price }} per day</td>
-            </tr>
+            {% for car in cars_list %}
+                {% if loop.index0 % 2 == 0 %}
+                    <tr>
+                        <td rowspan="3" class="car-image"><img src="{{ cars_list[loop.index0].photo_link }}" width="320" height="240"></td>
+                        <td class="car-description">{{ cars_list[loop.index0].brand }} {{ cars_list[loop.index0].model }}</td>
+                        <td rowspan="3" class="car-image"><img src="{{ cars_list[loop.index0 + 1].photo_link }}" width="320" height="240"></td>
+                        <td class="car-description">{{ cars_list[loop.index0 + 1].brand }} {{ cars_list[loop.index0 + 1].model }}</td>
+                    </tr>
+                    <tr>
+                        <td class="car-engine">{{ cars_list[loop.index0].engine }} {{ cars_list[loop.index0].fuel }} {{ cars_list[loop.index0].power }} cv</td>
+                        <td class="car-engine">{{ cars_list[loop.index0 + 1].engine }} {{ cars_list[loop.index0 + 1].fuel }} {{ cars_list[loop.index0 + 1].power }} cv</td>
+                    </tr>
+                    <tr>
+                        <td class="car-price">Price: €{{ cars_list[loop.index0].price }} per day</td>
+                        <td class="car-price">Price: €{{ cars_list[loop.index0 + 1].price }} per day</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
         </table>
     </div>
     <footer>
