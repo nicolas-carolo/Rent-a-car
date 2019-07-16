@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rent a Car</title>
-    <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
-</head>
-<body>
-    <div class="navbar">
-        <a class="a-logo" href="/"><img class="small-logo" src="/static/media/logo.png" width="30" height="30"></a>
-        <a class="a-left" href="/cars">Car Hire</a>
-        <a class="a-left" href="/vans">Van Hire</a>
-        <a class="a-left" href="/contacts">Contacts</a>
-        <a class="a-right" href="/login">Sign in</a>
-        <a class="a-right" href="/sign-up">Sign up</a>
-    </div>
-    <div class="logo-and-title">
-        <table>
-            <tr>
-                <td><img class="big-logo" src="/static/media/logo.png" width="200" height="200"></td>
-                <td><h1>Rent a Car</h1></td>
-            </tr>
-        </table>
-    </div>
+{% extends 'base.html' %}
+
+{% block company_description %}
     <div class="company-description">
         <h2>Information about the company</h2>
         <p>
@@ -30,6 +9,9 @@
             based on the brand, model, type of vehicle, size, engine specifications and other needs.
         </p>
     </div>
+{% endblock %}
+
+{% block news %}
     <div class="news">
         <h2>News</h2>
         <ul>
@@ -38,6 +20,9 @@
             {% endfor %}
         </ul>
     </div>
+{% endblock %}
+
+{% block preview_cars %}
     <div class="preview-cars">
         <table>
             {% for car in cars_list %}
@@ -60,8 +45,4 @@
             {% endfor %}
         </table>
     </div>
-    <footer>
-        <p>Rent a car | &copy;2019 Nicolas Carolo | All rights reserved</p>
-    </footer>
-</body>
-</html>
+{% endblock %}

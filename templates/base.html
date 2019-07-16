@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rent a Car</title>
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+</head>
+<body>
+    <div class="navbar">
+        <a class="a-logo" href="/"><img class="small-logo" src="/static/media/logo.png" width="30" height="30"></a>
+        <a class="a-left" href="/cars">Car Hire</a>
+        <a class="a-left" href="/vans">Van Hire</a>
+        <a class="a-left" href="/contacts">Contacts</a>
+        <a class="a-right" href="/login">Sign in</a>
+        <a class="a-right" href="/sign-up">Sign up</a>
+    </div>
+    <div class="logo-and-title">
+        <table>
+            <tr>
+                <td><img class="big-logo" src="/static/media/logo.png" width="200" height="200"></td>
+                <td><h1>Rent a Car</h1></td>
+            </tr>
+        </table>
+    </div>
+    {% block company_description %}
+    {% endblock %}
+    {% block news %}
+    {% endblock %}
+    {% block preview_cars %}
+    {% endblock %}
+    <footer>
+        <p>Rent a car | &copy;2019 Nicolas Carolo | All rights reserved</p>
+    </footer>
+</body>
+</html>
