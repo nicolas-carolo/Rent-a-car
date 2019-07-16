@@ -70,7 +70,7 @@ img.small-logo {
     padding: 0px;
 }
 
-.logo-and-title {
+div.logo-and-title {
     text-align: center;
     width: 100%;
 }
@@ -85,7 +85,8 @@ img.small-logo {
 
 .logo-and-title td {
     // border: 1px solid black;
-    padding: 0px;
+    padding: 0px 15px 0px 15px;
+    white-space: nowrap;
 }
 
 .logo-and-title tr {
