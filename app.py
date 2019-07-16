@@ -9,5 +9,10 @@ def home():
     return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list())
 
 
+@app.route('/cars')
+def cars():
+    return render_template('cars.html')
+
+
 if __name__ == '__main__':
     app.run()

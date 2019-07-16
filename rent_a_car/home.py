@@ -17,3 +17,4 @@ def get_news_list():
     news_list = queryset2list(queryset)
     session.close()
     return news_list
+

@@ -28,14 +28,26 @@
             {% for car in cars_list %}
                 {% if loop.index0 % 2 == 0 %}
                     <tr>
-                        <td rowspan="3" class="car-image"><img src="{{ cars_list[loop.index0].photo_link }}" width="320" height="240"></td>
-                        <td class="car-description">{{ cars_list[loop.index0].brand }} {{ cars_list[loop.index0].model }}</td>
-                        <td rowspan="3" class="car-image"><img src="{{ cars_list[loop.index0 + 1].photo_link }}" width="320" height="240"></td>
-                        <td class="car-description">{{ cars_list[loop.index0 + 1].brand }} {{ cars_list[loop.index0 + 1].model }}</td>
+                        <td rowspan="6" class="car-image"><img class="car-image" src="{{ cars_list[loop.index0].photo_link }}" width="320" height="240"></td>
+                        <td class="car-description"><b>{{ cars_list[loop.index0].brand }} {{ cars_list[loop.index0].model }}</b></td>
+                        <td rowspan="6" class="car-image"><img class="car-image" src="{{ cars_list[loop.index0 + 1].photo_link }}" width="320" height="240"></td>
+                        <td class="car-description"><b>{{ cars_list[loop.index0 + 1].brand }} {{ cars_list[loop.index0 + 1].model }}</b></td>
                     </tr>
                     <tr>
-                        <td class="car-engine">{{ cars_list[loop.index0].engine }} {{ cars_list[loop.index0].fuel }} {{ cars_list[loop.index0].power }} cv</td>
-                        <td class="car-engine">{{ cars_list[loop.index0 + 1].engine }} {{ cars_list[loop.index0 + 1].fuel }} {{ cars_list[loop.index0 + 1].power }} cv</td>
+                        <td class="car-details">Year: {{ cars_list[loop.index0].car_year }}</td>
+                        <td class="car-details">Year: {{ cars_list[loop.index0 + 1].car_year }}</td>
+                    </tr>
+                    <tr>
+                        <td class="car-details">Engine: {{ cars_list[loop.index0].engine }} {{ cars_list[loop.index0].fuel }} {{ cars_list[loop.index0].power }} cv</td>
+                        <td class="car-details">Engine: {{ cars_list[loop.index0 + 1].engine }} {{ cars_list[loop.index0 + 1].fuel }} {{ cars_list[loop.index0 + 1].power }} cv</td>
+                    </tr>
+                    <tr>
+                        <td class="car-details">Transmission: {{ cars_list[loop.index0].transmission }}</td>
+                        <td class="car-details">Transmission: {{ cars_list[loop.index0 + 1].transmission }}</td>
+                    </tr>
+                    <tr>
+                        <td class="car-details">Driver's minimum age: {{ cars_list[loop.index0].min_age }}</td>
+                        <td class="car-details">Driver's minimum age: {{ cars_list[loop.index0 + 1].min_age }}</td>
                     </tr>
                     <tr>
                         <td class="car-price">Price: €{{ cars_list[loop.index0].price }} per day</td>
