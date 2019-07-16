@@ -21,5 +21,17 @@ class Car(Base):
     engine = Column(String)
     fuel = Column(String)
     power = Column(String)
+    transmission = Column(String)
     photo_link = Column(String)
     price = Column(Integer)
+    preview = Column(Integer)
+
+
+class News(Base):
+    """
+    The database object news
+    """
+    __tablename__ = 'news'
+
+    id = Column(Integer, primary_key=True)
+    description = Column(String)
