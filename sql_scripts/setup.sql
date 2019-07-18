@@ -6,9 +6,9 @@ USE RENTACAR;
 
 DROP TABLE IF EXISTS cars;
 CREATE TABLE cars(
-  id					      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	brand    		      VARCHAR(30) NOT NULL,
-	model  		        VARCHAR(50) NOT NULL,
+    id			      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	brand    		  VARCHAR(30) NOT NULL,
+	model  		      VARCHAR(50) NOT NULL,
 	car_year          INT NOT NULL,
 	plate             VARCHAR(10) NOT NULL,
 	n_seats           INT NOT NULL,

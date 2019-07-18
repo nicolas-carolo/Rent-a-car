@@ -6,3 +6,29 @@ div.car-image {
     padding: 15px;
     margin: 20px auto 50px 20px;
 }
+
+div.car-details {
+    float: right;
+    background-color: #c1d7d7;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+    padding: 15px;
+    margin: 20px 20px 50px auto;
+    width: 50%
+}
+
+.car-details table {
+    width: 90%;
+}
+
+.car-details td {
+    width: 50%;
+    text-align: left;
+    font-size: 1.2em;
+}
+
+.car-details th {
+    width: 50%;
+    text-align: left;
+    font-size: 1.2em;
+}

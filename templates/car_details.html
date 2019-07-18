@@ -8,4 +8,48 @@
     <div class="car-image">
         <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="427" height="320">
     </div>
+    <div class="car-details">
+        <table>
+            <tr>
+                <th>Brand:</th>
+                <td>{{ car.brand }}</td>
+            </tr>
+            <tr>
+                <th>Model:</th>
+                <td>{{ car.model }}</td>
+            </tr>
+            <tr>
+                <th>Year:</th>
+                <td>{{ car.car_year }}</td>
+            </tr>
+            <tr>
+                <th>Number of seats:</th>
+                <td>{{ car.n_seats }}</td>
+            </tr>
+            <tr>
+                <th>Type of car:</th>
+                <td>{{ car.car_type }}</td>
+            </tr>
+            <tr>
+                <th>Engine:</th>
+                <td>{{ car.engine }}</td>
+            </tr>
+            <tr>
+                <th>Fuel:</th>
+                <td>{{ car.fuel }}</td>
+            </tr>
+            <tr>
+                <th>Power:</th>
+                <td>{{ car.power }} cv</td>
+            </tr>
+            <tr>
+                <th>Transmission:</th>
+                <td>{{ car.transmission }}</td>
+            </tr>
+            <tr>
+                <th>Price:</th>
+                <td>€ {{ car.price }} per day</td>
+            </tr>
+        </table>
+    </div>
 {% endblock %}
