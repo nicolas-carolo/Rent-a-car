@@ -4,11 +4,15 @@
     <link rel="stylesheet" href="/static/css/car_details_style.css" type="text/css" />
 {% endblock %}
 
+{% block javascript_code %}
+    <script src="/static/script/car_details.js" type="text/javascript"></script>
+{% endblock %}
+
 {% block car_details %}
     <div class="car-image">
-        <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="427" height="320">
+        <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384">
     </div>
-    <div class="car-details">
+    <div class="car-details" id="div-details">
         <table>
             <tr>
                 <th>Brand:</th>
@@ -47,9 +51,17 @@
                 <td>{{ car.transmission }}</td>
             </tr>
             <tr>
+                <th>Driver's minimum age:</th>
+                <td>{{ car.min_age }} years old</td>
+            </tr>
+            <tr>
                 <th>Price:</th>
                 <td>€ {{ car.price }} per day</td>
             </tr>
         </table>
+        <input type="button" id="hire" value="Hire" onclick="show_div_hire()">
+    </div>
+    <div class="hire" id="div-hire">
+        <h6>Lorem ipsum</h6>
     </div>
 {% endblock %}

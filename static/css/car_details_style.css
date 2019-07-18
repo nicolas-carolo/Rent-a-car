@@ -12,23 +12,59 @@ div.car-details {
     background-color: #c1d7d7;
     border-radius: 15px;
     box-shadow: 5px 5px 5px #aaaaaa;
-    padding: 15px;
+    padding: 20px 15px 15px;
     margin: 20px 20px 50px auto;
-    width: 50%
+    width: 50%;
+    text-align: center;
 }
 
 .car-details table {
-    width: 90%;
+    width: 70%;
+    margin: auto;
+    // background-color: lightgreen;
 }
 
 .car-details td {
     width: 50%;
-    text-align: left;
-    font-size: 1.2em;
+    text-align: right;
+    font-size: 1.4em;
 }
 
 .car-details th {
     width: 50%;
     text-align: left;
-    font-size: 1.2em;
+    font-size: 1.4em;
+}
+
+input[type=button] {
+    text-align: center;
+    font-size: 1.7em;
+    width: 40%;
+    background-color: orange;
+    color: #FFFFFF;
+    border: 1px solid orange;
+    border-radius: 20px;
+    box-shadow: 1px 1px 1px #3c5d5d;
+    text-shadow:none;
+    padding: 5px;
+    margin: 15px auto 5px;
+}
+
+input[type=button]:hover {
+    background-color: darkorange;
+}
+
+div.hire {
+    float: right;
+    background-color: #c1d7d7;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+    padding: 15px;
+    margin: 20px 20px 50px auto;
+    width: 70%;
+}
+
+#div-hire {
+    display: none;
+
 }

@@ -28,9 +28,9 @@
             {% for car in cars_list %}
                 {% if loop.index0 % 2 == 0 %}
                     <tr>
-                        <td rowspan="6" class="car-image"><img class="car-image" src="{{ cars_list[loop.index0].photo_link }}" width="320" height="240"></td>
+                        <td rowspan="6" class="car-image"><a href="/car_details?id={{ cars_list[loop.index0].id }}"><img class="car-image" src="{{ cars_list[loop.index0].photo_link }}" width="320" height="240"></a></td>
                         <td class="car-description"><a href="/car_details?id={{ cars_list[loop.index0].id }}"><b>{{ cars_list[loop.index0].brand }} {{ cars_list[loop.index0].model }}</b></a></td>
-                        <td rowspan="6" class="car-image"><img class="car-image" src="{{ cars_list[loop.index0 + 1].photo_link }}" width="320" height="240"></td>
+                        <td rowspan="6" class="car-image"><a href="/car_details?id={{ cars_list[loop.index0 + 1].id }}"><img class="car-image" src="{{ cars_list[loop.index0 + 1].photo_link }}" width="320" height="240"></a></td>
                         <td class="car-description"><a href="/car_details?id={{ cars_list[loop.index0].id + 1}}"><b>{{ cars_list[loop.index0 + 1].brand }} {{ cars_list[loop.index0 + 1].model }}</b></a></td>
                     </tr>
                     <tr>
