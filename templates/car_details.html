@@ -5,5 +5,7 @@
 {% endblock %}
 
 {% block car_details %}
-    <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}">
+    <div class="car-image">
+        <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="427" height="320">
+    </div>
 {% endblock %}
