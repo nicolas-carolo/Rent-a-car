@@ -1,1 +1,9 @@
 {% extends 'base.html' %}
+
+{% block other_styles %}
+    <link rel="stylesheet" href="/static/css/car_details_style.css" type="text/css" />
+{% endblock %}
+
+{% block car_details %}
+    <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}">
+{% endblock %}

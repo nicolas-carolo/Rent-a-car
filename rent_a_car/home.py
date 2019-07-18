@@ -18,3 +18,13 @@ def get_news_list():
     session.close()
     return news_list
 
+
+def get_car_identified_by_id(id):
+    session = start_session()
+    queryset = session.query(Car).filter(Car.id.__eq__(id))
+    car = queryset2list(queryset)[0]
+    print(car)
+    session.close()
+    return car
+
+

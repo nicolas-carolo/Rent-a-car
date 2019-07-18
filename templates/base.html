@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Rent a Car</title>
-    <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/base_style.css" type="text/css" />
+    {% block other_styles %}
+    {% endblock %}
     <link rel="icon" type="image/png" href="/static/media/logo.png">
 </head>
 <body>
@@ -28,6 +30,8 @@
     {% block news %}
     {% endblock %}
     {% block preview_cars %}
+    {% endblock %}
+    {% block car_details %}
     {% endblock %}
     <footer>
         <p>Rent a car | &copy;2019 Nicolas Carolo | All rights reserved</p>
