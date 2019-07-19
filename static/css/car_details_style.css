@@ -38,8 +38,6 @@ div.car-details {
 
 input[type=button] {
     text-align: center;
-    font-size: 1.7em;
-    width: 40%;
     background-color: orange;
     color: #FFFFFF;
     border: 1px solid orange;
@@ -55,16 +53,38 @@ input[type=button]:hover {
 }
 
 div.hire {
-    float: right;
-    background-color: #c1d7d7;
-    border-radius: 15px;
-    box-shadow: 5px 5px 5px #aaaaaa;
     padding: 15px;
-    margin: 20px 20px 50px auto;
-    width: 70%;
+    margin: 20px;
 }
 
 #div-hire {
     display: none;
 
+}
+
+#hire-button {
+    width: 40%;
+    font-size: 1.7em;
+}
+
+#check-availability-button {
+    width: auto;
+    padding: 5px 10px 5px;
+    font-size: 1.2em;
+    margin: 5px;
+}
+
+p.hire {
+    margin-bottom: 0px;
+    font-size: 1.2em;
+}
+
+input[type=date] {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    border-color: #EEEEEE;
+    border-bottom-color: #EEEEEE;
+    padding: 5px;
+    margin: 5px;
 }
