@@ -21,5 +21,20 @@ def car_details():
     return render_template('car_details.html', car=car)
 
 
+@app.route('/check_availability', methods=['POST', 'GET'])
+def check_car_availability():
+    if request.method == 'POST':
+        car_id = request.form['car-id']
+        car = get_car_identified_by_id(car_id)
+        date_from = request.form['date-from']
+        date_to = request.form['date-to']
+        print(date_from, date_to, car_id)
+        if date_from > date_to or date_from == "" or date_to == "":
+            return render_template('car_details.html', car=car, error="Please insert a valid date interval!")
+        return render_template('car_details.html', car=car)
+    else:
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list())
+
+
 if __name__ == '__main__':
     app.run()

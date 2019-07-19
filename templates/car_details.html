@@ -10,7 +10,7 @@
 
 {% block car_details %}
     <div class="car-image">
-        <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384">
+        <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="640" height="480">
     </div>
     <div class="car-details" id="div-details">
         <table>
@@ -63,11 +63,19 @@
         <div class="hire" id="div-hire">
             <hr width="100%" height="1">
             <p class="hire">Select the interval of days you need the car:</p><br>
-            <label for date-from>From:</label>
-            <input type="date" id="date-from">
-            <label for date-to>To:</label>
-            <input type="date" id="date-to">
-            <input type="button" id="check-availability-button" value="Check availability"><br>
+            <form method="post" action="/check_availability">
+                <input type="hidden" id="car-id" name="car-id" value="{{ car.id }}">
+                <label for date-from>From:</label>
+                <input type="date" id="date-from" name="date-from">
+                <label for date-to>To:</label>
+                <input type="date" id="date-to" name="date-to">
+                <input type="submit" id="check-availability-button" value="Check availability"><br>
+            </form>
         </div>
+        {% if error %}
+            <script type="text/javascript">
+                show_date_error("{{ error }}")
+            </script>
+        {% endif %}
     </div>
 {% endblock %}

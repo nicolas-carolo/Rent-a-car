@@ -31,10 +31,25 @@ INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engi
 
 DROP TABLE IF EXISTS news;
 CREATE TABLE news(
-  id					      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	description       VARCHAR(1024) NOT NULL
+    id               INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    description      VARCHAR(1024) NOT NULL
 );
 
 INSERT INTO news(description) VALUES ('New BMW 320d Luxury available');
 INSERT INTO news(description) VALUES ('New Mercedes A180d Automatic Premium available');
 INSERT INTO news(description) VALUES ('From 15th to 17th on September we are going to be closed');
+
+
+DROP TABLE IF EXISTS car_reservations;
+CREATE TABLE car_reservations(
+    id_reservation   INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id_car           INT NOT NULL,
+    id_user          VARCHAR(100) NOT NULL,
+    date_from        DATE NOT NULL,
+    date_to          DATE NOT NULL
+);
+
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (1, 'sebastian.vettel@pilot.com', '2019-08-09', '2019-08-11');
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (3, 'lewis.hamilton@pilot.com', '2019-07-30', '2019-08-04');
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (2, 'valtteri.bottas@pilot.com', '2019-08-15', '2019-08-15');
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (2, 'lewis.hamilton@pilot.com', '2019-09-01', '2019-09-07');

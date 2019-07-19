@@ -74,6 +74,22 @@ div.hire {
     margin: 5px;
 }
 
+input[type=submit] {
+    text-align: center;
+    background-color: orange;
+    color: #FFFFFF;
+    border: 1px solid orange;
+    border-radius: 20px;
+    box-shadow: 1px 1px 1px #3c5d5d;
+    text-shadow:none;
+    padding: 5px;
+    margin: 15px auto 5px;
+}
+
+input[type=submit]:hover {
+    background-color: darkorange;
+}
+
 p.hire {
     margin-bottom: 0px;
     font-size: 1.2em;
