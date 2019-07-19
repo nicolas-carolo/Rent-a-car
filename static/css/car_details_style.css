@@ -104,3 +104,16 @@ input[type=date] {
     padding: 5px;
     margin: 5px;
 }
+
+div.confirm-hire {
+    padding: 15px;
+    margin: 20px;
+}
+
+#div-confirm-hire {
+    display: none;
+}
+
+p.confirm-hire {
+    font-size: 1.5em;
+}
