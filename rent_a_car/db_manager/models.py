@@ -35,3 +35,16 @@ class News(Base):
 
     id = Column(Integer, primary_key=True)
     description = Column(String)
+
+
+class Reservation(Base):
+    """
+    The database object reservation
+    """
+    __tablename__ = 'car_reservations'
+
+    id_reservation = Column(Integer, primary_key=True)
+    id_car = Column(Integer)
+    id_user = Column(String)
+    date_from = Column(String)
+    date_to = Column(String)
