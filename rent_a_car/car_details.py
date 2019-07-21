@@ -30,7 +30,7 @@ def get_total_price(price_per_day, date_from, date_to):
 
 
 def are_dates_valid(date_from, date_to):
-    if date_from > date_to or date_from == "" or date_to == "" or datetime.strptime(date_from, '%Y-%m-%d') < datetime.today():
+    if date_from > date_to or date_from == "" or date_to == "" or datetime.strptime(date_from, '%Y-%m-%d').date() < datetime.today().date():
         return False
     else:
         return True

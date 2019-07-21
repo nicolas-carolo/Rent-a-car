@@ -1,10 +1,12 @@
 function show_div_hire(){
     document.getElementById("div-hire").style.display = "block";
-    // document.getElementById("div-confirm-hire").style.display = "none";
     window.scrollBy(0,150);
     document.getElementById("hire-button").disabled = true;
     document.getElementById("hire-button").style.background = "gray";
     document.getElementById("hire-button").style.borderColor = "gray";
+
+    document.getElementById("date-from").valueAsDate = new Date;
+    document.getElementById("date-to").valueAsDate = new Date;
 }
 
 function show_date_error(error) {
