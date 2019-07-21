@@ -1,6 +1,6 @@
 function show_div_hire(){
     document.getElementById("div-hire").style.display = "block";
-    document.getElementById("div-confirm-hire").style.display = "none";
+    // document.getElementById("div-confirm-hire").style.display = "none";
     window.scrollBy(0,150);
     document.getElementById("hire-button").disabled = true;
     document.getElementById("hire-button").style.background = "gray";

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from rent_a_car.home import get_cars_preview, get_news_list, get_car_identified_by_id
-from rent_a_car.car_details import is_car_available_in_the_selected_period, get_total_price
+from rent_a_car.car_details import is_car_available_in_the_selected_period, get_total_price, are_dates_valid
 
 app = Flask(__name__)
 
@@ -29,7 +29,7 @@ def check_car_availability():
         car = get_car_identified_by_id(car_id)
         date_from = request.form['date-from']
         date_to = request.form['date-to']
-        if date_from > date_to or date_from == "" or date_to == "":
+        if not are_dates_valid(date_from, date_to):
             return render_template('car_details.html', car=car, error="Please insert a valid date interval!")
         if is_car_available_in_the_selected_period(date_from, date_to, car_id):
             print('isAvailable', True)
