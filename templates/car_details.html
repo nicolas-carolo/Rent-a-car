@@ -8,6 +8,10 @@
     <script src="/static/script/car_details.js" type="text/javascript"></script>
 {% endblock %}
 
+{% block login_button %}
+    <a class="a-right" href="/login?back=car_details.html&car-id={{ car.id }}">Sign in</a>
+{% endblock %}
+
 {% block car_details %}
     <div class="car-image">
         <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="576" height="432">

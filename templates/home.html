@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block login_button %}
+    <a class="a-right" href="/login?back=home.html">Sign in</a>
+{% endblock %}
+
 {% block company_description %}
     <div class="company-description">
         <h2>Information about the company</h2>

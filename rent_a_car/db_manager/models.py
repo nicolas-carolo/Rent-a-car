@@ -50,7 +50,7 @@ class CarReservation(Base):
     date_to = Column(String)
 
 
-class Session(Base):
+class UserSession(Base):
     """
     The database object session
     """
@@ -58,6 +58,10 @@ class Session(Base):
 
     id_session = Column(String, primary_key=True)
     id_user = Column(String)
+
+    def __init__(self, id_session, id_user):
+        self.id_session = id_session
+        self.id_user = id_user
 
 
 class User(Base):

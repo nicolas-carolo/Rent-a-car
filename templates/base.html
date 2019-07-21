@@ -9,6 +9,9 @@
     {% block javascript_code %}
     {% endblock %}
     <link rel="icon" type="image/png" href="/static/media/logo.png">
+    {% if session_id %}
+        <script type="text/javascript">document.cookie = "session_id={{ session_id }}";</script>
+    {% endif %}
 </head>
 <body>
     <div class="navbar">
@@ -20,7 +23,7 @@
             <a class="a-right" href="/logout">Log out</a>
             <a class="a-right" href="/user-area">{{ user }}</a>
         {% else %}
-            <a class="a-right" href="/login">Sign in</a>
+            {% block login_button %}{% endblock %}
             <a class="a-right" href="/sign-up">Sign up</a>
         {% endif %}
     </div>

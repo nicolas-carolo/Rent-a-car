@@ -16,6 +16,8 @@
             <label for password>Password:</label>
             <input type="password" id="password" name="password"><br>
             <input type="submit" id="authenticate" name="authenticate" value="Login">
+            <input type="hidden" id="backto" name="backto" value="{{ template }}">
+            <input type="hidden" id="car-id" name="car-id" value="{{ car_id }}">
         </form>
     </div>
     {% if error %}
