@@ -6,21 +6,21 @@ USE RENTACAR;
 
 DROP TABLE IF EXISTS cars;
 CREATE TABLE cars(
-    id			      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	brand    		  VARCHAR(30) NOT NULL,
-	model  		      VARCHAR(50) NOT NULL,
-	car_year          INT NOT NULL,
-	plate             VARCHAR(10) NOT NULL,
-	n_seats           INT NOT NULL,
-	car_type          VARCHAR(30) NOT NULL,
-	min_age           INT NOT NULL,
-	engine            VARCHAR(10) NOT NULL,
-	fuel              VARCHAR(20) NOT NULL,
-	power             INT NOT NULL,
-	transmission      VARCHAR(20) NOT NULL,
-	photo_link        VARCHAR(200) NOT NULL,
-	price             INT NOT NULL,
-	preview           BOOLEAN
+    id			          INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	  brand    		      VARCHAR(30) NOT NULL,
+	  model  		        VARCHAR(50) NOT NULL,
+	  car_year          INT NOT NULL,
+	  plate             VARCHAR(10) NOT NULL,
+	  n_seats           INT NOT NULL,
+	  car_type          VARCHAR(30) NOT NULL,
+	  min_age           INT NOT NULL,
+	  engine            VARCHAR(10) NOT NULL,
+	  fuel              VARCHAR(20) NOT NULL,
+	  power             INT NOT NULL,
+	  transmission      VARCHAR(20) NOT NULL,
+	  photo_link        VARCHAR(200) NOT NULL,
+	  price             INT NOT NULL,
+	  preview           BOOLEAN
 );
 
 INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('BMW', 'X1 16d sDrive', 2016, 'FF001XB', 5, 'SUV', '23', '1.5', 'Diesel', 116, 'Manual', '/static/media/cars/bmw-x1-2016.jpg', 65, true);
@@ -53,3 +53,25 @@ INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (1, 'se
 INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (3, 'lewis.hamilton@pilot.com', '2019-07-30', '2019-08-04');
 INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (2, 'valtteri.bottas@pilot.com', '2019-08-15', '2019-08-15');
 INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (2, 'lewis.hamilton@pilot.com', '2019-09-01', '2019-09-07');
+
+
+DROP TABLE IF EXISTS sessions;
+CREATE TABLE sessions(
+    id_session       VARCHAR(100) PRIMARY KEY NOT NULL,
+    id_user          VARCHAR(100) NOT NULL
+);
+
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users(
+    id              VARCHAR(100) PRIMARY KEY NOT NULL,
+    password        VARCHAR(100) NOT NULL,
+    age             INT NOT NULL
+);
+
+INSERT INTO users(id, password, age) VALUES ('sebastian.vettel@pilot.com', 'ferrari1', 32);
+INSERT INTO users(id, password, age) VALUES ('lewis.hamilton@pilot.com', 'mercedes', 34);
+INSERT INTO users(id, password, age) VALUES ('charles.leclerc@pilot.com', 'ferrari2', 21);
+INSERT INTO users(id, password, age) VALUES ('utente30@test.com', '123', 30);
+
+
