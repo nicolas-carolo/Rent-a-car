@@ -198,3 +198,19 @@ div.preview-cars {
 img.car-image:hover {
     box-shadow: 2px 2px 2px 2px #3c5d5d;
 }
+
+input[type=submit] {
+    text-align: center;
+    background-color: orange;
+    color: #FFFFFF;
+    border: 1px solid orange;
+    border-radius: 20px;
+    box-shadow: 1px 1px 1px #3c5d5d;
+    text-shadow:none;
+    padding: 5px;
+    margin: 15px auto 5px;
+}
+
+input[type=submit]:hover {
+    background-color: darkorange;
+}

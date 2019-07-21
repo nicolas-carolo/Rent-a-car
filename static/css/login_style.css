@@ -1,0 +1,28 @@
+div.login {
+    width: 40%;
+    text-align: center;
+    margin: 50px auto auto;
+    padding: 20px;
+    background-color: #c1d7d7;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+}
+
+input {
+    font-size: 1.5em;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    border-color: #EEEEEE;
+    padding: 5px 10px 5px;
+    margin: 5px;
+    width: 50%
+}
+
+label {
+    font-size: 1.5em;
+}
+
+#authenticate {
+    width: 50%;
+}

@@ -37,9 +37,9 @@ class News(Base):
     description = Column(String)
 
 
-class Reservation(Base):
+class CarReservation(Base):
     """
-    The database object reservation
+    The database object car reservation
     """
     __tablename__ = 'car_reservations'
 
@@ -48,3 +48,24 @@ class Reservation(Base):
     id_user = Column(String)
     date_from = Column(String)
     date_to = Column(String)
+
+
+class Session(Base):
+    """
+    The database object session
+    """
+    __tablename__ = 'sessions'
+
+    id_session = Column(String, primary_key=True)
+    id_user = Column(String)
+
+
+class User(Base):
+    """
+    The database object user
+    """
+    __tablename__ = 'users'
+
+    id = Column(String, primary_key=True)
+    password = Column(String)
+    age = Column(Integer)

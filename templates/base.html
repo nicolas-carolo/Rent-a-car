@@ -16,8 +16,13 @@
         <a class="a-left" href="/cars">Car Hire</a>
         <a class="a-left" href="/vans">Van Hire</a>
         <a class="a-left" href="/contacts">Contacts</a>
-        <a class="a-right" href="/login">Sign in</a>
-        <a class="a-right" href="/sign-up">Sign up</a>
+        {% if user %}
+            <a class="a-right" href="/logout">Log out</a>
+            <a class="a-right" href="/user-area">{{ user }}</a>
+        {% else %}
+            <a class="a-right" href="/login">Sign in</a>
+            <a class="a-right" href="/sign-up">Sign up</a>
+        {% endif %}
     </div>
     <div class="logo-and-title">
         <table>
@@ -34,6 +39,8 @@
     {% block preview_cars %}
     {% endblock %}
     {% block car_details %}
+    {% endblock %}
+    {% block login %}
     {% endblock %}
     <footer>
         <p>Rent a car | &copy;2019 Nicolas Carolo | All rights reserved</p>
