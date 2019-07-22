@@ -15,10 +15,10 @@
 </head>
 <body>
     <div class="navbar">
-        <a class="a-logo" href="/"><img class="small-logo" src="/static/media/logo.png" width="30" height="30"></a>
-        <a class="a-left" href="/cars">Car Hire</a>
-        <a class="a-left" href="/vans">Van Hire</a>
-        <a class="a-left" href="/contacts">Contacts</a>
+        <a class="a-logo" href="/?session-id={{ session_id }}&user-id={{ user }}"><img class="small-logo" src="/static/media/logo.png" width="30" height="30"></a>
+        <a class="a-left" href="/cars?session-id={{ session_id }}&user-id={{ user }}">Car Hire</a>
+        <a class="a-left" href="/vans?session-id={{ session_id }}&user-id={{ user }}">Van Hire</a>
+        <a class="a-left" href="/contacts?session-id={{ session_id }}&user-id={{ user }}">Contacts</a>
         {% if user %}
             <a class="a-right" href="/logout?session-id={{ session_id }}">Log out</a>
             <a class="a-right" href="/user-area">{{ user }}</a>
