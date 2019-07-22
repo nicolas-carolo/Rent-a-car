@@ -16,11 +16,27 @@ input {
     border-color: #EEEEEE;
     padding: 5px 10px 5px;
     margin: 5px;
-    width: 50%
+    width: 90%
+}
+
+table.login {
+    width: 95%;
+    margin: auto;
+}
+
+td.caption {
+    text-align: left;
+    width: 50%;
+}
+
+td.user-input {
+    text-align: right;
+    width: 50%;
 }
 
 label {
     font-size: 1.5em;
+    width: 50%;
 }
 
 #authenticate {

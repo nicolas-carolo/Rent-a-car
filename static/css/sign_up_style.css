@@ -21,19 +21,17 @@ input {
 
 table.subscribe {
     width: 95%;
-    margin: auto
-}
-
-td {
-    width: 50%;
+    margin: auto;
 }
 
 td.caption {
     text-align: left;
+    width: 50%;
 }
 
 td.user-input {
     text-align: right;
+    width: 50%;
 }
 
 label {
