@@ -36,12 +36,25 @@ def delete_session(session_id):
     session.close()
 
 
-def check_authentication(username, session_id):
+def check_authentication(session_id):
     session = start_session()
     queryset = session.query(UserSession).filter(UserSession.id_session.__eq__(session_id))
     try:
-        session = queryset2list(queryset)[0]
-        return True
+        sessions_list = queryset2list(queryset)
+        if sessions_list.__len__() == 1:
+            return True
+        else:
+            return False
     except IndexError:
         return False
+
+
+def get_user_by_session_id(session_id):
+    session = start_session()
+    queryset = session.query(UserSession).filter(UserSession.id_session.__eq__(session_id))
+    try:
+        user_session = queryset2list(queryset)[0]
+        return user_session.id_user
+    except IndexError:
+        return None
 

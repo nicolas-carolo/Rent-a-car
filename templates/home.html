@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% block javascript_code %}
+    <script src="/static/script/login.js" type="text/javascript"></script>
+    <script type="text/javascript">validateSession("{{ session_id }}", "{{ authjs }}")</script>
+{% endblock %}
+
 {% block login_button %}
     <a class="a-right" href="/login?back=home.html">Sign in</a>
 {% endblock %}
