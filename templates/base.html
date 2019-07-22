@@ -20,7 +20,7 @@
         <a class="a-left" href="/vans">Van Hire</a>
         <a class="a-left" href="/contacts">Contacts</a>
         {% if user %}
-            <a class="a-right" href="/logout">Log out</a>
+            <a class="a-right" href="/logout?session-id={{ session_id }}">Log out</a>
             <a class="a-right" href="/user-area">{{ user }}</a>
         {% else %}
             {% block login_button %}{% endblock %}

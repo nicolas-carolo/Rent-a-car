@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from rent_a_car.home import get_cars_preview, get_news_list, get_car_identified_by_id
 from rent_a_car.car_details import is_car_available_in_the_selected_period, get_total_price, are_dates_valid
-from rent_a_car.login import authenticate as check_credentials, generate_session
+from rent_a_car.login import authenticate as check_credentials, generate_session, delete_session
 
 app = Flask(__name__)
 
@@ -67,7 +67,9 @@ def authenticate():
 
 @app.route('/logout')
 def logout():
-    # todo insert function to remove the session cookie
+    session_id = request.args.get('session-id', None)
+    print(session_id)
+    delete_session(session_id)
     return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list())
 
 

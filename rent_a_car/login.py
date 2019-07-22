@@ -21,9 +21,17 @@ def authenticate(username, inserted_password):
 def generate_session(username):
     session_id = str(uuid.uuid1())
     session = start_session()
+    session.query(UserSession).filter(UserSession.id_user.__eq__(username)).delete()
     user_session = UserSession(session_id, username)
     session.add(user_session)
     session.commit()
     session.close()
     return session_id
+
+
+def delete_session(session_id):
+    session = start_session()
+    session.query(UserSession).filter(UserSession.id_session.__eq__(session_id)).delete()
+    session.commit()
+    session.close()
 
