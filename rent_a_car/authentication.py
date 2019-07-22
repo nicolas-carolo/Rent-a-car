@@ -37,6 +37,7 @@ def delete_session(session_id):
 
 
 def check_authentication(session_id):
+    # todo fix broken authentication
     session = start_session()
     queryset = session.query(UserSession).filter(UserSession.id_session.__eq__(session_id))
     try:
