@@ -36,13 +36,12 @@ def delete_session(session_id):
     session.close()
 
 
-def check_authentication(session_id):
-    # todo fix broken authentication
+def check_authentication(session_id, username):
     session = start_session()
     queryset = session.query(UserSession).filter(UserSession.id_session.__eq__(session_id))
     try:
-        sessions_list = queryset2list(queryset)
-        if sessions_list.__len__() == 1:
+        user_session = queryset2list(queryset)[0]
+        if user_session.id_user == username:
             return True
         else:
             return False

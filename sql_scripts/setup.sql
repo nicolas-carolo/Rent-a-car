@@ -6,21 +6,21 @@ USE RENTACAR;
 
 DROP TABLE IF EXISTS cars;
 CREATE TABLE cars(
-    id			          INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	  brand    		      VARCHAR(30) NOT NULL,
-	  model  		        VARCHAR(50) NOT NULL,
-	  car_year          INT NOT NULL,
-	  plate             VARCHAR(10) NOT NULL,
-	  n_seats           INT NOT NULL,
-	  car_type          VARCHAR(30) NOT NULL,
-	  min_age           INT NOT NULL,
-	  engine            VARCHAR(10) NOT NULL,
-	  fuel              VARCHAR(20) NOT NULL,
-	  power             INT NOT NULL,
-	  transmission      VARCHAR(20) NOT NULL,
-	  photo_link        VARCHAR(200) NOT NULL,
-	  price             INT NOT NULL,
-	  preview           BOOLEAN
+    id			      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	brand    		  VARCHAR(30) NOT NULL,
+	model  		      VARCHAR(50) NOT NULL,
+	car_year          INT NOT NULL,
+	plate             VARCHAR(10) NOT NULL,
+	n_seats           INT NOT NULL,
+	car_type          VARCHAR(30) NOT NULL,
+	min_age           INT NOT NULL,
+	engine            VARCHAR(10) NOT NULL,
+	fuel              VARCHAR(20) NOT NULL,
+	power             INT NOT NULL,
+	transmission      VARCHAR(20) NOT NULL,
+	photo_link        VARCHAR(200) NOT NULL,
+	price             INT NOT NULL,
+	preview           BOOLEAN
 );
 
 INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('BMW', 'X1 16d sDrive', 2016, 'FF001XB', 5, 'SUV', '23', '1.5', 'Diesel', 116, 'Manual', '/static/media/cars/bmw-x1-2016.jpg', 65, true);
