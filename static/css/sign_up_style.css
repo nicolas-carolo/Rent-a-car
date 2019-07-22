@@ -1,0 +1,46 @@
+div.subscribe {
+    width: 40%;
+    text-align: center;
+    margin: 20px auto 60px;
+    padding: 20px;
+    background-color: #c1d7d7;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+}
+
+input {
+    font-size: 1.5em;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    border-color: #EEEEEE;
+    padding: 5px 10px 5px;
+    margin: 5px 5px 5px auto;
+    width: 90%;
+}
+
+table.subscribe {
+    width: 95%;
+    margin: auto
+}
+
+td {
+    width: 50%;
+}
+
+td.caption {
+    text-align: left;
+}
+
+td.user-input {
+    text-align: right;
+}
+
+label {
+    font-size: 1.5em;
+    margin: 5px auto 5px 5px;
+}
+
+#subscribe {
+    width: 50%;
+}

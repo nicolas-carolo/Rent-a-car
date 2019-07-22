@@ -126,5 +126,10 @@ def after_auth_redirect(template, car_id, username):
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=username, session_id=session_id, authjs=False)
 
 
+@app.route('/sign-up')
+def sign_up():
+    return render_template('sign_up.html')
+
+
 if __name__ == '__main__':
     app.run()

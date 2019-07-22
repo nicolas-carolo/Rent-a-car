@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block other_styles %}
+    <link rel="stylesheet" href="/static/css/sign_up_style.css" type="text/css" />
+{% endblock %}
+
+{% block login %}
+    <div class="subscribe">
+        <form method="post" action="/subscribe">
+            <table class="subscribe">
+                    <td class="caption"><label for surname>Surname:</label></td>
+                    <td class="user-input"><input type="text", id="surname" name="surname"></td>
+                </tr>
+                <tr>
+                    <td class="caption"><label for name>Name:</label></td>
+                    <td class="user-input"><input type="text" id="name" name="name"></td>
+                </tr>
+                <tr>
+                    <td class="caption"><label for birthdate>Date of birth:</label></td>
+                    <td class="user-input"><input type="date" id="birthdate" name="birthdate"></td>
+                </tr>
+                <tr>
+                    <td class="caption"><label for username>Username:</label></td>
+                    <td class="user-input"><input type="email" id="username" name="username"></td>
+                </tr>
+                <tr>
+                    <td class="caption"><label for password>Password:</label></td>
+                    <td class="user-input"><input type="password" id="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td class="caption"><label for retype-password>Confirm password:</label></td>
+                    <td class="user-input"><input type="password" id="retype-password" name="retype-password"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" id="subscribe" name="subscribe" value="Subscribe"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+{% endblock %}
