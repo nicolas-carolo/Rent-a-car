@@ -3,6 +3,7 @@ from rent_a_car.home import get_cars_preview, get_news_list, get_car_identified_
 from rent_a_car.car_details import is_car_available_in_the_selected_period, get_total_price, are_dates_valid
 from rent_a_car.authentication import authenticate as check_credentials, generate_session, delete_session,\
     check_authentication, get_user_by_session_id
+from rent_a_car.sign_up import create_account
 
 app = Flask(__name__)
 
@@ -129,6 +130,22 @@ def after_auth_redirect(template, car_id, username):
 @app.route('/sign-up')
 def sign_up():
     return render_template('sign_up.html')
+
+
+@app.route('/subscribe', methods=['POST', 'GET'])
+def subscribe():
+    if request.method == 'POST':
+        surname = request.form['surname']
+        name = request.form['name']
+        birthdate = request.form['birthdate']
+        username = request.form['username']
+        password = request.form['password']
+        retype_password = request.form['retype-password']
+        if create_account(name, surname, birthdate, username, password, retype_password):
+            # todo provvisorio
+            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False)
+        else:
+            return render_template('sign_up.html')
 
 
 if __name__ == '__main__':

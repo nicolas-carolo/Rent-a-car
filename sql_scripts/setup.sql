@@ -66,12 +66,14 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users(
     id              VARCHAR(100) PRIMARY KEY NOT NULL,
     password        VARCHAR(100) NOT NULL,
-    age             INT NOT NULL
+    surname         VARCHAR(50) NOT NULL,
+    name            VARCHAR(50) NOT NULL,
+    birthdate       DATE NOT NULL
 );
 
-INSERT INTO users(id, password, age) VALUES ('sebastian.vettel@pilot.com', 'ferrari1', 32);
-INSERT INTO users(id, password, age) VALUES ('lewis.hamilton@pilot.com', 'mercedes', 34);
-INSERT INTO users(id, password, age) VALUES ('charles.leclerc@pilot.com', 'ferrari2', 21);
-INSERT INTO users(id, password, age) VALUES ('utente30@test.com', '123', 30);
+INSERT INTO users(id, password, surname, name, birthdate) VALUES ('sebastian.vettel@pilot.com', 'ferrari1', 'Sebastian', 'Vettel', '1987-07-03');
+INSERT INTO users(id, password, surname, name, birthdate) VALUES ('lewis.hamilton@pilot.com', 'mercedes', 'Lewis', 'Hamilton', '1985-01-07');
+INSERT INTO users(id, password, surname, name, birthdate) VALUES ('charles.leclerc@pilot.com', 'ferrari2', 'Charles', 'Leclerc', '1997-10-16');
+INSERT INTO users(id, password, surname, name, birthdate) VALUES ('utente30@test.com', '123', 'Utente', 'Trenta', '1989-01-01');
 
 

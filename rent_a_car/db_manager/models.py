@@ -72,4 +72,13 @@ class User(Base):
 
     id = Column(String, primary_key=True)
     password = Column(String)
-    age = Column(Integer)
+    surname = Column(String)
+    name = Column(String)
+    birthdate = Column(String)
+
+    def __init__(self, id, password, surname, name, birthdate):
+        self.id = id
+        self.password = password
+        self.surname = surname
+        self.name = name
+        self.birthdate = birthdate
