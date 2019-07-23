@@ -141,12 +141,13 @@ def subscribe():
         username = request.form['username']
         password = request.form['password']
         retype_password = request.form['retype-password']
-        if create_account(name, surname, birthdate, username, password, retype_password):
+        is_new_user_valid = create_account(name, surname, birthdate, username, password, retype_password)
+        if is_new_user_valid == "OK":
             session_id = generate_session(username)
             return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=username,
                                    session_id=session_id, authjs=False, user_added_correctly=True)
         else:
-            return render_template('sign_up.html', subscription_error=True)
+            return render_template('sign_up.html', subscription_error=is_new_user_valid)
 
 
 if __name__ == '__main__':

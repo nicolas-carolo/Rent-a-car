@@ -6,7 +6,7 @@
 
 {% block javascript_code %}
     {% if subscription_error %}
-        <script type="text/javascript">alert("Subscription failed!");</script>
+        <script type="text/javascript">alert("{{ subscription_error }}");</script>
     {% endif %}
 {% endblock %}
 
