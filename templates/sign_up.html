@@ -4,6 +4,12 @@
     <link rel="stylesheet" href="/static/css/sign_up_style.css" type="text/css" />
 {% endblock %}
 
+{% block javascript_code %}
+    {% if subscription_error %}
+        <script type="text/javascript">alert("Subscription failed!");</script>
+    {% endif %}
+{% endblock %}
+
 {% block login %}
     <div class="subscribe">
         <form method="post" action="/subscribe">
@@ -20,7 +26,7 @@
                     <td class="user-input"><input type="date" id="birthdate" name="birthdate" required></td>
                 </tr>
                 <tr>
-                    <td class="caption"><label for username>Username:</label></td>
+                    <td class="caption"><label for username>Email address:</label></td>
                     <td class="user-input"><input type="email" id="username" name="username" required></td>
                 </tr>
                 <tr>

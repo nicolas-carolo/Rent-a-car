@@ -8,12 +8,16 @@
     <script src="/static/script/login.js" type="text/javascript"></script>
 {% endblock %}
 
+{% block right_buttons %}
+    <a class="a-right" href="/sign-up">Sign up</a>
+{% endblock %}
+
 {% block login %}
     <div class="login">
         <form method="post" action="/auth">
             <table class="login">
                 <tr>
-                    <td class="caption"><label for username>Username:</label></td>
+                    <td class="caption"><label for username>Email address:</label></td>
                     <td class="user-input"><input type="email" id="username" name="username" required></td>
                 </tr>
                 <tr>

@@ -23,8 +23,7 @@
             <a class="a-right" href="/logout?session-id={{ session_id }}" onclick="logout()">Log out</a>
             <a class="a-right" href="/user-area">{{ user }}</a>
         {% else %}
-            {% block login_button %}{% endblock %}
-            <a class="a-right" href="/sign-up">Sign up</a>
+            {% block right_buttons %}{% endblock %}
         {% endif %}
     </div>
     <div class="logo-and-title">
