@@ -39,7 +39,7 @@
     <div class="preview-cars">
         <table>
             {% for car in cars_list %}
-                {% if loop.index0 % 2 == 0 %}
+                {% if loop.index0 % 2 == 0 and loop.index0 < preview_length - 1 %}
                     <tr>
                         <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[loop.index0].photo_link }}" width="320" height="240"></a></td>
                         <td class="car-description"><a href="/car_details?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[loop.index0].brand }} {{ cars_list[loop.index0].model }}</b></a></td>
@@ -68,6 +68,34 @@
                     </tr>
                 {% endif %}
             {% endfor %}
+            {% if preview_length % 2 == 1 %}
+                <tr>
+                        <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[preview_length - 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[preview_length - 1].photo_link }}" width="320" height="240"></a></td>
+                        <td class="car-description"><a href="/car_details?car-id={{ cars_list[preview_length - 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[preview_length - 1].brand }} {{ cars_list[preview_length - 1].model }}</b></a></td>
+                        <td rowspan="6" class="car-image"></td>
+                        <td class="car-description"></td>
+                    </tr>
+                    <tr>
+                        <td class="car-details">Year: {{ cars_list[preview_length - 1].car_year }}</td>
+                        <td class="car-details"></td>
+                    </tr>
+                    <tr>
+                        <td class="car-details">Engine: {{ cars_list[preview_length - 1].engine }} {{ cars_list[preview_length - 1].fuel }} {{ cars_list[preview_length - 1].power }} cv</td>
+                        <td class="car-details"></td>
+                    </tr>
+                    <tr>
+                        <td class="car-details">Transmission: {{ cars_list[preview_length - 1].transmission }}</td>
+                        <td class="car-details"></td>
+                    </tr>
+                    <tr>
+                        <td class="car-details">Driver's minimum age: {{ cars_list[preview_length - 1].min_age }}</td>
+                        <td class="car-details"></td>
+                    </tr>
+                    <tr>
+                        <td class="car-price">Price: €{{ cars_list[preview_length - 1].price }} per day</td>
+                        <td class="car-price"></td>
+                    </tr>
+            {% endif %}
         </table>
     </div>
 {% endblock %}

@@ -13,9 +13,11 @@ def home():
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     if check_authentication(session_id, user_id):
-        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=user_id, session_id=session_id, authjs=True)
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=user_id,
+                               session_id=session_id, authjs=True, preview_length=get_cars_preview().__len__())
     else:
-        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=True)
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=True,
+                               preview_length=get_cars_preview().__len__())
 
 
 @app.route('/cars')
