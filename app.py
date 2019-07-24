@@ -75,9 +75,9 @@ def check_car_availability():
                                        date_from=date_from, date_to=date_to)
     else:
         if check_authentication(session_id, user_id):
-            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=user_id, session_id=session_id, authjs=False)
+            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=user_id, session_id=session_id, authjs=False, preview_length=get_cars_preview().__len__())
         else:
-            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False)
+            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False, preview_length=get_cars_preview().__len__())
 
 
 @app.route('/login')
@@ -104,7 +104,7 @@ def authenticate():
 def logout():
     session_id = request.args.get('session-id', None)
     delete_session(session_id)
-    return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False)
+    return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False, preview_length=get_cars_preview().__len__())
 
 
 @app.route('/auth_session_id', methods=['POST', 'GET'])
@@ -113,9 +113,9 @@ def authenticate_by_session_id():
     user_id = get_user_by_session_id(session_id)
     if check_authentication(session_id,user_id) and user_id is not None:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=user_id,
-                               session_id=session_id, authjs=False)
+                               session_id=session_id, authjs=False, preview_length=get_cars_preview().__len__())
     else:
-        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False)
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False, preview_length=get_cars_preview().__len__())
 
 
 def after_auth_redirect(template, car_id, username):
@@ -126,7 +126,7 @@ def after_auth_redirect(template, car_id, username):
         car = get_car_identified_by_id(car_id)
         return render_template('car_details.html', car=car, user=username, session_id=session_id)
     else:
-        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=username, session_id=session_id, authjs=False)
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=username, session_id=session_id, authjs=False, preview_length=get_cars_preview().__len__())
 
 
 @app.route('/sign-up')
@@ -147,7 +147,7 @@ def subscribe():
         if is_new_user_valid == "OK":
             session_id = generate_session(username)
             return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=username,
-                                   session_id=session_id, authjs=False, user_added_correctly=True)
+                                   session_id=session_id, authjs=False, user_added_correctly=True, preview_length=get_cars_preview().__len__())
         else:
             return render_template('sign_up.html', subscription_error=is_new_user_valid)
 
