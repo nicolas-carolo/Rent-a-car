@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from rent_a_car.home import get_cars_preview, get_news_list, get_car_identified_by_id
-from rent_a_car.car_details import is_car_available_in_the_selected_period, get_total_price, are_dates_valid, save_car_reservation
+from rent_a_car.rent import is_car_available_in_the_selected_period, get_total_price, are_dates_valid,\
+    save_car_reservation, has_user_age_requirement
 from rent_a_car.authentication import authenticate as check_credentials, generate_session, delete_session,\
     check_authentication, get_user_by_session_id
 from rent_a_car.sign_up import create_account
@@ -169,13 +170,19 @@ def confirm_car_reservation():
                 return render_template('car_details.html', car=car, error="Please insert a valid date interval!")
         if is_car_available_in_the_selected_period(date_from, date_to, car_id):
             if check_authentication(session_id, user_id):
-                reservation_id = save_car_reservation(car_id, user_id, date_from, date_to)
-                return render_template('car_reservation_details.html', user=user_id, session_id=session_id,
-                                       reservation_id=reservation_id, car=car, date_from=date_from, date_to=date_to,
-                                       total_price=get_total_price(car.price, date_from, date_to))
+                if has_user_age_requirement(user_id, car_id):
+                    reservation_id = save_car_reservation(car_id, user_id, date_from, date_to)
+                    return render_template('car_reservation_details.html', user=user_id, session_id=session_id,
+                                           reservation_id=reservation_id, car=car, date_from=date_from, date_to=date_to,
+                                           total_price=get_total_price(car.price, date_from, date_to))
+                else:
+                    error_msg = "The reservation has failed because you are not at least " + str(car.min_age) +\
+                                " years old!"
+                    return render_template('car_details.html', user=user_id, session_id=session_id,
+                                           error=error_msg, car=car)
             else:
                 return render_template('car_details.html', car=car,
-                                       error="the reservation has been canceled because you are not authenticated!")
+                                       error="You need to be authenticated in order to complete this action!")
         else:
             if check_authentication(session_id, user_id):
                 return render_template('car_details.html', car=car, is_available=False, show_confirm_div=True,

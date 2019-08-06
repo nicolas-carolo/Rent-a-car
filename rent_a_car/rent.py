@@ -1,6 +1,7 @@
 from rent_a_car.db_manager.session_manager import start_session
-from rent_a_car.db_manager.models import CarReservation
+from rent_a_car.db_manager.models import CarReservation, User, Car
 from rent_a_car.db_manager.result_set import queryset2list
+from rent_a_car.sign_up import get_age
 from datetime import datetime
 from sqlalchemy import and_
 
@@ -49,3 +50,16 @@ def save_car_reservation(car_id, username, date_from, date_to):
     reservation = queryset2list(queryset)[0]
     session.close()
     return reservation.id_reservation
+
+
+def has_user_age_requirement(username, car_id):
+    session = start_session()
+    queryset = session.query(User).filter(User.id.__eq__(username))
+    user = queryset2list(queryset)[0]
+    queryset = session.query(Car).filter(Car.id.__eq__(car_id))
+    car = queryset2list(queryset)[0]
+    if get_age(str(user.birthdate)) >= car.min_age:
+        return True
+    else:
+        return False
+
