@@ -89,9 +89,10 @@
                 </p>
                 <br>
                 <p class="confirm-hire" id="msg-price-confirm-hire">Total price: € {{ total_price }}</p>
-                <form method="post" action="/confirm-reservation?session-id={{ session_id }}&user-id={{ user }}">
-                    <input type="hidden" id="hidden-date-from" name="hidden-date-from" value {{ date_from }}>
-                    <input type="hidden" id="hidden-date-to" name="hidden-date-to" value {{ date_to }}>
+                <form method="post" action="/confirm_car_reservation?session-id={{ session_id }}&user-id={{ user }}">
+                    <input type="hidden" id="hidden-car-id" name="hidden-car-id" value="{{ car.id }}">
+                    <input type="hidden" id="hidden-date-from" name="hidden-date-from" value="{{ date_from }}">
+                    <input type="hidden" id="hidden-date-to" name="hidden-date-to" value="{{ date_to }}">
                     <input type="submit" id="confirm-reservation-button" value="Confirm reservation"><br>
                 </form>
             {% else %}

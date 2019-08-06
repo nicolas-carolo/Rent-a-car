@@ -2,6 +2,7 @@ from rent_a_car.db_manager.session_manager import start_session
 from rent_a_car.db_manager.models import CarReservation
 from rent_a_car.db_manager.result_set import queryset2list
 from datetime import datetime
+from sqlalchemy import and_
 
 
 def dates_intervals_are_overlapped(start_1, end_1, start_2, end_2):
@@ -34,3 +35,17 @@ def are_dates_valid(date_from, date_to):
         return False
     else:
         return True
+
+
+def save_car_reservation(car_id, username, date_from, date_to):
+    session = start_session()
+    new_car_reservation = CarReservation(car_id, username, date_from, date_to)
+    session.add(new_car_reservation)
+    session.commit()
+    queryset = session.query(CarReservation).filter(and_(CarReservation.id_car.__eq__(car_id),
+                                                         CarReservation.id_user.__eq__(username),
+                                                         CarReservation.date_from.__eq__(date_from),
+                                                         CarReservation.date_to.__eq__(date_to)))
+    reservation = queryset2list(queryset)[0]
+    session.close()
+    return reservation.id_reservation
