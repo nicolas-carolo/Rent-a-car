@@ -83,7 +83,17 @@
         <div class="confirm-hire" id="div-confirm-hire">
             <hr width="100%" height="1">
             {% if is_available %}
-                <p class="confirm-hire" id="msg-confirm-hire">Total price: € {{ total_price }}</p>
+                <p class="confirm-hire" id="msg-availability-confirm-hire">
+                    This {{ car.brand }} {{ car.model }} will be available for you from {{ date_from }} at 8:00 a.m. to
+                    {{ date_to }} at 8:00 p.m.
+                </p>
+                <br>
+                <p class="confirm-hire" id="msg-price-confirm-hire">Total price: € {{ total_price }}</p>
+                <form method="post" action="/confirm-reservation?session-id={{ session_id }}&user-id={{ user }}">
+                    <input type="hidden" id="hidden-date-from" name="hidden-date-from" value {{ date_from }}>
+                    <input type="hidden" id="hidden-date-to" name="hidden-date-to" value {{ date_to }}>
+                    <input type="submit" id="confirm-reservation-button" value="Confirm reservation"><br>
+                </form>
             {% else %}
                 <p class="confirm-hire" id="msg-confirm-hire">We are sorry, but this car will not be available in the selected period</p>
             {% endif %}

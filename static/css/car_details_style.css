@@ -114,6 +114,18 @@ div.confirm-hire {
     display: none;
 }
 
-p.confirm-hire {
-    font-size: 1.5em;
+#confirm-reservation-button {
+    width: 40%;
+    font-size: 1.7em;
+}
+
+#msg-availability-confirm-hire {
+    margin-bottom: 0px;
+    font-size: 1.3em;
+}
+
+#msg-price-confirm-hire {
+    margin: 5px auto 10px;
+    font-weight: bold;
+    font-size: 1.8em;
 }
