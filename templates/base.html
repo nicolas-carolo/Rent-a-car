@@ -21,7 +21,7 @@
         <a class="a-left" href="/contacts?session-id={{ session_id }}&user-id={{ user }}">Contacts</a>
         {% if user %}
             <a class="a-right" href="/logout?session-id={{ session_id }}" onclick="logout()">Log out</a>
-            <a class="a-right" href="/user-area">{{ user }}</a>
+            <a class="a-right" href="/user_area">{{ user }}</a>
         {% else %}
             {% block right_buttons %}{% endblock %}
         {% endif %}

@@ -58,6 +58,7 @@ def has_user_age_requirement(username, car_id):
     user = queryset2list(queryset)[0]
     queryset = session.query(Car).filter(Car.id.__eq__(car_id))
     car = queryset2list(queryset)[0]
+    session.close()
     if get_age(str(user.birthdate)) >= car.min_age:
         return True
     else:
