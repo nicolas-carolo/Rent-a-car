@@ -1,0 +1,76 @@
+{% extends 'details.html' %}
+{% block car_details %}
+    <div class="car-image">
+        <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="576" height="432">
+    </div>
+    <div class="car-details" id="div-details">
+        <h2 class="car-details-header">Car details</h2>
+        <hr width="80%" height="1">
+        <table>
+            <tr>
+                <th>Brand:</th>
+                <td>{{ car.brand }}</td>
+            </tr>
+            <tr>
+                <th>Model:</th>
+                <td>{{ car.model }}</td>
+            </tr>
+            <tr>
+                <th>Year:</th>
+                <td>{{ car.car_year }}</td>
+            </tr>
+            <tr>
+                <th>Number of seats:</th>
+                <td>{{ car.n_seats }}</td>
+            </tr>
+            <tr>
+                <th>Type of car:</th>
+                <td>{{ car.car_type }}</td>
+            </tr>
+            <tr>
+                <th>Engine:</th>
+                <td>{{ car.engine }}</td>
+            </tr>
+            <tr>
+                <th>Fuel:</th>
+                <td>{{ car.fuel }}</td>
+            </tr>
+            <tr>
+                <th>Power:</th>
+                <td>{{ car.power }} cv</td>
+            </tr>
+            <tr>
+                <th>Transmission:</th>
+                <td>{{ car.transmission }}</td>
+            </tr>
+            <tr>
+                <th>Driver's minimum age:</th>
+                <td>{{ car.min_age }} years old</td>
+            </tr>
+            <tr>
+                <th>Price per day:</th>
+                <td>€ {{ car.price }}</td>
+            </tr>
+        </table>
+        <h2 class="car-details-header">Reservation details</h2>
+        <hr width="80%" height="1">
+        <table>
+            <tr>
+                <th>Reservation ID:</th>
+                <td>{{ reservation_id }}</td>
+            </tr>
+            <tr>
+                <th>From:</th>
+                <td>{{ date_from }} at 8:00 a.m.</td>
+            </tr>
+            <tr>
+                <th>To:</th>
+                <td>{{ date_to }} at 8:00 p.m.</td>
+            </tr>
+            <tr>
+                <th>Total price:</th>
+                <td>€ {{ total_price }}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

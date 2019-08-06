@@ -36,6 +36,14 @@ div.car-details {
     font-size: 1.4em;
 }
 
+h2.car-details-header {
+    text-align: center;
+    margin-bottom: 0px;
+    color: #476b6b;
+    font-size: 2em;
+
+}
+
 input[type=button] {
     text-align: center;
     background-color: orange;
@@ -134,4 +142,8 @@ div.confirm-hire {
     margin: 5px auto 10px;
     font-weight: bold;
     font-size: 1.8em;
+}
+
+table {
+    margin-bottom: 15px;
 }

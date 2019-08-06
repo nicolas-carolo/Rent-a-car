@@ -170,8 +170,9 @@ def confirm_car_reservation():
         if is_car_available_in_the_selected_period(date_from, date_to, car_id):
             if check_authentication(session_id, user_id):
                 reservation_id = save_car_reservation(car_id, user_id, date_from, date_to)
-                return render_template('reservation_details.html', user=user_id, session_id=session_id,
-                                       reservation_id=reservation_id)
+                return render_template('car_reservation_details.html', user=user_id, session_id=session_id,
+                                       reservation_id=reservation_id, car=car, date_from=date_from, date_to=date_to,
+                                       total_price=get_total_price(car.price, date_from, date_to))
             else:
                 return render_template('car_details.html', car=car,
                                        error="the reservation has been canceled because you are not authenticated!")
