@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block other_styles %}
+    <link rel="stylesheet" href="/static/css/home_style.css" type="text/css" />
+{% endblock %}
+
 {% block javascript_code %}
     <script src="/static/script/login.js" type="text/javascript"></script>
     <script type="text/javascript">validateSession("{{ session_id }}", "{{ authjs }}")</script>

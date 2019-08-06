@@ -1,13 +1,13 @@
 div.preview-cars {
-    width: 75%;
+    width: 95%;
     text-align: center;
-    margin: 20px 20px 50px auto;
+    margin: 20px auto 50px 20px;
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: #c1d7d7;
     border-radius: 20px;
     box-shadow: 5px 5px 5px #aaaaaa;
-    float: right;
+    float: left;
 }
 
 .preview-cars td {
@@ -21,7 +21,7 @@ div.preview-cars {
 }
 
 .preview-cars td.car-description {
-    font-size: 1.5em;
+    font-size: 1.8em;
     text-align: left;
     padding: 10px;
     border-left: hidden;
@@ -29,7 +29,7 @@ div.preview-cars {
 }
 
 .preview-cars td.car-price {
-    font-size: 1em;
+    font-size: 1.3em;
     text-align: left;
     padding: 10px;
     border-left: hidden;
@@ -37,7 +37,7 @@ div.preview-cars {
 }
 
 .preview-cars td.car-details {
-    font-size: 1em;
+    font-size: 1.3em;
     text-align: left;
     padding: 10px;
     border-left: hidden;
@@ -55,47 +55,4 @@ div.preview-cars {
     border: 3px solid #3c5d5d;
     border-collapse: collapse;
     border-spacing: 0;
-}
-
-div.searching-filters {
-    width: 20%;
-    text-align: center;
-    margin: 20px auto 50px 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: #c1d7d7;
-    border-radius: 20px;
-    box-shadow: 5px 5px 5px #aaaaaa;
-    float: left;
-}
-
-.searching-filters table {
-    margin: auto;
-    width: 90%;
-    border-collapse: collapse;
-}
-td.caption {
-    text-align: left;
-    width: 50%;
-}
-
-td.user-input {
-    text-align: right;
-    width: 50%;
-}
-
-.searching-filters label {
-    margin: 5px auto 5px;
-}
-
-.searching-filters input {
-    margin: 5px auto 5px;
-}
-
-.searching-filters th {
-    margin: 5px auto 5px;
-}
-
-.searching-filters input[type=number] {
-    width: 50%;
 }

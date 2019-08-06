@@ -9,6 +9,88 @@
     <a class="a-right" href="/login?back=cars.html">Log in</a>
 {% endblock %}
 
+{% block searching_filters %}
+    <div class="searching-filters">
+        <form method="post" action="/filter_cars?session-id={{ session_id }}&user-id={{ user }}">
+            <table>
+                <tr>
+                    <th colspan="2">Rent period</th>
+                </tr>
+                <tr>
+                   <td class="caption"><label for date-from>From:</label></td>
+                   <td class="user-input"><input type="date" id="date-from" name="date-from"></td>
+                </tr>
+                <tr>
+                    <td class="caption"><label for date-to>To:</label></td>
+                    <td class="user-input"><input type="date" id="date-to" name="date-to"></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Car brand and type</th>
+                </tr>
+                <tr>
+                   <td class="caption"><label for car-brand>Brand:</label></td>
+                   <td class="user-input">
+                       <select id="car-brand" name="car-brand">
+                           <option>BMW</option>
+                       </select>
+                   </td>
+                </tr>
+                <tr>
+                   <td class="caption"><label for car-type>Type:</label></td>
+                   <td class="user-input">
+                       <select id="car-type" name="car-type">
+                           <option>SUV</option>
+                       </select>
+                   </td>
+                </tr>
+                <tr>
+                   <td class="caption"><label for n-seats>Number of seats:</label></td>
+                   <td class="user-input">
+                       <select id="n-seats" name="n-seats">
+                           <option>5</option>
+                       </select>
+                   </td>
+                </tr>
+                <tr>
+                    <th colspan="2">Engine and transmission</th>
+                </tr>
+                <tr>
+                   <td class="caption"><label for car-min-power>Min power:</label></td>
+                   <td class="user-input">
+                       <input type="number" id="car-min-power" name="car-min-power">
+                   </td>
+                </tr>
+                <tr>
+                   <td class="caption"><label for car-max-power>Max power:</label></td>
+                   <td class="user-input">
+                       <input type="number" id="car-max-power" name="car-max-power">
+                   </td>
+                </tr>
+                <tr>
+                   <td class="caption"><label for car-fuel>Fuel:</label></td>
+                   <td class="user-input">
+                       <select id="car-fuel" name="car-fuel">
+                           <option>Diesel</option>
+                       </select>
+                   </td>
+                </tr>
+                <tr>
+                   <td class="caption"><label for car-transmission>Transmission:</label></td>
+                   <td class="user-input">
+                       <select id="car-transmission" name="car-transmission">
+                           <option>Manual</option>
+                           <option>Automatic</option>
+                       </select>
+                   </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" id="filter-cars" value="Filter cars"><br></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+{% endblock %}
+
 {% block preview_cars %}
     <div class="preview-cars">
         <table>
