@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block other_styles %}
+    <link rel="stylesheet" href="/static/css/car_details_style.css" type="text/css" />
+{% endblock %}
+
+{% block javascript_code %}
+    <script src="/static/script/car_details.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block right_buttons %}
+    <a class="a-right" href="/sign-up">Sign up</a>
+    <a class="a-right" href="/login?back=car_details.html&car-id={{ car.id }}">Sign in</a>
+{% endblock %}
+
+{% block car_details %}
+{% endblock %}

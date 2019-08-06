@@ -1,17 +1,4 @@
-{% extends 'base.html' %}
-
-{% block other_styles %}
-    <link rel="stylesheet" href="/static/css/car_details_style.css" type="text/css" />
-{% endblock %}
-
-{% block javascript_code %}
-    <script src="/static/script/car_details.js" type="text/javascript"></script>
-{% endblock %}
-
-{% block right_buttons %}
-    <a class="a-right" href="/sign-up">Sign up</a>
-    <a class="a-right" href="/login?back=car_details.html&car-id={{ car.id }}">Sign in</a>
-{% endblock %}
+{% extends 'details.html' %}
 
 {% block car_details %}
     <div class="car-image">
@@ -96,7 +83,7 @@
                     <input type="submit" id="confirm-reservation-button" value="Confirm reservation"><br>
                 </form>
             {% else %}
-                <p class="confirm-hire" id="msg-confirm-hire">We are sorry, but this car will not be available in the selected period</p>
+                <p class="confirm-hire" id="msg-not-available-confirm-hire">We are sorry, but this {{ car.brand }} {{ car.model }} will not be available in the selected period</p>
             {% endif %}
             {% if show_confirm_div %}
                 <script type="text/javascript">show_div_confirm_hire("{{ is_available }}", "{{ date_from }}", "{{ date_to }}")</script>

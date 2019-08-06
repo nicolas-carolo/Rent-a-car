@@ -124,6 +124,12 @@ div.confirm-hire {
     font-size: 1.3em;
 }
 
+#msg-not-available-confirm-hire {
+    margin-bottom: 0px;
+    font-size: 1.3em;
+    color: red;
+}
+
 #msg-price-confirm-hire {
     margin: 5px auto 10px;
     font-weight: bold;
