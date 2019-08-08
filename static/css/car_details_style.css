@@ -67,7 +67,6 @@ div.hire {
 
 #div-hire {
     display: none;
-
 }
 
 #hire-button {
@@ -108,7 +107,6 @@ input[type=date] {
     color: black;
     border-radius: 10px;
     border-color: #EEEEEE;
-    border-bottom-color: #EEEEEE;
     padding: 5px;
     margin: 5px;
 }

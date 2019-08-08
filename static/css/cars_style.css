@@ -88,16 +88,27 @@ td.user-input {
     margin: 5px auto 5px;
 }
 
-.searching-filters input {
+.searching-filters input[type=date], input[type=number] {
     margin: 5px auto 5px;
     width: 90%;
     float: right;
+    background-color: white;
+    color: black;
+    border-radius: 7px;
+    border-color: #EEEEEE;
+    //border: 0.5px;
+    padding: 3px;
 }
 
 .searching-filters select {
     margin: 5px auto 5px;
     width: 100%;
     float: right;
+    background-color: white;
+    color: black;
+    border-radius: 7px;
+    border-color: #EEEEEE;
+    padding: 3px;
 }
 
 #filter-table th {
@@ -111,4 +122,5 @@ td.user-input {
     margin: 20px auto 20px;
     float: none;
     font-size: 1.3em;
+    width: 70%;
 }
