@@ -65,9 +65,13 @@
                    <td class="caption"><label for n-seats>Number of seats:</label></td>
                    <td class="user-input">
                        <select id="n-seats" name="n-seats">
-                           <option value="all" selected="selected">All</option>
-                           {% for car_n_seats in car_n_seats_list %}
-                               <option value="{{ car_n_seats }}">{{ car_n_seats }}</option>
+                           <option value="all">All</option>
+                           {% for numb_seats in car_n_seats_list %}
+                               {% if numb_seats == n_seats_filter %}
+                                   <option value="{{ numb_seats }}" selected="selected">{{ numb_seats }}</option>
+                               {% else %}
+                                   <option value="{{ numb_seats }}">{{ numb_seats }}</option>
+                               {% endif %}
                            {% endfor %}
                        </select>
                    </td>

@@ -9,3 +9,8 @@ def filter_cars_by_brand(queryset, filter):
 def filter_cars_by_type(queryset, filter):
     queryset = queryset.filter(Car.car_type.__eq__(filter))
     return queryset
+
+
+def filter_cars_by_n_seats(queryset, filter):
+    queryset = queryset.filter(Car.n_seats.__eq__(filter))
+    return queryset
