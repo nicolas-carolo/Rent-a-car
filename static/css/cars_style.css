@@ -106,3 +106,8 @@ td.user-input {
     text-align: left;
     padding: 10px 0px 10px;
 }
+
+#filter-cars-button {
+    margin: 20px auto 20px;
+    float: none;
+}
