@@ -2,7 +2,8 @@ from rent_a_car.db_manager.session_manager import start_session
 from rent_a_car.db_manager.models import Car
 from rent_a_car.db_manager.result_set import queryset2list
 from rent_a_car.db_manager.car_filters import filter_cars_by_brand, filter_cars_by_type, filter_cars_by_n_seats,\
-    filter_cars_by_power, filter_cars_by_fuel, filter_cars_by_transmission, filter_cars_by_year
+    filter_cars_by_power, filter_cars_by_fuel, filter_cars_by_transmission, filter_cars_by_year,\
+    filter_cars_by_driver_min_age
 from sqlalchemy import func
 import datetime
 
@@ -91,19 +92,12 @@ def get_max_car_price_per_day():
     return res.max_value
 
 
-def get_max_driver_age():
-    session = start_session()
-    queryset = session.query(func.max(Car.min_age).label("max_driver_age"))
-    res = queryset.one()
-    return res.max_driver_age
-
-
 def remove_duplicates_by_list(input_list):
     return list(dict.fromkeys(input_list))
 
 
 def filter_cars_by_user_parameters(brand, car_type, n_seats, min_power, max_power, fuel, transmission, car_year_from,
-                                   car_year_to):
+                                   car_year_to, driver_age):
     session = start_session()
     queryset = session.query(Car)
     if brand != 'all':
@@ -118,4 +112,6 @@ def filter_cars_by_user_parameters(brand, car_type, n_seats, min_power, max_powe
     if transmission != 'all':
         queryset = filter_cars_by_transmission(queryset, transmission)
     queryset = filter_cars_by_year(queryset, car_year_from, car_year_to)
+    if driver_age != "none":
+        queryset = filter_cars_by_driver_min_age(queryset, driver_age)
     return queryset2list(queryset)

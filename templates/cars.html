@@ -177,11 +177,16 @@
                     <th colspan="2">Driver</th>
                 </tr>
                 <tr>
-                   <td class="caption"><label for driver-min-age>Driver's min age:</label></td>
+                   <td class="caption"><label for driver-age>Driver's age:</label></td>
                    <td class="user-input">
-                       <select id="driver-min-age" name="driver-min-age">
-                           {% for i in range(18, max_driver_age + 1) %}
-                                <option value="{{ i }}">{{ i }}</option>
+                       <select id="driver-age" name="driver-age">
+                           <option value="none" selected="selected">None</option>
+                           {% for i in range(18, 101) %}
+                               {% if i == driver_age_filter %}
+                                   <option value="{{ i }}" selected="selected">{{ i }}</option>
+                               {% else %}
+                                   <option value="{{ i }}">{{ i }}</option>
+                               {% endif %}
                            {% endfor %}
                        </select>
                    </td>

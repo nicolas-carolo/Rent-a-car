@@ -7,7 +7,7 @@ from rent_a_car.authentication import authenticate as check_credentials, generat
 from rent_a_car.sign_up import create_account
 from rent_a_car.cars_showcase import get_cars_list, get_current_year, get_car_brands_list, get_car_types_list,\
     get_car_n_seats_list, get_fuel_list, get_min_car_power_value, get_max_car_power_value, get_oldest_car_age,\
-    get_max_car_price_per_day, get_min_car_price_per_day, get_max_driver_age, filter_cars_by_user_parameters
+    get_max_car_price_per_day, get_min_car_price_per_day, filter_cars_by_user_parameters
 import datetime
 
 app = Flask(__name__)
@@ -40,19 +40,18 @@ def cars():
     oldest_car_age_value = get_oldest_car_age()
     min_price = get_min_car_price_per_day()
     max_price = get_max_car_price_per_day()
-    max_driver_age = get_max_driver_age()
     if check_authentication(session_id, user_id):
         return render_template('cars.html', user=user_id, session_id=session_id, cars_list=cars_list,
                                n_cars=cars_list.__len__(), current_year=current_year, brands_list=brands_list,
                                car_types_list=car_types_list, car_n_seats_list=car_n_seats_list, fuel_list=fuel_list,
                                min_power=min_power, max_power=max_power, oldest_car_age_value=oldest_car_age_value,
-                               min_price=min_price, max_price=max_price, max_driver_age=max_driver_age)
+                               min_price=min_price, max_price=max_price)
     else:
         return render_template('cars.html',  cars_list=cars_list, n_cars=cars_list.__len__(), current_year=current_year,
                                brands_list=brands_list, car_types_list=car_types_list,
                                car_n_seats_list=car_n_seats_list, fuel_list=fuel_list, min_power=min_power,
                                max_power=max_power, oldest_car_age_value=oldest_car_age_value, min_price=min_price,
-                               max_price=max_price, max_driver_age=max_driver_age)
+                               max_price=max_price)
 
 
 @app.route('/car_details', methods=['GET'])
@@ -150,8 +149,8 @@ def after_auth_redirect(template, car_id, username):
     current_year = get_current_year() + 1
     if template == "cars.html":
         return render_template('cars.html', user=username, session_id=session_id, current_year=current_year,
-                               oldest_car_age_value=get_oldest_car_age(), max_driver_age=get_max_driver_age(),
-                               n_cars=get_cars_list().__len__(), cars_list=get_cars_list())
+                               oldest_car_age_value=get_oldest_car_age(), n_cars=get_cars_list().__len__(),
+                               cars_list=get_cars_list())
     elif template == "car_details.html":
         today = datetime.date.today()
         car = get_car_identified_by_id(car_id)
@@ -244,7 +243,6 @@ def filter_cars():
     oldest_car_age_value = get_oldest_car_age()
     min_price = get_min_car_price_per_day()
     max_price = get_max_car_price_per_day()
-    max_driver_age = get_max_driver_age()
 
     if request.method == 'POST':
         brand_filter = request.form['car-brand']
@@ -256,9 +254,10 @@ def filter_cars():
         transmission_filter = request.form['car-transmission']
         car_year_from_filter = request.form['car-year-from']
         car_year_to_filter = request.form['car-year-to']
+        driver_age_filter = request.form['driver-age']
         cars_list = filter_cars_by_user_parameters(brand_filter, type_filter, n_seats_filter, min_power_filter,
                                                    max_power_filter, fuel_filter, transmission_filter,
-                                                   car_year_from_filter, car_year_to_filter)
+                                                   car_year_from_filter, car_year_to_filter, driver_age_filter)
 
         if check_authentication(session_id, user_id):
             return render_template('cars.html', user=user_id, session_id=session_id, cars_list=cars_list,
@@ -266,24 +265,24 @@ def filter_cars():
                                    car_types_list=car_types_list, car_n_seats_list=car_n_seats_list,
                                    fuel_list=fuel_list, min_power=min_power, max_power=max_power,
                                    oldest_car_age_value=oldest_car_age_value, min_price=min_price, max_price=max_price,
-                                   max_driver_age=max_driver_age, brand_filter=brand_filter, type_filter=type_filter,
+                                   brand_filter=brand_filter, type_filter=type_filter,
                                    n_seats_filter=n_seats_filter, min_power_filter=min_power_filter,
                                    max_power_filter=max_power_filter, fuel_filter=fuel_filter,
                                    transmission_filter=transmission_filter,
                                    car_year_from_filter=int(car_year_from_filter),
-                                   car_year_to_filter=int(car_year_to_filter))
+                                   car_year_to_filter=int(car_year_to_filter), driver_age_filter=int(driver_age_filter))
         else:
             return render_template('cars.html',  cars_list=cars_list, n_cars=cars_list.__len__(),
                                    current_year=int(current_year), brands_list=brands_list,
                                    car_types_list=car_types_list, car_n_seats_list=car_n_seats_list,
                                    fuel_list=fuel_list, min_power=min_power, max_power=max_power,
                                    oldest_car_age_value=oldest_car_age_value, min_price=min_price, max_price=max_price,
-                                   max_driver_age=max_driver_age, brand_filter=brand_filter, type_filter=type_filter,
+                                   brand_filter=brand_filter, type_filter=type_filter,
                                    n_seats_filter=n_seats_filter, min_power_filter=min_power_filter,
                                    max_power_filter=max_power_filter, fuel_filter=fuel_filter,
                                    transmission_filter=transmission_filter,
                                    car_year_from_filter=int(car_year_from_filter),
-                                   car_year_to_filter=int(car_year_to_filter))
+                                   car_year_to_filter=int(car_year_to_filter), driver_age_filter=int(driver_age_filter))
     else:
         cars_list = get_cars_list()
         if check_authentication(session_id, user_id):
@@ -292,13 +291,13 @@ def filter_cars():
                                    car_types_list=car_types_list, car_n_seats_list=car_n_seats_list,
                                    fuel_list=fuel_list, min_power=min_power, max_power=max_power,
                                    oldest_car_age_value=oldest_car_age_value, min_price=min_price,
-                                   max_price=max_price, max_driver_age=max_driver_age)
+                                   max_price=max_price)
         else:
             return render_template('cars.html',  cars_list=cars_list, n_cars=cars_list.__len__(),
                                    current_year=current_year, brands_list=brands_list, car_types_list=car_types_list,
                                    car_n_seats_list=car_n_seats_list, fuel_list=fuel_list, min_power=min_power,
                                    max_power=max_power, oldest_car_age_value=oldest_car_age_value, min_price=min_price,
-                                   max_price=max_price, max_driver_age=max_driver_age)
+                                   max_price=max_price)
 
 
 if __name__ == '__main__':

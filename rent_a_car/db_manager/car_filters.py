@@ -1,4 +1,5 @@
 from rent_a_car.db_manager.models import Car
+from rent_a_car.sign_up import get_age
 from sqlalchemy import and_
 
 
@@ -34,4 +35,9 @@ def filter_cars_by_transmission(queryset, filter):
 
 def filter_cars_by_year(queryset, year_from, year_to):
     queryset = queryset.filter(and_(Car.car_year >= year_from, Car.car_year <= year_to))
+    return queryset
+
+
+def filter_cars_by_driver_min_age(queryset, driver_age):
+    queryset = queryset.filter(Car.min_age <= driver_age)
     return queryset
