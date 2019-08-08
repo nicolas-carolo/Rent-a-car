@@ -48,7 +48,7 @@
                         <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[loop.index0].photo_link }}" width="320" height="240"></a></td>
                         <td class="car-description"><a href="/car_details?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[loop.index0].brand }} {{ cars_list[loop.index0].model }}</b></a></td>
                         <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[loop.index0 + 1].photo_link }}" width="320" height="240"></a></td>
-                        <td class="car-description"><a href="/car_details?car-id={{ cars_list[loop.index0].id + 1}}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[loop.index0 + 1].brand }} {{ cars_list[loop.index0 + 1].model }}</b></a></td>
+                        <td class="car-description"><a href="/car_details?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[loop.index0 + 1].brand }} {{ cars_list[loop.index0 + 1].model }}</b></a></td>
                     </tr>
                     <tr>
                         <td class="car-details"><b>Year:</b> {{ cars_list[loop.index0].car_year }}</td>

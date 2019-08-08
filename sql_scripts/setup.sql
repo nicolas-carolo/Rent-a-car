@@ -35,7 +35,7 @@ INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engi
 INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Mercedes', 'SLC200', 2018, 'FP271DT', 2, 'Roadster', 25, '2.0', 'Gasoline', 184, 'Automatic', '/static/media/cars/mercedes-slc200.jpg', 120, true);
 INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Porsche', 'Cayenne', 2012, 'EM383YR', 5, 'SUV', 30, '3.0', 'Diesel', 245, 'Automatic', '/static/media/cars/porsche-cayenne-2012.jpg', 100, true);
 INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Volkswagen', 'Passat Variant', 2017, 'FR764PP', 5, 'Station Wagon', 25, '2.0', 'Gasoline', 150, 'Manual', '/static/media/cars/vw-passat-variant.jpg', 70, true);
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Volkswagen', 'Polo', 2016, 'FG954ER', 5, 'Hatchback', 18, '1.4', 'Gasoline', 75, 'Manual', '/static/media/cars/vw-polo.jpg', 35, true);
+INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Volkswagen', 'Polo', 2016, 'FG954ER', 5, 'Hatchback', 18, '1.4', 'Diesel', 75, 'Manual', '/static/media/cars/vw-polo.jpg', 35, true);
 
 
 DROP TABLE IF EXISTS news;
