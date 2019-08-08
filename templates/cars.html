@@ -80,7 +80,7 @@
                     <th colspan="2">Engine and transmission</th>
                 </tr>
                 <tr>
-                   <td class="caption"><label for car-min-power>Min power:</label></td>
+                   <td class="caption"><label for car-min-power>Min power (cv):</label></td>
                    <td class="user-input">
                        {% if min_power_filter %}
                            <input type="number" id="car-min-power" name="car-min-power" min="{{ min_power }}" max="{{ max_power }}" value="{{ min_power_filter }}">
@@ -90,7 +90,7 @@
                    </td>
                 </tr>
                 <tr>
-                   <td class="caption"><label for car-max-power>Max power:</label></td>
+                   <td class="caption"><label for car-max-power>Max power (cv):</label></td>
                    <td class="user-input">
                        {% if max_power_filter %}
                            <input type="number" id="car-max-power" name="car-max-power" min="{{ min_power }}" max="{{ max_power }}" value="{{ max_power_filter }}">
@@ -195,12 +195,20 @@
                     <th colspan="2">Price per day</th>
                 </tr>
                 <tr>
-                    <td class="caption"><label for min-price-day>Min price per day:</label></td>
-                    <td class="user-input"><input type="number" id="min-price-day" name="min-price-day" min="{{ min_price }}" max="{{ max_price }}" value="{{ min_price }}"></td>
+                    <td class="caption"><label for min-price-day>Min price (€):</label></td>
+                    {% if min_price_day_filter %}
+                        <td class="user-input"><input type="number" id="min-price-day" name="min-price-day" min="{{ min_price }}" max="{{ max_price }}" value="{{ min_price_day_filter }}"></td>
+                    {% else %}
+                        <td class="user-input"><input type="number" id="min-price-day" name="min-price-day" min="{{ min_price }}" max="{{ max_price }}" value="{{ min_price }}"></td>
+                    {% endif %}
                 </tr>
                 <tr>
-                    <td class="caption"><label for max-price-day>Min price per day:</label></td>
-                    <td class="user-input"><input type="number" id="max-price-day" name="max-price-day" min="{{ min_price }}" max="{{ max_price }}" value="{{ max_price }}"></td>
+                    <td class="caption"><label for max-price-day>Min price (€):</label></td>
+                    {% if max_price_day_filter %}
+                        <td class="user-input"><input type="number" id="max-price-day" name="max-price-day" min="{{ min_price }}" max="{{ max_price }}" value="{{ max_price_day_filter }}"></td>
+                    {% else %}
+                        <td class="user-input"><input type="number" id="max-price-day" name="max-price-day" min="{{ min_price }}" max="{{ max_price }}" value="{{ max_price }}"></td>
+                    {% endif %}
                 </tr>
                 <tr>
                     <td class="filter-cars" colspan="2"><input type="submit" id="filter-cars-button" name="filter-cars-button" value="Filter cars"></td>

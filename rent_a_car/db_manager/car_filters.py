@@ -41,3 +41,8 @@ def filter_cars_by_year(queryset, year_from, year_to):
 def filter_cars_by_driver_min_age(queryset, driver_age):
     queryset = queryset.filter(Car.min_age <= driver_age)
     return queryset
+
+
+def filter_cars_by_price(queryset, min_price, max_price):
+    queryset = queryset.filter(and_(Car.price >= min_price, Car.price <= max_price))
+    return queryset

@@ -255,9 +255,12 @@ def filter_cars():
         car_year_from_filter = request.form['car-year-from']
         car_year_to_filter = request.form['car-year-to']
         driver_age_filter = request.form['driver-age']
+        min_price_day_filter = request.form['min-price-day']
+        max_price_day_filter = request.form['max-price-day']
         cars_list = filter_cars_by_user_parameters(brand_filter, type_filter, n_seats_filter, min_power_filter,
                                                    max_power_filter, fuel_filter, transmission_filter,
-                                                   car_year_from_filter, car_year_to_filter, driver_age_filter)
+                                                   car_year_from_filter, car_year_to_filter, driver_age_filter,
+                                                   min_price_day_filter, max_price_day_filter)
         try:
             driver_age_filter = int(driver_age_filter)
         except ValueError:
@@ -274,7 +277,8 @@ def filter_cars():
                                    max_power_filter=max_power_filter, fuel_filter=fuel_filter,
                                    transmission_filter=transmission_filter,
                                    car_year_from_filter=int(car_year_from_filter),
-                                   car_year_to_filter=int(car_year_to_filter), driver_age_filter=driver_age_filter)
+                                   car_year_to_filter=int(car_year_to_filter), driver_age_filter=driver_age_filter,
+                                   min_price_day_filter=min_price_day_filter, max_price_day_filter=max_price_day_filter)
         else:
             return render_template('cars.html',  cars_list=cars_list, n_cars=cars_list.__len__(),
                                    current_year=int(current_year), brands_list=brands_list,
@@ -286,7 +290,8 @@ def filter_cars():
                                    max_power_filter=max_power_filter, fuel_filter=fuel_filter,
                                    transmission_filter=transmission_filter,
                                    car_year_from_filter=int(car_year_from_filter),
-                                   car_year_to_filter=int(car_year_to_filter), driver_age_filter=driver_age_filter)
+                                   car_year_to_filter=int(car_year_to_filter), driver_age_filter=driver_age_filter,
+                                   min_price_day_filter=min_price_day_filter, max_price_day_filter=max_price_day_filter)
     else:
         cars_list = get_cars_list()
         if check_authentication(session_id, user_id):
