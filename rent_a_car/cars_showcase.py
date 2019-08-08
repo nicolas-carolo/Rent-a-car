@@ -15,3 +15,21 @@ def get_cars_list():
 def get_current_year():
     now = datetime.date.today()
     return now.year
+
+
+def get_car_brands_list():
+    session = start_session()
+    queryset = session.query(Car)
+    session.close()
+    cars_list = queryset2list(queryset)
+    brands_list = []
+    for car in cars_list:
+        brands_list.append(car.brand)
+    brands_list = sorted(remove_duplicates_by_list(brands_list))
+    for brand in brands_list:
+        print(brand)
+    return brands_list
+
+
+def remove_duplicates_by_list(input_list):
+    return list(dict.fromkeys(input_list))

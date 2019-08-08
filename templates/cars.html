@@ -31,10 +31,9 @@
                    <td class="caption"><label for car-brand>Brand:</label></td>
                    <td class="user-input">
                        <select id="car-brand" name="car-brand">
-                           <option value="volvo">Volvo</option>
-                           <option value="saab">Saab</option>
-                           <option value="vw">VW</option>
-                           <option value="audi" selected>Audi</option>
+                           {% for brand in brands_list %}
+                               <option value="{{ brand }}">{{ brand }}</option>
+                           {% endfor %}
                        </select>
                    </td>
                 </tr>
