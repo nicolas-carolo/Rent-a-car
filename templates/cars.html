@@ -105,7 +105,11 @@
                        <select id="car-fuel" name="car-fuel">
                            <option value="all" selected="selected">All Fuels</option>
                            {% for fuel in fuel_list %}
-                               <option value="{{ fuel }}">{{ fuel }}</option>
+                               {% if fuel == fuel_filter %}
+                                   <option value="{{ fuel }}" selected="selected">{{ fuel }}</option>
+                               {% else %}
+                                   <option value="{{ fuel }}">{{ fuel }}</option>
+                               {% endif %}
                            {% endfor %}
                        </select>
                    </td>
@@ -115,8 +119,16 @@
                    <td class="user-input">
                        <select id="car-transmission" name="car-transmission">
                            <option value="all" selected="selected">All Transmissions</option>
-                           <option>Automatic</option>
-                           <option>Manual</option>
+                           {% if transmission_filter == "Automatic" %}
+                               <option value="Automatic" selected="selected">Automatic</option>
+                           {% else %}
+                               <option value="Automatic">Automatic</option>
+                           {% endif %}
+                           {% if transmission_filter == "Manual" %}
+                               <option value="Manual" selected="selected">Manual</option>
+                           {% else %}
+                                <option value="Manual">Manual</option>
+                           {% endif %}
                        </select>
                    </td>
                 </tr>
