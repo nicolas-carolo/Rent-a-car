@@ -37,7 +37,11 @@
                        <select id="car-brand" name="car-brand">
                            <option value="all" selected="selected">All Brands</option>
                            {% for brand in brands_list %}
-                               <option value="{{ brand }}">{{ brand }}</option>
+                               {% if brand == brand_filter %}
+                                   <option value="{{ brand }}" selected="selected">{{ brand }}</option>
+                               {% else %}
+                                   <option value="{{ brand }}">{{ brand }}</option>
+                               {% endif %}
                            {% endfor %}
                        </select>
                    </td>
@@ -48,7 +52,11 @@
                        <select id="car-type" name="car-type">
                            <option value="all" selected="selected">All Types</option>
                            {% for car_type in car_types_list %}
-                               <option value="{{ car_type }}">{{ car_type }}</option>
+                               {% if car_type == type_filter %}
+                                   <option value="{{ car_type }}" selected="selected">{{ car_type }}</option>
+                               {% else %}
+                                   <option value="{{ car_type }}">{{ car_type }}</option>
+                               {% endif %}
                            {% endfor %}
                        </select>
                    </td>

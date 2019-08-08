@@ -245,20 +245,38 @@ def filter_cars():
 
     if request.method == 'POST':
         brand_filter = request.form['car-brand']
-        cars_list = filter_cars_by_user_parameters(brand_filter)
+        type_filter = request.form['car-type']
+        cars_list = filter_cars_by_user_parameters(brand_filter, type_filter)
 
-    if check_authentication(session_id, user_id):
-        return render_template('cars.html', user=user_id, session_id=session_id, cars_list=cars_list,
-                               n_cars=cars_list.__len__(), current_year=current_year, brands_list=brands_list,
-                               car_types_list=car_types_list, car_n_seats_list=car_n_seats_list, fuel_list=fuel_list,
-                               min_power=min_power, max_power=max_power, oldest_car_age_value=oldest_car_age_value,
-                               min_price=min_price, max_price=max_price, max_driver_age=max_driver_age)
+        if check_authentication(session_id, user_id):
+            return render_template('cars.html', user=user_id, session_id=session_id, cars_list=cars_list,
+                                   n_cars=cars_list.__len__(), current_year=current_year, brands_list=brands_list,
+                                   car_types_list=car_types_list, car_n_seats_list=car_n_seats_list,
+                                   fuel_list=fuel_list, min_power=min_power, max_power=max_power,
+                                   oldest_car_age_value=oldest_car_age_value, min_price=min_price, max_price=max_price,
+                                   max_driver_age=max_driver_age, brand_filter=brand_filter, type_filter=type_filter)
+        else:
+            return render_template('cars.html',  cars_list=cars_list, n_cars=cars_list.__len__(),
+                                   current_year=current_year, brands_list=brands_list, car_types_list=car_types_list,
+                                   car_n_seats_list=car_n_seats_list, fuel_list=fuel_list, min_power=min_power,
+                                   max_power=max_power, oldest_car_age_value=oldest_car_age_value, min_price=min_price,
+                                   max_price=max_price, max_driver_age=max_driver_age, brand_filter=brand_filter,
+                                   type_filter=type_filter)
     else:
-        return render_template('cars.html',  cars_list=cars_list, n_cars=cars_list.__len__(), current_year=current_year,
-                               brands_list=brands_list, car_types_list=car_types_list,
-                               car_n_seats_list=car_n_seats_list, fuel_list=fuel_list, min_power=min_power,
-                               max_power=max_power, oldest_car_age_value=oldest_car_age_value, min_price=min_price,
-                               max_price=max_price, max_driver_age=max_driver_age)
+        cars_list = get_cars_list()
+        if check_authentication(session_id, user_id):
+            return render_template('cars.html', user=user_id, session_id=session_id, cars_list=cars_list,
+                                   n_cars=cars_list.__len__(), current_year=current_year, brands_list=brands_list,
+                                   car_types_list=car_types_list, car_n_seats_list=car_n_seats_list,
+                                   fuel_list=fuel_list, min_power=min_power, max_power=max_power,
+                                   oldest_car_age_value=oldest_car_age_value, min_price=min_price,
+                                   max_price=max_price, max_driver_age=max_driver_age)
+        else:
+            return render_template('cars.html',  cars_list=cars_list, n_cars=cars_list.__len__(),
+                                   current_year=current_year, brands_list=brands_list, car_types_list=car_types_list,
+                                   car_n_seats_list=car_n_seats_list, fuel_list=fuel_list, min_power=min_power,
+                                   max_power=max_power, oldest_car_age_value=oldest_car_age_value, min_price=min_price,
+                                   max_price=max_price, max_driver_age=max_driver_age)
 
 
 if __name__ == '__main__':
