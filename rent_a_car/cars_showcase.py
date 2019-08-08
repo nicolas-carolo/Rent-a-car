@@ -3,7 +3,8 @@ from rent_a_car.db_manager.models import Car
 from rent_a_car.db_manager.result_set import queryset2list
 from rent_a_car.db_manager.car_filters import filter_cars_by_brand, filter_cars_by_type, filter_cars_by_n_seats,\
     filter_cars_by_power, filter_cars_by_fuel, filter_cars_by_transmission, filter_cars_by_year,\
-    filter_cars_by_driver_min_age, filter_cars_by_price
+    filter_cars_by_driver_min_age, filter_cars_by_price, filter_cars_by_rent_period
+from rent_a_car.rent import are_dates_valid
 from sqlalchemy import func
 import datetime
 
@@ -97,7 +98,7 @@ def remove_duplicates_by_list(input_list):
 
 
 def filter_cars_by_user_parameters(brand, car_type, n_seats, min_power, max_power, fuel, transmission, car_year_from,
-                                   car_year_to, driver_age, min_price, max_price):
+                                   car_year_to, driver_age, min_price, max_price, date_from, date_to):
     session = start_session()
     queryset = session.query(Car)
     if brand != 'all':
@@ -115,4 +116,7 @@ def filter_cars_by_user_parameters(brand, car_type, n_seats, min_power, max_powe
     if driver_age != "none":
         queryset = filter_cars_by_driver_min_age(queryset, driver_age)
     queryset = filter_cars_by_price(queryset, min_price, max_price)
-    return queryset2list(queryset)
+    results_list = queryset2list(queryset)
+    if are_dates_valid(date_from, date_to):
+        results_list = filter_cars_by_rent_period(results_list, date_from, date_to)
+    return results_list
