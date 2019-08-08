@@ -5,7 +5,7 @@ from rent_a_car.rent import is_car_available_in_the_selected_period, get_total_p
 from rent_a_car.authentication import authenticate as check_credentials, generate_session, delete_session,\
     check_authentication, get_user_by_session_id
 from rent_a_car.sign_up import create_account
-from rent_a_car.cars_showcase import get_cars_list
+from rent_a_car.cars_showcase import get_cars_list, get_current_year
 
 app = Flask(__name__)
 
@@ -27,11 +27,12 @@ def cars():
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     cars_list = get_cars_list()
+    current_year = get_current_year()
     if check_authentication(session_id, user_id):
         return render_template('cars.html', user=user_id, session_id=session_id, cars_list=cars_list,
-                               n_cars=cars_list.__len__())
+                               n_cars=cars_list.__len__(), current_year=current_year)
     else:
-        return render_template('cars.html',  cars_list=cars_list, n_cars=cars_list.__len__())
+        return render_template('cars.html',  cars_list=cars_list, n_cars=cars_list.__len__(), current_year=current_year)
 
 
 @app.route('/car_details', methods=['GET'])

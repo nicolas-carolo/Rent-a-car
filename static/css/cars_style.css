@@ -71,7 +71,7 @@ div.searching-filters {
 
 .searching-filters table {
     margin: auto;
-    width: 90%;
+    width: 85%;
     border-collapse: collapse;
 }
 td.caption {
@@ -90,12 +90,19 @@ td.user-input {
 
 .searching-filters input {
     margin: 5px auto 5px;
+    width: 90%;
+    float: right;
 }
 
-.searching-filters th {
+.searching-filters select {
     margin: 5px auto 5px;
+    width: 100%;
+    float: right;
 }
 
-.searching-filters input[type=number] {
-    width: 50%;
+#filter-table th {
+    color: #476b6b;
+    font-size: 1.3em;
+    text-align: left;
+    padding: 10px 0px 10px;
 }

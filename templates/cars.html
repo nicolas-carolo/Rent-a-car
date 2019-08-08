@@ -12,7 +12,7 @@
 {% block searching_filters %}
     <div class="searching-filters">
         <form method="post" action="/filter_cars?session-id={{ session_id }}&user-id={{ user }}">
-            <table>
+            <table id="filter-table">
                 <tr>
                     <th colspan="2">Rent period</th>
                 </tr>
@@ -31,7 +31,10 @@
                    <td class="caption"><label for car-brand>Brand:</label></td>
                    <td class="user-input">
                        <select id="car-brand" name="car-brand">
-                           <option>BMW</option>
+                           <option value="volvo">Volvo</option>
+                           <option value="saab">Saab</option>
+                           <option value="vw">VW</option>
+                           <option value="audi" selected>Audi</option>
                        </select>
                    </td>
                 </tr>
@@ -57,13 +60,13 @@
                 <tr>
                    <td class="caption"><label for car-min-power>Min power:</label></td>
                    <td class="user-input">
-                       <input type="number" id="car-min-power" name="car-min-power">
+                       <input type="number" id="car-min-power" name="car-min-power" min="0">
                    </td>
                 </tr>
                 <tr>
                    <td class="caption"><label for car-max-power>Max power:</label></td>
                    <td class="user-input">
-                       <input type="number" id="car-max-power" name="car-max-power">
+                       <input type="number" id="car-max-power" name="car-max-power" min="0">
                    </td>
                 </tr>
                 <tr>
@@ -84,7 +87,55 @@
                    </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" id="filter-cars" value="Filter cars"><br></td>
+                    <th colspan="2">Car year</th>
+                </tr>
+                <tr>
+                   <td class="caption"><label for car-year-from>From:</label></td>
+                   <td class="user-input">
+                       <select id="car-year-from" name="car-year-from">
+                           {% for i in range(1980, current_year + 1) %}
+                                <option value="{{ i }}">{{ i }}</option>
+                           {% endfor %}
+                       </select>
+                   </td>
+                </tr>
+                <tr>
+                   <td class="caption"><label for car-year-to>To:</label></td>
+                   <td class="user-input">
+                       <select id="car-year-to" name="car-year-to">
+                           {% for i in range(1980, current_year + 1) %}
+                               {% if i == 2019 %}
+                                   <option value="{{ i }}" selected="selected">{{ i }}</option>
+                               {% else %}
+                                   <option value="{{ i }}">{{ i }}</option>
+                               {% endif %}
+                           {% endfor %}
+                       </select>
+                   </td>
+                </tr>
+                <tr>
+                    <th colspan="2">Driver</th>
+                </tr>
+                <tr>
+                   <td class="caption"><label for driver-min-age>Driver's min age:</label></td>
+                   <td class="user-input">
+                       <select id="driver-min-age" name="driver-min-age">
+                           {% for i in range(18, 36) %}
+                                <option value="{{ i }}">{{ i }}</option>
+                           {% endfor %}
+                       </select>
+                   </td>
+                </tr>
+                <tr>
+                    <th colspan="2">Price per day</th>
+                </tr>
+                <tr>
+                   <td class="caption"><label for min-price-day>Min price per day:</label></td>
+                   <td class="user-input"><input type="number" id="min-price-day" name="min-price-day" min="0"></td>
+                </tr>
+                <tr>
+                   <td class="caption"><label for max-price-day>Min price per day:</label></td>
+                   <td class="user-input"><input type="number" id="max-price-day" name="max-price-day" min="0"></td>
                 </tr>
             </table>
         </form>
