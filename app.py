@@ -258,6 +258,10 @@ def filter_cars():
         cars_list = filter_cars_by_user_parameters(brand_filter, type_filter, n_seats_filter, min_power_filter,
                                                    max_power_filter, fuel_filter, transmission_filter,
                                                    car_year_from_filter, car_year_to_filter, driver_age_filter)
+        try:
+            driver_age_filter = int(driver_age_filter)
+        except ValueError:
+            pass
 
         if check_authentication(session_id, user_id):
             return render_template('cars.html', user=user_id, session_id=session_id, cars_list=cars_list,
@@ -270,7 +274,7 @@ def filter_cars():
                                    max_power_filter=max_power_filter, fuel_filter=fuel_filter,
                                    transmission_filter=transmission_filter,
                                    car_year_from_filter=int(car_year_from_filter),
-                                   car_year_to_filter=int(car_year_to_filter), driver_age_filter=int(driver_age_filter))
+                                   car_year_to_filter=int(car_year_to_filter), driver_age_filter=driver_age_filter)
         else:
             return render_template('cars.html',  cars_list=cars_list, n_cars=cars_list.__len__(),
                                    current_year=int(current_year), brands_list=brands_list,
@@ -282,7 +286,7 @@ def filter_cars():
                                    max_power_filter=max_power_filter, fuel_filter=fuel_filter,
                                    transmission_filter=transmission_filter,
                                    car_year_from_filter=int(car_year_from_filter),
-                                   car_year_to_filter=int(car_year_to_filter), driver_age_filter=int(driver_age_filter))
+                                   car_year_to_filter=int(car_year_to_filter), driver_age_filter=driver_age_filter)
     else:
         cars_list = get_cars_list()
         if check_authentication(session_id, user_id):
