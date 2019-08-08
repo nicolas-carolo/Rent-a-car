@@ -82,13 +82,21 @@
                 <tr>
                    <td class="caption"><label for car-min-power>Min power:</label></td>
                    <td class="user-input">
-                       <input type="number" id="car-min-power" name="car-min-power" min="{{ min_power }}" max="{{ max_power }}" value="{{ min_power }}">
+                       {% if min_power_filter %}
+                           <input type="number" id="car-min-power" name="car-min-power" min="{{ min_power }}" max="{{ max_power }}" value="{{ min_power_filter }}">
+                       {% else %}
+                           <input type="number" id="car-min-power" name="car-min-power" min="{{ min_power }}" max="{{ max_power }}" value="{{ min_power }}">
+                       {% endif %}
                    </td>
                 </tr>
                 <tr>
                    <td class="caption"><label for car-max-power>Max power:</label></td>
                    <td class="user-input">
-                       <input type="number" id="car-max-power" name="car-max-power" min="{{ min_power }}" max="{{ max_power }}" value="{{ max_power }}">
+                       {% if max_power_filter %}
+                           <input type="number" id="car-max-power" name="car-max-power" min="{{ min_power }}" max="{{ max_power }}" value="{{ max_power_filter }}">
+                       {% else %}
+                           <input type="number" id="car-max-power" name="car-max-power" min="{{ min_power }}" max="{{ max_power }}" value="{{ max_power }}">
+                       {% endif %}
                    </td>
                 </tr>
                 <tr>

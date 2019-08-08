@@ -1,7 +1,8 @@
 from rent_a_car.db_manager.session_manager import start_session
 from rent_a_car.db_manager.models import Car
 from rent_a_car.db_manager.result_set import queryset2list
-from rent_a_car.db_manager.car_filters import filter_cars_by_brand, filter_cars_by_type, filter_cars_by_n_seats
+from rent_a_car.db_manager.car_filters import filter_cars_by_brand, filter_cars_by_type, filter_cars_by_n_seats,\
+    filter_cars_by_power
 from sqlalchemy import func
 import datetime
 
@@ -101,7 +102,7 @@ def remove_duplicates_by_list(input_list):
     return list(dict.fromkeys(input_list))
 
 
-def filter_cars_by_user_parameters(brand, car_type, n_seats):
+def filter_cars_by_user_parameters(brand, car_type, n_seats, min_power, max_power):
     session = start_session()
     queryset = session.query(Car)
     if brand != 'all':
@@ -110,4 +111,5 @@ def filter_cars_by_user_parameters(brand, car_type, n_seats):
         queryset = filter_cars_by_type(queryset, car_type)
     if n_seats != 'all':
         queryset = filter_cars_by_n_seats(queryset, n_seats)
+    queryset = filter_cars_by_power(queryset, min_power, max_power)
     return queryset2list(queryset)

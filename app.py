@@ -250,7 +250,10 @@ def filter_cars():
         brand_filter = request.form['car-brand']
         type_filter = request.form['car-type']
         n_seats_filter = request.form['n-seats']
-        cars_list = filter_cars_by_user_parameters(brand_filter, type_filter, n_seats_filter)
+        min_power_filter = request.form['car-min-power']
+        max_power_filter = request.form['car-max-power']
+        cars_list = filter_cars_by_user_parameters(brand_filter, type_filter, n_seats_filter, min_power_filter,
+                                                   max_power_filter)
 
         if check_authentication(session_id, user_id):
             return render_template('cars.html', user=user_id, session_id=session_id, cars_list=cars_list,
@@ -259,14 +262,16 @@ def filter_cars():
                                    fuel_list=fuel_list, min_power=min_power, max_power=max_power,
                                    oldest_car_age_value=oldest_car_age_value, min_price=min_price, max_price=max_price,
                                    max_driver_age=max_driver_age, brand_filter=brand_filter, type_filter=type_filter,
-                                   n_seats_filter=n_seats_filter)
+                                   n_seats_filter=n_seats_filter, min_power_filter=min_power_filter,
+                                   max_power_filter=max_power_filter)
         else:
             return render_template('cars.html',  cars_list=cars_list, n_cars=cars_list.__len__(),
                                    current_year=current_year, brands_list=brands_list, car_types_list=car_types_list,
                                    car_n_seats_list=car_n_seats_list, fuel_list=fuel_list, min_power=min_power,
                                    max_power=max_power, oldest_car_age_value=oldest_car_age_value, min_price=min_price,
                                    max_price=max_price, max_driver_age=max_driver_age, brand_filter=brand_filter,
-                                   type_filter=type_filter, n_seats_filter=n_seats_filter)
+                                   type_filter=type_filter, n_seats_filter=n_seats_filter,
+                                   min_power_filter=min_power_filter, max_power_filter=max_power_filter)
     else:
         cars_list = get_cars_list()
         if check_authentication(session_id, user_id):
