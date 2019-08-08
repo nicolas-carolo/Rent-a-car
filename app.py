@@ -72,6 +72,7 @@ def car_details():
 def check_car_availability():
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
+    today = datetime.date.today()
     if request.method == 'POST':
         car_id = request.form['car-id']
         car = get_car_identified_by_id(car_id)
@@ -79,26 +80,26 @@ def check_car_availability():
         date_to = request.form['date-to']
         if not are_dates_valid(date_from, date_to):
             if check_authentication(session_id, user_id):
-                return render_template('car_details.html', car=car, error="Please insert a valid date interval!", user=user_id, session_id=session_id)
+                return render_template('car_details.html', car=car, error="Please insert a valid date interval!", user=user_id, session_id=session_id, today=today)
             else:
-                return render_template('car_details.html', car=car, error="Please insert a valid date interval!")
+                return render_template('car_details.html', car=car, error="Please insert a valid date interval!", today=today)
         if is_car_available_in_the_selected_period(date_from, date_to, car_id):
             if check_authentication(session_id, user_id):
                 return render_template('car_details.html', car=car, is_available=True,
                                        total_price=get_total_price(car.price, date_from, date_to), show_confirm_div=True,
-                                       date_from=date_from, date_to=date_to, user=user_id, session_id=session_id)
+                                       date_from=date_from, date_to=date_to, user=user_id, session_id=session_id, today=today)
             else:
                 return render_template('car_details.html', car=car, is_available=True,
                                        total_price=get_total_price(car.price, date_from, date_to),
                                        show_confirm_div=True,
-                                       date_from=date_from, date_to=date_to)
+                                       date_from=date_from, date_to=date_to, today=today)
         else:
             if check_authentication(session_id, user_id):
                 return render_template('car_details.html', car=car, is_available=False, show_confirm_div=True,
-                                       date_from=date_from, date_to=date_to, user=user_id, session_id=session_id)
+                                       date_from=date_from, date_to=date_to, user=user_id, session_id=session_id, today=today)
             else:
                 return render_template('car_details.html', car=car, is_available=False, show_confirm_div=True,
-                                       date_from=date_from, date_to=date_to)
+                                       date_from=date_from, date_to=date_to, today=today)
     else:
         if check_authentication(session_id, user_id):
             return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=user_id, session_id=session_id, authjs=False, preview_length=get_cars_preview().__len__())
@@ -149,8 +150,9 @@ def after_auth_redirect(template, car_id, username):
     if template == "cars.html":
         return render_template('cars.html', user=username, session_id=session_id)
     elif template == "car_details.html":
+        today = datetime.date.today()
         car = get_car_identified_by_id(car_id)
-        return render_template('car_details.html', car=car, user=username, session_id=session_id)
+        return render_template('car_details.html', car=car, user=username, session_id=session_id, today=today)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=username, session_id=session_id, authjs=False, preview_length=get_cars_preview().__len__())
 
@@ -182,6 +184,7 @@ def subscribe():
 def confirm_car_reservation():
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
+    today = datetime.date.today()
     if request.method == 'POST':
         car_id = request.form['hidden-car-id']
         car = get_car_identified_by_id(car_id)
@@ -190,9 +193,9 @@ def confirm_car_reservation():
         if not are_dates_valid(date_from, date_to):
             if check_authentication(session_id, user_id):
                 return render_template('car_details.html', car=car, error="Please insert a valid date interval!",
-                                       user=user_id, session_id=session_id)
+                                       user=user_id, session_id=session_id, today=today)
             else:
-                return render_template('car_details.html', car=car, error="Please insert a valid date interval!")
+                return render_template('car_details.html', car=car, error="Please insert a valid date interval!", today=today)
         if is_car_available_in_the_selected_period(date_from, date_to, car_id):
             if check_authentication(session_id, user_id):
                 if has_user_age_requirement(user_id, car_id):
@@ -204,17 +207,17 @@ def confirm_car_reservation():
                     error_msg = "The reservation has failed because you are not at least " + str(car.min_age) +\
                                 " years old!"
                     return render_template('car_details.html', user=user_id, session_id=session_id,
-                                           error=error_msg, car=car)
+                                           error=error_msg, car=car, today=today)
             else:
                 return render_template('car_details.html', car=car,
-                                       error="You need to be authenticated in order to complete this action!")
+                                       error="You need to be authenticated in order to complete this action!", today=today)
         else:
             if check_authentication(session_id, user_id):
                 return render_template('car_details.html', car=car, is_available=False, show_confirm_div=True,
-                                       date_from=date_from, date_to=date_to, user=user_id, session_id=session_id)
+                                       date_from=date_from, date_to=date_to, user=user_id, session_id=session_id, today=today)
             else:
                 return render_template('car_details.html', car=car, is_available=False, show_confirm_div=True,
-                                       date_from=date_from, date_to=date_to)
+                                       date_from=date_from, date_to=date_to, today=today)
     else:
         if check_authentication(session_id, user_id):
             return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=user_id,
