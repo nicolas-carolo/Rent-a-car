@@ -30,3 +30,7 @@ function show_div_confirm_hire(isAvailable, strDateFrom, strDateTo) {
         document.getElementById("msg-confirm-hire").style.color = "red";
     }
 }
+
+function hidden_div_confirm_hire() {
+    document.getElementById("div-confirm-hire").style.display = 'none'
+}
