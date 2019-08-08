@@ -1,6 +1,7 @@
 from rent_a_car.db_manager.session_manager import start_session
 from rent_a_car.db_manager.models import Car
 from rent_a_car.db_manager.result_set import queryset2list
+from rent_a_car.db_manager.car_filters import filter_cars_by_brand
 from sqlalchemy import func
 import datetime
 
@@ -98,3 +99,10 @@ def get_max_driver_age():
 
 def remove_duplicates_by_list(input_list):
     return list(dict.fromkeys(input_list))
+
+
+def filter_cars_by_user_parameters(brand):
+    session = start_session()
+    queryset = session.query(Car)
+    queryset = filter_cars_by_brand(queryset, brand)
+    return queryset2list(queryset)
