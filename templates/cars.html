@@ -140,7 +140,11 @@
                    <td class="user-input">
                        <select id="car-year-from" name="car-year-from">
                            {% for i in range(oldest_car_age_value, current_year + 1) %}
-                                <option value="{{ i }}">{{ i }}</option>
+                               {% if i == car_year_from_filter %}
+                                   <option value="{{ i }}" selected="selected">{{ i }}</option>
+                               {% else %}
+                                   <option value="{{ i }}">{{ i }}</option>
+                               {% endif %}
                            {% endfor %}
                        </select>
                    </td>
@@ -149,13 +153,23 @@
                    <td class="caption"><label for car-year-to>To:</label></td>
                    <td class="user-input">
                        <select id="car-year-to" name="car-year-to">
-                           {% for i in range(oldest_car_age_value, current_year + 1) %}
-                               {% if i == 2019 %}
-                                   <option value="{{ i }}" selected="selected">{{ i }}</option>
-                               {% else %}
-                                   <option value="{{ i }}">{{ i }}</option>
-                               {% endif %}
-                           {% endfor %}
+                           {% if car_year_to_filter %}
+                               {% for i in range(oldest_car_age_value, current_year + 1) %}
+                                   {% if i == car_year_to_filter %}
+                                       <option value="{{ i }}" selected="selected">{{ i }}</option>
+                                   {% else %}
+                                       <option value="{{ i }}">{{ i }}</option>
+                                   {% endif %}
+                               {% endfor %}
+                           {% else %}
+                               {% for i in range(oldest_car_age_value, current_year + 1) %}
+                                   {% if i == current_year %}
+                                       <option value="{{ i }}" selected="selected">{{ i }}</option>
+                                   {% else %}
+                                       <option value="{{ i }}">{{ i }}</option>
+                                   {% endif %}
+                               {% endfor %}
+                           {% endif %}
                        </select>
                    </td>
                 </tr>
