@@ -5,7 +5,10 @@ from rent_a_car.rent import is_car_available_in_the_selected_period, get_total_p
 from rent_a_car.authentication import authenticate as check_credentials, generate_session, delete_session,\
     check_authentication, get_user_by_session_id
 from rent_a_car.sign_up import create_account
-from rent_a_car.cars_showcase import get_cars_list, get_current_year, get_car_brands_list
+from rent_a_car.cars_showcase import get_cars_list, get_current_year, get_car_brands_list, get_car_types_list,\
+    get_car_n_seats_list, get_fuel_list, get_min_car_power_value, get_max_car_power_value, get_oldest_car_age,\
+    get_max_car_price_per_day, get_min_car_price_per_day, get_max_driver_age
+import datetime
 
 app = Flask(__name__)
 
@@ -29,12 +32,27 @@ def cars():
     cars_list = get_cars_list()
     current_year = get_current_year()
     brands_list = get_car_brands_list()
+    car_types_list = get_car_types_list()
+    car_n_seats_list = get_car_n_seats_list()
+    fuel_list = get_fuel_list()
+    min_power = get_min_car_power_value()
+    max_power = get_max_car_power_value()
+    oldest_car_age_value = get_oldest_car_age()
+    min_price = get_min_car_price_per_day()
+    max_price = get_max_car_price_per_day()
+    max_driver_age = get_max_driver_age()
     if check_authentication(session_id, user_id):
         return render_template('cars.html', user=user_id, session_id=session_id, cars_list=cars_list,
-                               n_cars=cars_list.__len__(), current_year=current_year, brands_list=brands_list)
+                               n_cars=cars_list.__len__(), current_year=current_year, brands_list=brands_list,
+                               car_types_list=car_types_list, car_n_seats_list=car_n_seats_list, fuel_list=fuel_list,
+                               min_power=min_power, max_power=max_power, oldest_car_age_value=oldest_car_age_value,
+                               min_price=min_price, max_price=max_price, max_driver_age=max_driver_age)
     else:
         return render_template('cars.html',  cars_list=cars_list, n_cars=cars_list.__len__(), current_year=current_year,
-                               brands_list=brands_list)
+                               brands_list=brands_list, car_types_list=car_types_list,
+                               car_n_seats_list=car_n_seats_list, fuel_list=fuel_list, min_power=min_power,
+                               max_power=max_power, oldest_car_age_value=oldest_car_age_value, min_price=min_price,
+                               max_price=max_price, max_driver_age=max_driver_age)
 
 
 @app.route('/car_details', methods=['GET'])
@@ -43,10 +61,11 @@ def car_details():
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     car = get_car_identified_by_id(car_id)
+    today = datetime.date.today()
     if check_authentication(session_id, user_id):
-        return render_template('car_details.html', car=car, user=user_id, session_id=session_id)
+        return render_template('car_details.html', car=car, user=user_id, session_id=session_id, today=today)
     else:
-        return render_template('car_details.html', car=car)
+        return render_template('car_details.html', car=car, today=today)
 
 
 @app.route('/check_availability', methods=['POST', 'GET'])

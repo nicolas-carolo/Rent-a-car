@@ -58,9 +58,9 @@
             <form method="post" action="/check_availability?session-id={{ session_id }}&user-id={{ user }}">
                 <input type="hidden" id="car-id" name="car-id" value="{{ car.id }}">
                 <label for date-from>From:</label>
-                <input type="date" id="date-from" name="date-from" onchange="hidden_div_confirm_hire()">
+                <input type="date" id="date-from" name="date-from" min="{{ today }}" onchange="hidden_div_confirm_hire()">
                 <label for date-to>To:</label>
-                <input type="date" id="date-to" name="date-to" onchange="hidden_div_confirm_hire()">
+                <input type="date" id="date-to" name="date-to" min={{ today }} onchange="hidden_div_confirm_hire()">
                 <input type="submit" id="check-availability-button" value="Check availability"><br>
             </form>
         </div>

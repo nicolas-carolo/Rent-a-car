@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="/static/css/cars_style.css" type="text/css" />
 {% endblock %}
 
+{% block javascript_code %}
+    <script src="/static/script/cars_showcase.js" type="text/javascript"></script>
+{% endblock %}
+
 {% block right_buttons %}
     <a class="a-right" href="/sign-up">Sign up</a>
     <a class="a-right" href="/login?back=cars.html">Log in</a>
@@ -17,12 +21,12 @@
                     <th colspan="2">Rent period</th>
                 </tr>
                 <tr>
-                   <td class="caption"><label for date-from>From:</label></td>
-                   <td class="user-input"><input type="date" id="date-from" name="date-from"></td>
+                   <td class="caption"><label for rent-date-from>From:</label></td>
+                   <td class="user-input"><input type="date" id="rent-date-from" name="rent-date-from"></td>
                 </tr>
                 <tr>
-                    <td class="caption"><label for date-to>To:</label></td>
-                    <td class="user-input"><input type="date" id="date-to" name="date-to"></td>
+                    <td class="caption"><label for rent-date-to>To:</label></td>
+                    <td class="user-input"><input type="date" id="rent-date-to" name="rent-date-to"></td>
                 </tr>
                 <tr>
                     <th colspan="2">Car brand and type</th>
@@ -31,6 +35,7 @@
                    <td class="caption"><label for car-brand>Brand:</label></td>
                    <td class="user-input">
                        <select id="car-brand" name="car-brand">
+                           <option value="all" selected="selected">All Brands</option>
                            {% for brand in brands_list %}
                                <option value="{{ brand }}">{{ brand }}</option>
                            {% endfor %}
@@ -41,7 +46,10 @@
                    <td class="caption"><label for car-type>Type:</label></td>
                    <td class="user-input">
                        <select id="car-type" name="car-type">
-                           <option>SUV</option>
+                           <option value="all" selected="selected">All Types</option>
+                           {% for car_type in car_types_list %}
+                               <option value="{{ car_type }}">{{ car_type }}</option>
+                           {% endfor %}
                        </select>
                    </td>
                 </tr>
@@ -49,7 +57,10 @@
                    <td class="caption"><label for n-seats>Number of seats:</label></td>
                    <td class="user-input">
                        <select id="n-seats" name="n-seats">
-                           <option>5</option>
+                           <option value="all" selected="selected">All</option>
+                           {% for car_n_seats in car_n_seats_list %}
+                               <option value="{{ car_n_seats }}">{{ car_n_seats }}</option>
+                           {% endfor %}
                        </select>
                    </td>
                 </tr>
@@ -59,20 +70,23 @@
                 <tr>
                    <td class="caption"><label for car-min-power>Min power:</label></td>
                    <td class="user-input">
-                       <input type="number" id="car-min-power" name="car-min-power" min="0">
+                       <input type="number" id="car-min-power" name="car-min-power" min="{{ min_power }}" max="{{ max_power }}" value="{{ min_power }}">
                    </td>
                 </tr>
                 <tr>
                    <td class="caption"><label for car-max-power>Max power:</label></td>
                    <td class="user-input">
-                       <input type="number" id="car-max-power" name="car-max-power" min="0">
+                       <input type="number" id="car-max-power" name="car-max-power" min="{{ min_power }}" max="{{ max_power }}" value="{{ max_power }}">
                    </td>
                 </tr>
                 <tr>
                    <td class="caption"><label for car-fuel>Fuel:</label></td>
                    <td class="user-input">
                        <select id="car-fuel" name="car-fuel">
-                           <option>Diesel</option>
+                           <option value="all" selected="selected">All Fuels</option>
+                           {% for fuel in fuel_list %}
+                               <option value="{{ fuel }}">{{ fuel }}</option>
+                           {% endfor %}
                        </select>
                    </td>
                 </tr>
@@ -80,8 +94,9 @@
                    <td class="caption"><label for car-transmission>Transmission:</label></td>
                    <td class="user-input">
                        <select id="car-transmission" name="car-transmission">
-                           <option>Manual</option>
+                           <option value="all" selected="selected">All Transmissions</option>
                            <option>Automatic</option>
+                           <option>Manual</option>
                        </select>
                    </td>
                 </tr>
@@ -92,7 +107,7 @@
                    <td class="caption"><label for car-year-from>From:</label></td>
                    <td class="user-input">
                        <select id="car-year-from" name="car-year-from">
-                           {% for i in range(1980, current_year + 1) %}
+                           {% for i in range(oldest_car_age_value, current_year + 1) %}
                                 <option value="{{ i }}">{{ i }}</option>
                            {% endfor %}
                        </select>
@@ -102,7 +117,7 @@
                    <td class="caption"><label for car-year-to>To:</label></td>
                    <td class="user-input">
                        <select id="car-year-to" name="car-year-to">
-                           {% for i in range(1980, current_year + 1) %}
+                           {% for i in range(oldest_car_age_value, current_year + 1) %}
                                {% if i == 2019 %}
                                    <option value="{{ i }}" selected="selected">{{ i }}</option>
                                {% else %}
@@ -119,7 +134,7 @@
                    <td class="caption"><label for driver-min-age>Driver's min age:</label></td>
                    <td class="user-input">
                        <select id="driver-min-age" name="driver-min-age">
-                           {% for i in range(18, 36) %}
+                           {% for i in range(18, max_driver_age + 1) %}
                                 <option value="{{ i }}">{{ i }}</option>
                            {% endfor %}
                        </select>
@@ -130,11 +145,11 @@
                 </tr>
                 <tr>
                     <td class="caption"><label for min-price-day>Min price per day:</label></td>
-                    <td class="user-input"><input type="number" id="min-price-day" name="min-price-day" min="0"></td>
+                    <td class="user-input"><input type="number" id="min-price-day" name="min-price-day" min="{{ min_price }}" max="{{ max_price }}" value="{{ min_price }}"></td>
                 </tr>
                 <tr>
                     <td class="caption"><label for max-price-day>Min price per day:</label></td>
-                    <td class="user-input"><input type="number" id="max-price-day" name="max-price-day" min="0"></td>
+                    <td class="user-input"><input type="number" id="max-price-day" name="max-price-day" min="{{ min_price }}" max="{{ max_price }}" value="{{ max_price }}"></td>
                 </tr>
                 <tr>
                     <td class="filter-cars" colspan="2"><input type="submit" id="filter-cars-button" name="filter-cars-button" value="Filter cars"></td>
@@ -142,6 +157,7 @@
             </table>
         </form>
     </div>
+    <script>set_date_default_values()</script>
 {% endblock %}
 
 {% block preview_cars %}
