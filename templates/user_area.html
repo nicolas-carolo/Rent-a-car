@@ -5,14 +5,15 @@
 {% endblock %}
 
 {% block javascript_code %}
-    {% if edit_error %}
-        <script type="text/javascript">alert("{{ edit_error }}");</script>
+    <script type="text/javascript" src="/static/script/user_area.js"></script>
+    {% if feedback_msg %}
+        <script type="text/javascript">alert("{{ feedback_msg }}");</script>
     {% endif %}
 {% endblock %}
 
 {% block user_info %}
     {% if edit_mode %}
-        <div class="user-info">
+        <div class="user-info" id="div-user-info">
             <form method="post" action="/edit_user_info?session-id={{ session_id }}&user-id={{ user }}">
                 <table class="user-info">
                     <tr>
@@ -25,7 +26,7 @@
                     </tr>
                     <tr>
                         <td class="caption"><label for birthdate>Date of birth:</label></td>
-                        <td class="user-input"><input type="date" id="birthdate" name="birthdate" value="{{ birthdate }}" required></td>
+                        <td class="user-input"><input type="date" id="birthdate" name="birthdate" max="{{ today }}" value="{{ birthdate }}" required></td>
                     </tr>
                     <tr>
                         <td class="caption"><label for username>Email address:</label></td>
@@ -39,32 +40,53 @@
             </form>
         </div>
     {% else %}
-        <div class="user-info">
-            <form method="post" action="/edit_user_info">
-                <table class="user-info">
+        <div class="user-info" id="div-user-info">
+            <table class="user-info">
+                <tr>
+                    <td class="caption"><p>Surname:</p></td>
+                    <td class="user-input"><p>{{ surname }}</p></td>
+                </tr>
+                <tr>
+                    <td class="caption"><p>Name:</p></td>
+                    <td class="user-input"><p>{{ name }}</p></td>
+                </tr>
+                <tr>
+                    <td class="caption"><p>Date of birth:</p></td>
+                    <td class="user-input"><p>{{ birthdate }}</p></td>
+                </tr>
+                <tr>
+                    <td class="caption"><p>Email address:</p></td>
+                    <td class="user-input"><p>{{ user }}</p></td>
+                </tr>
+                <tr>
+                    <td><input type="button" id="edit-mode-button" name="edit-mode-button" value="Edit user info" onclick="window.location.href = '/user_area?session-id={{ session_id }}&user-id={{ user }}&edit=true'"></td>
+                    <td><input type="button" id="edit-pwd-button" name="edit-pwd-button" value="Change password" onclick="show_div_change_password()"></td>
+                </tr>
+            </table>
+        </div>
+    {% endif %}
+    <div class="change-pwd" id="div-change-pwd">
+            <form method="post" action="/change_pwd?session-id={{ session_id }}&user-id={{ user }}">
+                <table class="change-pwd">
                     <tr>
-                        <td class="caption"><p>Surname:</p></td>
-                        <td class="user-input"><p>{{ surname }}</p></td>
+                        <td class="caption"><label for old-password>Old Password:</label></td>
+                        <td class="user-input"><input type="password", id="old-password" name="old-password" required></td>
                     </tr>
                     <tr>
-                        <td class="caption"><p>Name:</p></td>
-                        <td class="user-input"><p>{{ name }}</p></td>
+                        <td class="caption"><label for new-password>New Password:</label></td>
+                        <td class="user-input"><input type="password", id="new-password" name="new-password" required></td>
                     </tr>
                     <tr>
-                        <td class="caption"><p>Date of birth:</p></td>
-                        <td class="user-input"><p>{{ birthdate }}</p></td>
+                        <td class="caption"><label for confirm-password>Confirm Password:</label></td>
+                        <td class="user-input"><input type="password" id="confirm-password" name="confirm-password" required></td>
                     </tr>
                     <tr>
-                        <td class="caption"><p>Email address:</p></td>
-                        <td class="user-input"><p>{{ user }}</p></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input type="button" id="edit-mode-button" name="edit-mode-button" value="Edit" onclick="window.location.href = '/user_area?session-id={{ session_id }}&user-id={{ user }}&edit=true'"></td>
+                        <td><input type="submit" id="save-pwd-button" name="save-pwd-button" value="Save changes"></td>
+                        <td><input type="button" id="cancel-pwd-button" name="cancel-pwd-button" value="Cancel" onclick="window.location.href = '/user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false'"></td>
                     </tr>
                 </table>
             </form>
         </div>
-    {% endif %}
 {% endblock %}
 
 {% block reservation_summary %}

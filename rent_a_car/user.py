@@ -33,3 +33,19 @@ def edit_user_info(name, surname, birthdate, old_username, new_username):
     session.commit()
     session.close()
     return "OK"
+
+
+def update_user_password(user_id, old_password, new_password, confirm_password):
+    user = get_user_by_id(user_id)
+    if old_password != user.password:
+        return "Update failed: The current password you inserted is wrong!"
+    if new_password != confirm_password:
+        return "Update failed: New passwords do not match!"
+    else:
+        session = start_session()
+        user = session.query(User).get(user_id)
+        user.password = confirm_password
+        session.commit()
+        session.close()
+        return "OK"
+

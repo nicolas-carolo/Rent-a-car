@@ -8,7 +8,7 @@ from rent_a_car.sign_up import create_account
 from rent_a_car.cars_showcase import get_cars_list, get_current_year, get_car_brands_list, get_car_types_list,\
     get_car_n_seats_list, get_fuel_list, get_min_car_power_value, get_max_car_power_value, get_oldest_car_age,\
     get_max_car_price_per_day, get_min_car_price_per_day, filter_cars_by_user_parameters
-from rent_a_car.user import get_user_by_id, edit_user_info
+from rent_a_car.user import get_user_by_id, edit_user_info, update_user_password
 import datetime
 
 app = Flask(__name__)
@@ -335,7 +335,7 @@ def user_area():
     user = get_user_by_id(user_id)
     if check_authentication(session_id, user_id):
         return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=edit_mode,
-                               surname=user.surname, name=user.name, birthdate=user.birthdate)
+                               surname=user.surname, name=user.name, birthdate=user.birthdate, today=today)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
@@ -363,7 +363,32 @@ def edit_user_information():
         else:
             return render_template('user_area.html', user=user.id, session_id=session_id, edit_mode=True,
                                    surname=user.surname, name=user.name, birthdate=user.birthdate,
-                                   edit_error=are_changes_valid)
+                                   feedback_msg=are_changes_valid)
+
+
+@app.route('/change_pwd', methods=['POST', 'GET'])
+def change_user_password():
+    session_id = request.args.get('session-id', None)
+    user_id = request.args.get('user-id', None)
+    today = datetime.date.today()
+    user = get_user_by_id(user_id)
+    if request.method == 'POST':
+        old_password = request.form['old-password']
+        new_password = request.form['new-password']
+        confirm_password = request.form['confirm-password']
+        if check_authentication(session_id, user_id):
+            is_password_updated = update_user_password(user_id, old_password, new_password, confirm_password)
+        else:
+            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                                   preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+        if is_password_updated == "OK":
+            return render_template('user_area.html', user=user.id, session_id=session_id, edit_mode=False,
+                                   surname=user.surname, name=user.name, birthdate=user.birthdate,
+                                   feedback_msg="Password successfully updated!")
+        else:
+            return render_template('user_area.html', user=user.id, session_id=session_id, edit_mode=False,
+                                   surname=user.surname, name=user.name, birthdate=user.birthdate,
+                                   feedback_msg=is_password_updated)
 
 
 if __name__ == '__main__':

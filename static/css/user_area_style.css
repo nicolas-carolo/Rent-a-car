@@ -20,7 +20,7 @@ input {
     width: 90%;
 }
 
-table.user-info {
+table.user-info, table.change-pwd {
     width: 95%;
     margin: auto;
 }
@@ -45,6 +45,16 @@ p {
     margin: 5px auto 5px 5px;
 }
 
-#edit-mode-button {
-    width: 50%;
+
+
+div.change-pwd {
+    width: 40%;
+    text-align: center;
+    margin: 20px 20px 60px;
+    padding: 20px;
+    background-color: #c1d7d7;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+    float: left;
+    display: none;
 }
