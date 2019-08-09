@@ -1,1 +1,43 @@
 {% extends 'base.html' %}
+
+{% block other_styles %}
+    <link rel="stylesheet" href="/static/css/user_area_style.css" type="text/css" />
+{% endblock %}
+
+{% block javascript_code %}
+{% endblock %}
+
+{% block user_info %}
+    {% if edit_mode %}
+        <div class="user-info">
+            <form method="post" action="/edit_user_info">
+                <table class="user-info">
+                    <tr>
+                        <td class="caption"><label for surname>Surname:</label></td>
+                        <td class="user-input"><input type="text", id="surname" name="surname" value="{{ surname }}" required></td>
+                    </tr>
+                    <tr>
+                        <td class="caption"><label for name>Name:</label></td>
+                        <td class="user-input"><input type="text" id="name" name="name" value="{{ name }}" required></td>
+                    </tr>
+                    <tr>
+                        <td class="caption"><label for birthdate>Date of birth:</label></td>
+                        <td class="user-input"><input type="date" id="birthdate" name="birthdate" value="{{ birthdate }}" required></td>
+                    </tr>
+                    <tr>
+                        <td class="caption"><label for username>Email address:</label></td>
+                        <td class="user-input"><input type="email" id="username" name="username" value="{{ user_id }}" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="save-changes-button" name="save-changes-button" value="Save changes"></td>
+                        <td><input type="button" id="cancel-changes-button" name="cancel-changes-button" value="Cancel"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    {% else %}
+    {% endif %}
+{% endblock %}
+
+{% block reservation_summary %}
+{% endblock %}
