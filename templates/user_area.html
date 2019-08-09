@@ -30,12 +30,37 @@
                     </tr>
                     <tr>
                         <td><input type="submit" id="save-changes-button" name="save-changes-button" value="Save changes"></td>
-                        <td><input type="button" id="cancel-changes-button" name="cancel-changes-button" value="Cancel"></td>
+                        <td><input type="button" id="cancel-changes-button" name="cancel-changes-button" value="Cancel" onclick="window.location.href = '/user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false'"></td>
                     </tr>
                 </table>
             </form>
         </div>
     {% else %}
+        <div class="user-info">
+            <form method="post" action="/edit_user_info">
+                <table class="user-info">
+                    <tr>
+                        <td class="caption"><p>Surname:</p></td>
+                        <td class="user-input"><p>{{ surname }}</p></td>
+                    </tr>
+                    <tr>
+                        <td class="caption"><p>Name:</p></td>
+                        <td class="user-input"><p>{{ name }}</p></td>
+                    </tr>
+                    <tr>
+                        <td class="caption"><p>Date of birth:</p></td>
+                        <td class="user-input"><p>{{ birthdate }}</p></td>
+                    </tr>
+                    <tr>
+                        <td class="caption"><p>Email address:</p></td>
+                        <td class="user-input"><p>{{ user_id }}</p></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="button" id="edit-mode-button" name="edit-mode-button" value="Edit" onclick="window.location.href = '/user_area?session-id={{ session_id }}&user-id={{ user }}&edit=true'"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     {% endif %}
 {% endblock %}
 

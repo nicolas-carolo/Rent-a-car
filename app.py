@@ -326,9 +326,14 @@ def filter_cars():
 def user_area():
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
+    edit = request.args.get('edit', None)
+    if edit == "true":
+        edit_mode = True
+    else:
+        edit_mode = False
     user = get_user_by_id(user_id)
     if check_authentication(session_id, user_id):
-        return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=True,
+        return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=edit_mode,
                                surname=user.surname, name=user.name, birthdate=user.birthdate, user_id=user.id)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
