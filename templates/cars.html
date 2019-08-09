@@ -15,7 +15,7 @@
 
 {% block searching_filters %}
     <div class="searching-filters">
-        <form method="post" action="/filter_cars?session-id={{ session_id }}&user-id={{ user }}">
+        <form id="form-cars-filter" name="form-cars-filter" method="post" action="/filter_cars?session-id={{ session_id }}&user-id={{ user }}">
             <table id="filter-table">
                 <tr>
                     <th colspan="2">Rent period</th>
@@ -23,17 +23,17 @@
                 <tr>
                    <td class="caption"><label for rent-date-from>From:</label></td>
                     {% if rent_date_from_filter %}
-                        <td class="user-input"><input type="date" id="rent-date-from" name="rent-date-from" value="{{ rent_date_from_filter }}"></td>
+                        <td class="user-input"><input type="date" id="rent-date-from" name="rent-date-from" min="{{ today }}" value="{{ rent_date_from_filter }}"></td>
                     {% else %}
-                        <td class="user-input"><input type="date" id="rent-date-from" name="rent-date-from"></td>
+                        <td class="user-input"><input type="date" id="rent-date-from" name="rent-date-from" min="{{ today }}"></td>
                     {% endif %}
                 </tr>
                 <tr>
                     <td class="caption"><label for rent-date-to>To:</label></td>
                     {% if rent_date_to_filter %}
-                        <td class="user-input"><input type="date" id="rent-date-to" name="rent-date-to" value="{{ rent_date_to_filter }}"></td>
+                        <td class="user-input"><input type="date" id="rent-date-to" name="rent-date-to" min="{{ today }}" value="{{ rent_date_to_filter }}"></td>
                     {% else %}
-                        <td class="user-input"><input type="date" id="rent-date-to" name="rent-date-to"></td>
+                        <td class="user-input"><input type="date" id="rent-date-to" name="rent-date-to" min="{{ today }}"></td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -219,14 +219,11 @@
                     {% endif %}
                 </tr>
                 <tr>
-                    <td class="filter-cars" colspan="2"><input type="submit" id="filter-cars-button" name="filter-cars-button" value="Filter cars"></td>
+                    <td class="filter-cars" colspan="2"><input type="button" id="filter-cars-button" name="filter-cars-button" value="Filter cars" onclick="submit_form_filter()"></td>
                 </tr>
             </table>
         </form>
     </div>
-    {% if not rent_date_from_filter or not rent_date_to_filter %}
-        <script>set_date_default_values()</script>
-    {% endif %}
 {% endblock %}
 
 {% block preview_cars %}
