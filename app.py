@@ -3,12 +3,12 @@ from rent_a_car.home import get_cars_preview, get_news_list, get_car_identified_
 from rent_a_car.rent import is_car_available_in_the_selected_period, get_total_price, are_dates_valid,\
     save_car_reservation, has_user_age_requirement
 from rent_a_car.authentication import authenticate as check_credentials, generate_session, delete_session,\
-    check_authentication, get_user_by_session_id
+    check_authentication, get_user_by_session_id, edit_session
 from rent_a_car.sign_up import create_account
 from rent_a_car.cars_showcase import get_cars_list, get_current_year, get_car_brands_list, get_car_types_list,\
     get_car_n_seats_list, get_fuel_list, get_min_car_power_value, get_max_car_power_value, get_oldest_car_age,\
     get_max_car_price_per_day, get_min_car_price_per_day, filter_cars_by_user_parameters
-from rent_a_car.user import get_user_by_id
+from rent_a_car.user import get_user_by_id, edit_user_info
 import datetime
 
 app = Flask(__name__)
@@ -327,6 +327,7 @@ def user_area():
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     edit = request.args.get('edit', None)
+    today = datetime.date.today()
     if edit == "true":
         edit_mode = True
     else:
@@ -334,10 +335,35 @@ def user_area():
     user = get_user_by_id(user_id)
     if check_authentication(session_id, user_id):
         return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=edit_mode,
-                               surname=user.surname, name=user.name, birthdate=user.birthdate, user_id=user.id)
+                               surname=user.surname, name=user.name, birthdate=user.birthdate)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+
+
+@app.route('/edit_user_info', methods=['POST', 'GET'])
+def edit_user_information():
+    session_id = request.args.get('session-id', None)
+    old_username = request.args.get('user-id', None)
+    user = get_user_by_id(old_username)
+    if request.method == 'POST':
+        surname = request.form['surname']
+        name = request.form['name']
+        birthdate = request.form['birthdate']
+        new_username = request.form['username']
+        if check_authentication(session_id, old_username):
+            are_changes_valid = edit_user_info(name, surname, birthdate, old_username, new_username)
+        else:
+            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                                   preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+        if are_changes_valid == "OK":
+            edit_session(session_id, new_username)
+            return render_template('user_area.html', user=new_username, session_id=session_id, edit_mode=False,
+                                   surname=surname, name=name, birthdate=birthdate)
+        else:
+            return render_template('user_area.html', user=user.id, session_id=session_id, edit_mode=True,
+                                   surname=user.surname, name=user.name, birthdate=user.birthdate,
+                                   edit_error=are_changes_valid)
 
 
 if __name__ == '__main__':

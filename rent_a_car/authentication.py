@@ -29,6 +29,14 @@ def generate_session(username):
     return session_id
 
 
+def edit_session(session_id, new_username):
+    session = start_session()
+    user_session = session.query(UserSession).get(session_id)
+    user_session.id_user = new_username
+    session.commit()
+    session.close()
+
+
 def delete_session(session_id):
     session = start_session()
     session.query(UserSession).filter(UserSession.id_session.__eq__(session_id)).delete()
