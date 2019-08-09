@@ -146,7 +146,7 @@ def authenticate_by_session_id():
 
 def after_auth_redirect(template, car_id, username):
     session_id = generate_session(username)
-    current_year = get_current_year() + 1
+    current_year = get_current_year()
     if template == "cars.html":
         return render_template('cars.html', user=username, session_id=session_id, current_year=current_year,
                                oldest_car_age_value=get_oldest_car_age(), n_cars=get_cars_list().__len__(),
