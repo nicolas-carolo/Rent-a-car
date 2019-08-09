@@ -84,5 +84,6 @@ INSERT INTO users(id, password, surname, name, birthdate) VALUES ('sebastian.vet
 INSERT INTO users(id, password, surname, name, birthdate) VALUES ('lewis.hamilton@pilot.com', 'mercedes', 'Lewis', 'Hamilton', '1985-01-07');
 INSERT INTO users(id, password, surname, name, birthdate) VALUES ('charles.leclerc@pilot.com', 'ferrari2', 'Charles', 'Leclerc', '1997-10-16');
 INSERT INTO users(id, password, surname, name, birthdate) VALUES ('utente30@test.com', '123', 'Utente', 'Trenta', '1989-01-01');
+INSERT INTO users(id, password, surname, name, birthdate) VALUES ('utente40@test.com', '456', 'Utente', 'Quaranta', '1979-01-01');
 
 

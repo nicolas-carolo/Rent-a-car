@@ -12,6 +12,9 @@
     {% if session_id %}
         <script type="text/javascript">document.cookie = "session_id={{ session_id }}";</script>
     {% endif %}
+    {% if del_session_cookie %}
+        <script type="text/javascript">delete_cookie("session_id");</script>
+    {% endif %}
 </head>
 <body>
     <div class="navbar">
@@ -20,7 +23,7 @@
         <a class="a-left" href="/contacts?session-id={{ session_id }}&user-id={{ user }}">Contacts</a>
         {% if user %}
             <a class="a-right" href="/logout?session-id={{ session_id }}" onclick="logout()">Log out</a>
-            <a class="a-right" href="/user_area">{{ user }}</a>
+            <a class="a-right" href="/user_area?session-id={{ session_id }}&user-id={{ user }}">{{ user }}</a>
         {% else %}
             {% block right_buttons %}{% endblock %}
         {% endif %}

@@ -22,7 +22,7 @@ def home():
                                session_id=session_id, authjs=True, preview_length=get_cars_preview().__len__())
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=True,
-                               preview_length=get_cars_preview().__len__())
+                               preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 
 @app.route('/cars')
@@ -102,9 +102,11 @@ def check_car_availability():
                                        date_from=date_from, date_to=date_to, today=today)
     else:
         if check_authentication(session_id, user_id):
-            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=user_id, session_id=session_id, authjs=False, preview_length=get_cars_preview().__len__())
+            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=user_id,
+                                   session_id=session_id, authjs=False, preview_length=get_cars_preview().__len__())
         else:
-            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False, preview_length=get_cars_preview().__len__())
+            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                                   preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 
 @app.route('/login')
@@ -142,7 +144,8 @@ def authenticate_by_session_id():
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=user_id,
                                session_id=session_id, authjs=False, preview_length=get_cars_preview().__len__())
     else:
-        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False, preview_length=get_cars_preview().__len__())
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                               preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 
 def after_auth_redirect(template, car_id, username):
@@ -227,7 +230,7 @@ def confirm_car_reservation():
                                    session_id=session_id, authjs=False, preview_length=get_cars_preview().__len__())
         else:
             return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
-                                   preview_length=get_cars_preview().__len__())
+                                   preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 
 @app.route('/filter_cars', methods=['POST', 'GET'])
@@ -316,6 +319,17 @@ def filter_cars():
                                    car_n_seats_list=car_n_seats_list, fuel_list=fuel_list, min_power=min_power,
                                    max_power=max_power, oldest_car_age_value=oldest_car_age_value, min_price=min_price,
                                    max_price=max_price, today=today)
+
+
+@app.route('/user_area')
+def user_area():
+    session_id = request.args.get('session-id', None)
+    user_id = request.args.get('user-id', None)
+    if check_authentication(session_id, user_id):
+        return render_template('user_area.html', user=user_id, session_id=session_id)
+    else:
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                               preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 
 if __name__ == '__main__':
