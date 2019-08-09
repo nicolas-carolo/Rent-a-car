@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Rent a Car</title>
     <link rel="stylesheet" href="/static/css/base_style.css" type="text/css" />
+    <script type="text/javascript" src="/static/script/login.js"></script>
     {% block other_styles %}
     {% endblock %}
     {% block javascript_code %}
@@ -11,8 +12,7 @@
     <link rel="icon" type="image/png" href="/static/media/logo.png">
     {% if session_id %}
         <script type="text/javascript">document.cookie = "session_id={{ session_id }}";</script>
-    {% endif %}
-    {% if del_session_cookie %}
+    {% else %}
         <script type="text/javascript">delete_cookie("session_id");</script>
     {% endif %}
 </head>
