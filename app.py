@@ -370,7 +370,6 @@ def edit_user_information():
 def change_user_password():
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
-    today = datetime.date.today()
     user = get_user_by_id(user_id)
     if request.method == 'POST':
         old_password = request.form['old-password']
