@@ -89,5 +89,37 @@
         </div>
 {% endblock %}
 
-{% block reservation_summary %}
+{% block reservations_summary %}
+    <div class="reservations" id="div-reservations">
+        <h2>Reservations</h2>
+        <table class="reservations" id="reservations-table">
+            <tr>
+                <td class="reservation-car-image" rowspan="6"><img src="/static/media/cars/vw-polo.jpg" width="192" height="144"></td>
+                <td class="reservation-descriptor">Reservation ID:</td>
+                <td class="reservation-detail">6</td>
+                <td class="reservation-button" id="reservation-button-view" rowspan="3"><input type="button" id="view-details-button" name="view-details-button" value="View details"></td>
+            </tr>
+            <tr>
+                <td class="reservation-descriptor">From:</td>
+                <td class="reservation-detail">01-01-2020 0:00 a.m.</td>
+            </tr>
+            <tr>
+                <td class="reservation-descriptor">To:</td>
+                <td class="reservation-detail">01-01-2020 23:59 p.m.</td>
+            </tr>
+            <tr>
+                <td class="reservation-descriptor">Car rented:</td>
+                <td class="reservation-detail">Volkswagen Polo</td>
+                <td class="reservation-button" id="reservation-button-delete" rowspan="3"><input type="button" id="detele-reservation-button" name="delete-reservation-button" value="Delete reservation"></td>
+            </tr>
+            <tr>
+                <td class="reservation-descriptor">Total price:</td>
+                <td class="reservation-detail">€ 50</td>
+            </tr>
+            <tr>
+                <td class="reservation-descriptor">Status:</td>
+                <td class="reservation-detail">OK</td>
+            </tr>
+        </table>
+    </div>
 {% endblock %}
