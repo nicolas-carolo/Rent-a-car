@@ -1,6 +1,8 @@
 from rent_a_car.db_manager.session_manager import start_session
 from rent_a_car.db_manager.models import CarReservation, User, Car
 from rent_a_car.db_manager.result_set import queryset2list
+from rent_a_car.home import get_car_identified_by_id
+from rent_a_car.rent import get_total_price
 from rent_a_car.sign_up import is_blank_input, get_age
 
 
@@ -49,3 +51,24 @@ def update_user_password(user_id, old_password, new_password, confirm_password):
         session.close()
         return "OK"
 
+
+def get_user_reservations_list(user_id):
+    session = start_session()
+    queryset = session.query(CarReservation).filter(CarReservation.id_user.__eq__(user_id))
+    reservations_list = queryset2list(queryset)
+    return sorted(reservations_list, key=lambda reservation: reservation.date_from, reverse=True)
+
+
+def get_cars_user_reservations_list(reservations_list):
+    car_list = []
+    for reservation in reservations_list:
+        car_list.append(get_car_identified_by_id(reservation.id_car))
+    return car_list
+
+
+def get_total_prices_reservations_list(reservations_list):
+    total_prices_list = []
+    for reservation in reservations_list:
+        car = get_car_identified_by_id(reservation.id_car)
+        total_prices_list.append(get_total_price(car.price, str(reservation.date_from), str(reservation.date_to)))
+    return total_prices_list

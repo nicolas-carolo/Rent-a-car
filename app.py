@@ -8,7 +8,8 @@ from rent_a_car.sign_up import create_account
 from rent_a_car.cars_showcase import get_cars_list, get_current_year, get_car_brands_list, get_car_types_list,\
     get_car_n_seats_list, get_fuel_list, get_min_car_power_value, get_max_car_power_value, get_oldest_car_age,\
     get_max_car_price_per_day, get_min_car_price_per_day, filter_cars_by_user_parameters
-from rent_a_car.user import get_user_by_id, edit_user_info, update_user_password
+from rent_a_car.user import get_user_by_id, edit_user_info, update_user_password, get_user_reservations_list,\
+    get_cars_user_reservations_list, get_total_prices_reservations_list
 import datetime
 
 app = Flask(__name__)
@@ -328,6 +329,9 @@ def user_area():
     user_id = request.args.get('user-id', None)
     edit = request.args.get('edit', None)
     today = datetime.date.today()
+    reservations_list = get_user_reservations_list(user_id)
+    total_prices_list = get_total_prices_reservations_list(reservations_list)
+    cars_reservations_list = get_cars_user_reservations_list(reservations_list)
     if edit == "true":
         edit_mode = True
     else:
@@ -335,7 +339,9 @@ def user_area():
     user = get_user_by_id(user_id)
     if check_authentication(session_id, user_id):
         return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=edit_mode,
-                               surname=user.surname, name=user.name, birthdate=user.birthdate, today=today)
+                               surname=user.surname, name=user.name, birthdate=user.birthdate, today=today,
+                               reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
+                               total_prices_list=total_prices_list)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
