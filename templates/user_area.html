@@ -117,9 +117,9 @@
                         <td class="reservation-detail">{{ cars_reservations_list[loop.index0].brand }} {{ cars_reservations_list[loop.index0].model }}</td>
                         <td class="reservation-button" id="reservation-button-delete" rowspan="3">
                             {% if reservations_status_list[loop.index0] == 'Reserved' %}
-                                <input type="button" id="detele-reservation-button" name="delete-reservation-button" value="Delete reservation" onclick="window.location.href = '/delete_reservation?session-id={{ session_id }}&user-id={{ user }}&reservation-id={{ reservation.id_reservation }}'">
+                                <input type="button" id="detele-reservation-button" name="delete-reservation-button" value="Delete reservation" onclick="delete_reservation('{{ reservations_list[loop.index0].id_reservation }}', '{{ session_id }}', '{{ user }}')">
                             {% else %}
-                                <input type="button" id="detele-reservation-button" name="delete-reservation-button" value="Delete reservation" onclick="window.location.href = '/delete_reservation?session-id={{ session_id }}&user-id={{ user }}&reservation-id={{ reservation.id_reservation }}'" disabled="true">
+                                <input type="button" id="detele-reservation-button" name="delete-reservation-button" value="Delete reservation" disabled="true">
                             {% endif %}
                         </td>
                     </tr>
