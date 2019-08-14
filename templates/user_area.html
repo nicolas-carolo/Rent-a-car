@@ -102,7 +102,7 @@
             <table class="reservations" id="reservations-table">
                 {% for reservation in reservations_list %}
                     <tr>
-                        <td class="reservation-car-image" rowspan="6"><img src="{{ cars_reservations_list[loop.index0].photo_link }}" width="192" height="144"></td>
+                        <td class="reservation-car-image" rowspan="6"><a href="/reservation_details?session-id={{ session_id }}&user-id={{ user }}&reservation-id={{ reservation.id_reservation }}"><img class="car-image" src="{{ cars_reservations_list[loop.index0].photo_link }}" width="192" height="144"></a></td>
                         <td class="reservation-descriptor"><b>Reservation ID:</b></td>
                         <td class="reservation-detail">{{ reservation.id_reservation }}</td>
                         <td class="reservation-button" id="reservation-button-view" rowspan="3"><input type="button" id="view-details-button" name="view-details-button" value="View details" onclick="window.location.href = '/reservation_details?session-id={{ session_id }}&user-id={{ user }}&reservation-id={{ reservation.id_reservation }}'"></td>
