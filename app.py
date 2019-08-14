@@ -359,6 +359,11 @@ def edit_user_information():
         name = request.form['name']
         birthdate = request.form['birthdate']
         new_username = request.form['username']
+        today = datetime.date.today()
+        reservations_list = get_user_reservations_list(old_username)
+        total_prices_list = get_total_prices_reservations_list(reservations_list)
+        cars_reservations_list = get_cars_user_reservations_list(reservations_list)
+        reservations_status_list = get_reservations_status_list(reservations_list)
         if check_authentication(session_id, old_username):
             are_changes_valid = edit_user_info(name, surname, birthdate, old_username, new_username)
         else:
@@ -367,11 +372,17 @@ def edit_user_information():
         if are_changes_valid == "OK":
             edit_session(session_id, new_username)
             return render_template('user_area.html', user=new_username, session_id=session_id, edit_mode=False,
-                                   surname=surname, name=name, birthdate=birthdate)
+                                   surname=surname, name=name, birthdate=birthdate, today=today,
+                                   reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
+                                   total_prices_list=total_prices_list,
+                                   reservations_status_list=reservations_status_list)
         else:
             return render_template('user_area.html', user=user.id, session_id=session_id, edit_mode=True,
                                    surname=user.surname, name=user.name, birthdate=user.birthdate,
-                                   feedback_msg=are_changes_valid)
+                                   feedback_msg=are_changes_valid, today=today,
+                                   reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
+                                   total_prices_list=total_prices_list,
+                                   reservations_status_list=reservations_status_list)
 
 
 @app.route('/change_pwd', methods=['POST', 'GET'])
@@ -383,6 +394,11 @@ def change_user_password():
         old_password = request.form['old-password']
         new_password = request.form['new-password']
         confirm_password = request.form['confirm-password']
+        today = datetime.date.today()
+        reservations_list = get_user_reservations_list(user_id)
+        total_prices_list = get_total_prices_reservations_list(reservations_list)
+        cars_reservations_list = get_cars_user_reservations_list(reservations_list)
+        reservations_status_list = get_reservations_status_list(reservations_list)
         if check_authentication(session_id, user_id):
             is_password_updated = update_user_password(user_id, old_password, new_password, confirm_password)
         else:
@@ -391,11 +407,17 @@ def change_user_password():
         if is_password_updated == "OK":
             return render_template('user_area.html', user=user.id, session_id=session_id, edit_mode=False,
                                    surname=user.surname, name=user.name, birthdate=user.birthdate,
-                                   feedback_msg="Password successfully updated!")
+                                   feedback_msg="Password successfully updated!", today=today,
+                                   reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
+                                   total_prices_list=total_prices_list,
+                                   reservations_status_list=reservations_status_list)
         else:
             return render_template('user_area.html', user=user.id, session_id=session_id, edit_mode=False,
                                    surname=user.surname, name=user.name, birthdate=user.birthdate,
-                                   feedback_msg=is_password_updated)
+                                   feedback_msg=is_password_updated, today=today,
+                                   reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
+                                   total_prices_list=total_prices_list,
+                                   reservations_status_list=reservations_status_list)
 
 
 @app.route('/reservation_details')

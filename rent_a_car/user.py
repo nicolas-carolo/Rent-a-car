@@ -33,6 +33,7 @@ def edit_user_info(name, surname, birthdate, old_username, new_username):
     user.surname = surname
     user.name = name
     user.birthdate = birthdate
+    session.query(CarReservation).filter(CarReservation.id_user.__eq__(old_username)).update({CarReservation.id_user:new_username}, synchronize_session = False)
     session.commit()
     session.close()
     return "OK"
@@ -81,7 +82,7 @@ def get_reservations_status_list(reservations_list):
     for reservation in reservations_list:
         if reservation.date_from > today:
             status = 'Reserved'
-        elif reservation.date_from < today < reservation.date_to:
+        elif reservation.date_from <= today <= reservation.date_to:
             status = 'In progress'
         else:
             status = 'Completed'
