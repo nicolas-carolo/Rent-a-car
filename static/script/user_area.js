@@ -54,3 +54,10 @@ function delete_reservation(reservation_id, session_id, user) {
         window.location.href = '/delete_reservation?session-id=' + session_id + '&user-id=' + user + '&reservation-id=' + reservation_id;
     }
 }
+
+function delete_account(session_id, user) {
+    var input = confirm("Do you really want to delete your account?");
+    if (input == true) {
+        window.location.href = '/delete_user?session-id=' + session_id + '&user-id=' + user;
+    }
+}

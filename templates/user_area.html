@@ -34,6 +34,9 @@
                         <td class="user-input"><input type="email" id="username" name="username" value="{{ user }}" required></td>
                     </tr>
                     <tr>
+                        <td colspan="2"><input type="button" id="delete-account-button" name="delete-account-button" value="Delete account" onclick="delete_account('{{ session_id }}', '{{ user }}')"></td>
+                    </tr>
+                    <tr>
                         <td><input type="submit" id="save-changes-button" name="save-changes-button" value="Save changes"></td>
                         <td><input type="button" id="cancel-changes-button" name="cancel-changes-button" value="Cancel" onclick="window.location.href = '/user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false'"></td>
                     </tr>

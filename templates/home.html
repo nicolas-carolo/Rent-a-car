@@ -9,6 +9,9 @@
     {% if user_added_correctly %}
         <script type="text/javascript">alert("Subscription completed correctly!")</script>
     {% endif %}
+    {% if user_deleted %}
+        <script type="text/javascript">alert("The account '{{ user_deleted }}' has been successfully deleted!")</script>
+    {% endif %}
 {% endblock %}
 
 {% block right_buttons %}

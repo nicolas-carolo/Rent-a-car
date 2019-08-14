@@ -113,3 +113,18 @@ def delete_reservation(reservation_id):
     session.query(CarReservation).filter(CarReservation.id_reservation.__eq__(reservation_id)).delete()
     session.commit()
     session.close()
+
+
+def delete_user(user_id):
+    session = start_session()
+    session.query(User).filter(User.id.__eq__(user_id)).delete()
+    session.commit()
+    session.close()
+    delete_all_user_reservations(user_id)
+
+
+def delete_all_user_reservations(user_id):
+    session = start_session()
+    session.query(CarReservation).filter(CarReservation.id_user.__eq__(user_id)).delete()
+    session.commit()
+    session.close()
