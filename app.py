@@ -10,7 +10,7 @@ from rent_a_car.cars_showcase import get_cars_list, get_current_year, get_car_br
     get_max_car_price_per_day, get_min_car_price_per_day, filter_cars_by_user_parameters
 from rent_a_car.user import get_user_by_id, edit_user_info, update_user_password, get_user_reservations_list,\
     get_cars_user_reservations_list, get_total_prices_reservations_list, get_reservations_status_list,\
-    get_reservation_identified_by_id, is_reservation_of_the_user, delete_reservation, delete_user
+    get_reservation_identified_by_id, is_reservation_of_the_user, delete_reservation, delete_user, is_admin_user
 import datetime
 
 app = Flask(__name__)
@@ -340,10 +340,13 @@ def user_area():
         edit_mode = False
     user = get_user_by_id(user_id)
     if check_authentication(session_id, user_id):
-        return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=edit_mode,
-                               surname=user.surname, name=user.name, birthdate=user.birthdate, today=today,
-                               reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
-                               total_prices_list=total_prices_list, reservations_status_list=reservations_status_list)
+        if is_admin_user(user_id):
+            return render_template('admin_area.html', user=user_id, session_id=session_id)
+        else:
+            return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=edit_mode,
+                                   surname=user.surname, name=user.name, birthdate=user.birthdate, today=today,
+                                   reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
+                                   total_prices_list=total_prices_list, reservations_status_list=reservations_status_list)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)

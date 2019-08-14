@@ -81,6 +81,7 @@ class User(Base):
     surname = Column(String)
     name = Column(String)
     birthdate = Column(String)
+    is_admin = Column(Integer)
 
     def __init__(self, id, password, surname, name, birthdate):
         self.id = id

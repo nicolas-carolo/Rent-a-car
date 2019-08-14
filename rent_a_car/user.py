@@ -128,3 +128,11 @@ def delete_all_user_reservations(user_id):
     session.query(CarReservation).filter(CarReservation.id_user.__eq__(user_id)).delete()
     session.commit()
     session.close()
+
+
+def is_admin_user(user_id):
+    user = get_user_by_id(user_id)
+    if user.is_admin:
+        return True
+    else:
+        return False
