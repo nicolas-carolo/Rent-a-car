@@ -61,7 +61,7 @@
                     <td class="user-input"><p>{{ user }}</p></td>
                 </tr>
                 <tr>
-                    <td><input type="button" id="edit-mode-button" name="edit-mode-button" value="Edit user info" onclick="window.location.href = '/user_area?session-id={{ session_id }}&user-id={{ user }}&edit=true'"></td>
+                    <td><input type="button" id="edit-mode-button" name="edit-mode-button" value="Edit user info" onclick="edit_user_info('{{ session_id }}', '{{ user }}')"></td>
                     <td><input type="button" id="edit-pwd-button" name="edit-pwd-button" value="Change password" onclick="show_div_change_password()"></td>
                 </tr>
             </table>
@@ -127,4 +127,7 @@
             {% endfor %}
         </table>
     </div>
+    {% if edit_mode %}
+        <script type="text/javascript">disable_div_reservations()</script>
+    {% endif %}
 {% endblock %}
