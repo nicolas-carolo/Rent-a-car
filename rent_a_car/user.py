@@ -105,3 +105,10 @@ def is_reservation_of_the_user(reservation_id, user_id):
         return True
     else:
         return False
+
+
+def delete_reservation(reservation_id):
+    session = start_session()
+    session.query(CarReservation).filter(CarReservation.id_reservation.__eq__(reservation_id)).delete()
+    session.commit()
+    session.close()
