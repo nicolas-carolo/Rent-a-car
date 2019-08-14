@@ -73,27 +73,27 @@ div.reservations {
 table.reservations {
     width: 95%;
     margin: auto;
-    border: 3px solid black;
+    border: 3px solid #3c5d5d;
     border-collapse: collapse;
 }
 
 td.reservation-car-image {
     text-align: center;
     width: 25%;
-    border: 1px solid black;
+    border: 1px solid #3c5d5d;
 }
 
 td.reservation-descriptor {
     text-align: left;
     width: 25%;
-    border: 1px solid black;
+    border: 1px solid #3c5d5d;
     font-size: 1.2em;
 }
 
 td.reservation-detail {
     text-align: left;
     width: 25%;
-    border: 1px solid black;
+    border: 1px solid #3c5d5d;
     font-size: 1.2em;
 }
 
@@ -114,9 +114,9 @@ td.reservation-detail {
 }
 
 .reservations tr {
-    border: 1px solid black;
+    border: 1px solid #3c5d5d;
 }
 
 tr.reservations-separator {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #3c5d5d;
 }
