@@ -4,6 +4,7 @@ from rent_a_car.db_manager.result_set import queryset2list
 from rent_a_car.home import get_car_identified_by_id
 from rent_a_car.rent import get_total_price
 from rent_a_car.sign_up import is_blank_input, get_age
+import datetime
 
 
 def get_user_by_id(user_id):
@@ -72,3 +73,35 @@ def get_total_prices_reservations_list(reservations_list):
         car = get_car_identified_by_id(reservation.id_car)
         total_prices_list.append(get_total_price(car.price, str(reservation.date_from), str(reservation.date_to)))
     return total_prices_list
+
+
+def get_reservations_status_list(reservations_list):
+    status_list = []
+    today = datetime.datetime.today().date()
+    for reservation in reservations_list:
+        if reservation.date_from > today:
+            status = 'Reserved'
+        elif reservation.date_from < today < reservation.date_to:
+            status = 'In progress'
+        else:
+            status = 'Completed'
+        status_list.append(status)
+    return status_list
+
+
+def get_reservation_identified_by_id(reservation_id):
+    session = start_session()
+    reservation = session.query(CarReservation).get(reservation_id)
+    session.close()
+    return reservation
+
+
+def is_reservation_of_the_user(reservation_id, user_id):
+    reservations_list = get_user_reservations_list(user_id)
+    reservations_id_list = []
+    for reservation in reservations_list:
+        reservations_id_list.append(str(reservation.id_reservation))
+    if reservation_id in reservations_id_list:
+        return True
+    else:
+        return False

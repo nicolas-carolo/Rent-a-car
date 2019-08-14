@@ -91,7 +91,7 @@ td.reservation-descriptor {
 }
 
 td.reservation-detail {
-    text-align: right;
+    text-align: left;
     width: 25%;
     border: 1px solid black;
     font-size: 1.2em;

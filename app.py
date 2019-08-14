@@ -9,7 +9,8 @@ from rent_a_car.cars_showcase import get_cars_list, get_current_year, get_car_br
     get_car_n_seats_list, get_fuel_list, get_min_car_power_value, get_max_car_power_value, get_oldest_car_age,\
     get_max_car_price_per_day, get_min_car_price_per_day, filter_cars_by_user_parameters
 from rent_a_car.user import get_user_by_id, edit_user_info, update_user_password, get_user_reservations_list,\
-    get_cars_user_reservations_list, get_total_prices_reservations_list
+    get_cars_user_reservations_list, get_total_prices_reservations_list, get_reservations_status_list,\
+    get_reservation_identified_by_id, is_reservation_of_the_user
 import datetime
 
 app = Flask(__name__)
@@ -332,6 +333,7 @@ def user_area():
     reservations_list = get_user_reservations_list(user_id)
     total_prices_list = get_total_prices_reservations_list(reservations_list)
     cars_reservations_list = get_cars_user_reservations_list(reservations_list)
+    reservations_status_list = get_reservations_status_list(reservations_list)
     if edit == "true":
         edit_mode = True
     else:
@@ -341,7 +343,7 @@ def user_area():
         return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=edit_mode,
                                surname=user.surname, name=user.name, birthdate=user.birthdate, today=today,
                                reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
-                               total_prices_list=total_prices_list)
+                               total_prices_list=total_prices_list, reservations_status_list=reservations_status_list)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
@@ -394,6 +396,25 @@ def change_user_password():
             return render_template('user_area.html', user=user.id, session_id=session_id, edit_mode=False,
                                    surname=user.surname, name=user.name, birthdate=user.birthdate,
                                    feedback_msg=is_password_updated)
+
+
+@app.route('/reservation_details')
+def reservation_details():
+    session_id = request.args.get('session-id', None)
+    user_id = request.args.get('user-id', None)
+    reservation_id = request.args.get('reservation-id', None)
+    reservation = get_reservation_identified_by_id(reservation_id)
+    car = get_car_identified_by_id(reservation.id_car)
+    date_from = str(reservation.date_from)
+    date_to = str(reservation.date_to)
+    total_price = get_total_price(car.price, date_from, date_to)
+    if check_authentication(session_id, user_id) and is_reservation_of_the_user(reservation_id, user_id):
+        return render_template('car_reservation_details.html', user=user_id, session_id=session_id, car=car,
+                               reservation_id=reservation_id, date_from=date_from,
+                               date_to=date_to, total_price=total_price)
+    else:
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                               preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 
 if __name__ == '__main__':
