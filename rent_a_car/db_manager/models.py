@@ -83,9 +83,10 @@ class User(Base):
     birthdate = Column(String)
     is_admin = Column(Integer)
 
-    def __init__(self, id, password, surname, name, birthdate):
+    def __init__(self, id, password, surname, name, birthdate, is_admin):
         self.id = id
         self.password = password
         self.surname = surname
         self.name = name
         self.birthdate = birthdate
+        self.is_admin = is_admin

@@ -9,7 +9,7 @@ def create_account(name, surname, birthdate, username, password, retype_password
     error_msg = validate_sign_up_data(name, surname, birthdate, username, password, retype_password, error_msg)
     if error_msg == "OK":
         session = start_session()
-        new_user = User(username, password, surname, name, birthdate)
+        new_user = User(username, password, surname, name, birthdate, False)
         session.add(new_user)
         session.commit()
         session.close()
