@@ -1,1 +1,26 @@
 {% extends 'base.html' %}
+
+{% block other_styles %}
+    <link rel="stylesheet" href="/static/css/admin_area_style.css" type="text/css" />
+{% endblock %}
+
+{% block javascript_code %}
+    <script type="text/javascript" src="/static/script/admin_area.js"></script>
+{% endblock %}
+
+{% block admin_menu %}
+    <div class="vertical-menu">
+        <a href="#" class="active">Users</a>
+        <a href="#" class="active">Reservations</a>
+        <a href="#">All</a>
+        <a href="#">Completed</a>
+        <a href="#">In progress</a>
+        <a href="#">Reserved</a>
+        <a href="#">Starting today</a>
+        <a href="#">Ending today</a>
+        <a href="#" class="active">Cars</a>
+    </div>
+{% endblock %}
+
+{% block admin_view %}
+{% endblock %}

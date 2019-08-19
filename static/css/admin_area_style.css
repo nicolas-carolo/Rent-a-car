@@ -1,0 +1,30 @@
+div.vertical-menu {
+    width: 20%;
+    text-align: center;
+    margin: 20px auto 50px 20px;
+    background-color: #c1d7d7;
+    box-shadow: 5px 5px 5px #aaaaaa;
+    float: left;
+}
+
+.vertical-menu a {
+    background-color: #c1d7d7;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.vertical-menu a:hover {
+    color: black;
+    background-color: #92b9b9;
+}
+
+.vertical-menu a.active {
+    background-color: #5c8a8a;
+    color: white;
+}
+
+.vertical-menu a.active:hover {
+    background-color: #6a8e9e;
+}
