@@ -10,15 +10,18 @@
 
 {% block admin_menu %}
     <div class="vertical-menu">
-        <a href="#" class="active">Users</a>
-        <a href="#" class="active">Reservations</a>
-        <a href="#">All</a>
-        <a href="#">Completed</a>
-        <a href="#">In progress</a>
-        <a href="#">Reserved</a>
-        <a href="#">Starting today</a>
-        <a href="#">Ending today</a>
         <a href="#" class="active">Cars</a>
+        <a href="javascript:hide_show_news_items()" class="active">News</a>
+        <a href="#" id="all-news" name="news-item">All news</a>
+        <a href="#" id="add-news" name="news-item">Add news</a>
+        <a href="javascript:hide_show_reservation_items()" class="active">Reservations</a>
+        <a href="#" id="all-reservations" name="reservation-item">All reservations</a>
+        <a href="#" id="completed-reservations" name="reservation-item">Completed reservations</a>
+        <a href="#" id="in-progress-reservations" name="reservation-item">Reservations in progress</a>
+        <a href="#" id="reserved-reservations" name="reservation-item">Future reservations</a>
+        <a href="#" id="starting-today-reservations" name="reservation-item">Starting today</a>
+        <a href="#" id="ending-today-reservations" name="reservation-item">Ending today</a>
+        <a href="#" class="active">Users</a>
     </div>
 {% endblock %}
 

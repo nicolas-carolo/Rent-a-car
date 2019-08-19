@@ -1,6 +1,6 @@
 div.vertical-menu {
-    width: 20%;
-    text-align: center;
+    width: 15%;
+    text-align: left;
     margin: 20px auto 50px 20px;
     background-color: #c1d7d7;
     box-shadow: 5px 5px 5px #aaaaaa;
@@ -9,10 +9,13 @@ div.vertical-menu {
 
 .vertical-menu a {
     background-color: #c1d7d7;
+    border-right: 1px solid #3c5d5d;
+    border-left: 1px solid #3c5d5d;
     color: black;
     display: block;
     padding: 12px;
     text-decoration: none;
+    display: none;
 }
 
 .vertical-menu a:hover {
@@ -23,6 +26,8 @@ div.vertical-menu {
 .vertical-menu a.active {
     background-color: #5c8a8a;
     color: white;
+    border: 1px solid #3c5d5d;
+    display: block;
 }
 
 .vertical-menu a.active:hover {

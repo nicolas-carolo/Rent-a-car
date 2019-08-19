@@ -82,7 +82,7 @@ CREATE TABLE users(
     surname         VARCHAR(50) NOT NULL,
     name            VARCHAR(50) NOT NULL,
     birthdate       DATE NOT NULL,
-    is_admin           BOOLEAN
+    is_admin        BOOLEAN
 );
 
 INSERT INTO users(id, password, surname, name, birthdate, is_admin) VALUES ('admin@rentacar.it', 'qwerty', 'Nicolas', 'Carolo', '1996-01-01', true);
