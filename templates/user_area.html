@@ -5,7 +5,11 @@
 {% endblock %}
 
 {% block javascript_code %}
-    <script type="text/javascript" src="/static/script/user_area.js"></script>
+    {% if admin %}
+        <script type="text/javascript" src="/static/script/admin_area.js"></script>
+    {% else %}
+        <script type="text/javascript" src="/static/script/user_area.js"></script>
+    {% endif %}
     {% if feedback_msg %}
         <script type="text/javascript">alert("{{ feedback_msg }}");</script>
     {% endif %}
@@ -38,7 +42,7 @@
                     </tr>
                     <tr>
                         <td><input type="submit" id="save-changes-button" name="save-changes-button" value="Save changes"></td>
-                        <td><input type="button" id="cancel-changes-button" name="cancel-changes-button" value="Cancel" onclick="window.location.href = '/user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false'"></td>
+                        <td><input type="button" id="cancel-changes-button" name="cancel-changes-button" value="Cancel" onclick="cancel_edit('{{ session_id }}', '{{ user }}')"></td>
                     </tr>
                 </table>
             </form>
@@ -88,7 +92,7 @@
                 </tr>
                 <tr>
                     <td><input type="submit" id="save-pwd-button" name="save-pwd-button" value="Save changes"></td>
-                    <td><input type="button" id="cancel-pwd-button" name="cancel-pwd-button" value="Cancel" onclick="window.location.href = '/user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false'"></td>
+                    <td><input type="button" id="cancel-pwd-button" name="cancel-pwd-button" value="Cancel" onclick="cancel_edit('{{ session_id }}', '{{ user }}')"></td>
                 </tr>
             </table>
         </form>

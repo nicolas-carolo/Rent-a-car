@@ -474,5 +474,31 @@ def detele_account():
                            preview_length=get_cars_preview().__len__(), user_deleted=user_id)
 
 
+@app.route('/admin_user_area')
+def admin_user_area():
+    session_id = request.args.get('session-id', None)
+    user_id = request.args.get('user-id', None)
+    edit = request.args.get('edit', None)
+    today = datetime.date.today()
+    reservations_list = get_user_reservations_list(user_id)
+    total_prices_list = get_total_prices_reservations_list(reservations_list)
+    cars_reservations_list = get_cars_user_reservations_list(reservations_list)
+    reservations_status_list = get_reservations_status_list(reservations_list)
+    if edit == "true":
+        edit_mode = True
+    else:
+        edit_mode = False
+    user = get_user_by_id(user_id)
+    if check_authentication(session_id, user_id) and is_admin_user(user_id):
+        return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=edit_mode,
+                               surname=user.surname, name=user.name, birthdate=user.birthdate, today=today,
+                               reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
+                               total_prices_list=total_prices_list, reservations_status_list=reservations_status_list,
+                               admin=True)
+    else:
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                               preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+
+
 if __name__ == '__main__':
     app.run()

@@ -8,6 +8,10 @@ function edit_user_info(session_id, user) {
     window.location.href = '/user_area?session-id=' + session_id + '&user-id=' + user + '&edit=true';
 }
 
+function cancel_edit(session_id, user) {
+    window.location.href = '/user_area?session-id=' + session_id + '&user-id=' + user + '&edit=false';
+}
+
 function disable_div_reservations() {
     var buttons = document.getElementsByName("view-details-button");
     for (var i = 0; i < buttons.length; i++) {
