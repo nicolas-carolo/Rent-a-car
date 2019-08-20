@@ -22,9 +22,36 @@
         <a href="#" id="reserved-reservations" name="reservation-item">Future reservations</a>
         <a href="#" id="starting-today-reservations" name="reservation-item">Starting today</a>
         <a href="#" id="ending-today-reservations" name="reservation-item">Ending today</a>
-        <a href="#" class="active">Users</a>
+        <a href="/users_list?session-id={{ session_id }}&user-id={{ user }}" class="active">Users</a>
     </div>
 {% endblock %}
 
 {% block admin_view %}
+    {% if users_list %}
+        <div id="div-users-list" class="users-list">
+        <h2 class="users-list">All users</h2>
+            <table class="users-list">
+                <tr>
+                    <th>User ID</th>
+                    <th>Surname</th>
+                    <th>Name</th>
+                    <th>Date of birth</th>
+                    <th>Account type</th>
+                </tr>
+                {% for user in users_list %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.surname }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.birthdate }}</td>
+                        {% if user.is_admin == 0 %}
+                            <td>Standard</td>
+                        {% else %}
+                            <td>Admin</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
 {% endblock %}
