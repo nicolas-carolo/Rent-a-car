@@ -114,3 +114,10 @@ function assign_color_to_delete_reservation_buttons() {
         }
     }
 }
+
+function admin_delete_reservation(reservation_id, session_id, user) {
+    var input = confirm("Do you really want to delete the reservation n° " + reservation_id + "?");
+    if (input == true) {
+        window.location.href = '/admin_delete_reservation?session-id=' + session_id + '&user-id=' + user + '&reservation-id=' + reservation_id;
+    }
+}

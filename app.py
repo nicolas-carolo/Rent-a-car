@@ -533,5 +533,27 @@ def list_all_reservations():
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 
+@app.route('/admin_delete_reservation')
+def admin_delete_reservation():
+    session_id = request.args.get('session-id', None)
+    user_id = request.args.get('user-id', None)
+    reservation_id = request.args.get('reservation-id', None)
+    if check_authentication(session_id, user_id) and is_admin_user(user_id):
+        delete_reservation(reservation_id)
+        reservations_list = get_all_reservations_list()
+        total_prices_list = get_total_prices_reservations_list(reservations_list)
+        cars_reservations_list = get_cars_user_reservations_list(reservations_list)
+        reservations_status_list = get_reservations_status_list(reservations_list)
+        users_list_for_reservations = get_users_list_for_reservations_list(reservations_list)
+        return render_template('admin_area.html', user=user_id, session_id=session_id,
+                               reservations_list=reservations_list, total_prices_list=total_prices_list,
+                               cars_reservations_list=cars_reservations_list,
+                               reservations_status_list=reservations_status_list,
+                               users_list_for_reservations=users_list_for_reservations)
+    else:
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                               preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+
+
 if __name__ == '__main__':
     app.run()

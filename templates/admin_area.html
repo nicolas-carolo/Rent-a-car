@@ -88,7 +88,7 @@
                             <td class="reservation-detail">€ {{ total_prices_list[loop.index0] }}</td>
                             <td class="reservation-button" id="reservation-button-delete" rowspan="2">
                                 {% if reservations_status_list[loop.index0] == 'Reserved' %}
-                                    <input type="button" id="detele-reservation-button" name="delete-reservation-button" value="Delete reservation" onclick="delete_reservation('{{ reservations_list[loop.index0].id_reservation }}', '{{ session_id }}', '{{ user }}')">
+                                    <input type="button" id="detele-reservation-button" name="delete-reservation-button" value="Delete reservation" onclick="admin_delete_reservation('{{ reservations_list[loop.index0].id_reservation }}', '{{ session_id }}', '{{ user }}')">
                                 {% else %}
                                     <input type="button" id="detele-reservation-button" name="delete-reservation-button" value="Delete reservation" disabled="true">
                                 {% endif %}
