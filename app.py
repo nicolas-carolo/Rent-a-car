@@ -517,7 +517,8 @@ def list_all_users():
 def list_all_reservations():
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
-    reservations_list = get_all_reservations_list()
+    reservation_filter = request.args.get('reservation-filter', None)
+    reservations_list = get_all_reservations_list(reservation_filter)
     total_prices_list = get_total_prices_reservations_list(reservations_list)
     cars_reservations_list = get_cars_user_reservations_list(reservations_list)
     reservations_status_list = get_reservations_status_list(reservations_list)
@@ -527,7 +528,8 @@ def list_all_reservations():
                                reservations_list=reservations_list, total_prices_list=total_prices_list,
                                cars_reservations_list=cars_reservations_list,
                                reservations_status_list=reservations_status_list,
-                               users_list_for_reservations=users_list_for_reservations)
+                               users_list_for_reservations=users_list_for_reservations,
+                               reservations_list_mode=True)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)

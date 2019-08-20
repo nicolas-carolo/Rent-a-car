@@ -2,6 +2,7 @@ from rent_a_car.db_manager.session_manager import start_session
 from rent_a_car.db_manager.models import CarReservation, User, Car
 from rent_a_car.db_manager.result_set import queryset2list
 from rent_a_car.user import get_user_by_id
+import datetime
 
 
 def get_users_list():
@@ -11,9 +12,22 @@ def get_users_list():
     return queryset2list(queryset)
 
 
-def get_all_reservations_list():
+def get_all_reservations_list(reservation_filter):
+    today = datetime.datetime.today().date()
     session = start_session()
-    queryset = session.query(CarReservation)
+    if reservation_filter == "completed":
+        queryset = session.query(CarReservation).filter(CarReservation.date_to < today)
+    elif reservation_filter == "in-progress":
+        queryset = session.query(CarReservation).filter(CarReservation.date_from <= today,
+                                                        CarReservation.date_to >= today)
+    elif reservation_filter == "reserved":
+        queryset = session.query(CarReservation).filter(CarReservation.date_from > today)
+    elif reservation_filter == "starting-today":
+        queryset = session.query(CarReservation).filter(CarReservation.date_from == today)
+    elif reservation_filter == "ending-today":
+        queryset = session.query(CarReservation).filter(CarReservation.date_to == today)
+    else:
+        queryset = session.query(CarReservation)
     session.close()
     return queryset2list(queryset)
 
