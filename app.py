@@ -11,7 +11,7 @@ from rent_a_car.cars_showcase import get_cars_list, get_current_year, get_car_br
 from rent_a_car.user import get_user_by_id, edit_user_info, update_user_password, get_user_reservations_list,\
     get_cars_user_reservations_list, get_total_prices_reservations_list, get_reservations_status_list,\
     get_reservation_identified_by_id, is_reservation_of_the_user, delete_reservation, delete_user, is_admin_user
-from rent_a_car.admin import get_users_list, get_all_reservations_list
+from rent_a_car.admin import get_users_list, get_all_reservations_list, get_users_list_for_reservations_list
 import datetime
 
 app = Flask(__name__)
@@ -521,11 +521,13 @@ def list_all_reservations():
     total_prices_list = get_total_prices_reservations_list(reservations_list)
     cars_reservations_list = get_cars_user_reservations_list(reservations_list)
     reservations_status_list = get_reservations_status_list(reservations_list)
+    users_list_for_reservations = get_users_list_for_reservations_list(reservations_list)
     if check_authentication(session_id, user_id) and is_admin_user(user_id):
         return render_template('admin_area.html', user=user_id, session_id=session_id,
                                reservations_list=reservations_list, total_prices_list=total_prices_list,
                                cars_reservations_list=cars_reservations_list,
-                               reservations_status_list=reservations_status_list)
+                               reservations_status_list=reservations_status_list,
+                               users_list_for_reservations=users_list_for_reservations)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)

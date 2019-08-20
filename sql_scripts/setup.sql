@@ -60,7 +60,6 @@ CREATE TABLE car_reservations(
 
 INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (1, 'sebastian.vettel@pilot.com', '2019-08-09', '2019-08-13');
 INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (3, 'lewis.hamilton@pilot.com', '2019-07-30', '2019-08-04');
-INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (2, 'valtteri.bottas@pilot.com', '2019-08-15', '2019-08-15');
 INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (2, 'lewis.hamilton@pilot.com', '2019-09-01', '2019-09-07');
 INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (7, 'utente40@test.com', '2019-07-10', '2019-07-12');
 INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (8, 'utente40@test.com', '2019-08-01', '2019-09-30');
