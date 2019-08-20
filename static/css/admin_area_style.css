@@ -77,3 +77,69 @@ h2.users-list {
     font-size: 2em;
 
 }
+
+div.reservations {
+    width: 50%;
+    text-align: center;
+    margin: 20px 20px 60px;
+    padding: 20px;
+    background-color: #c1d7d7;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+    float: right;
+}
+
+table.reservations {
+    width: 95%;
+    margin: auto;
+    border: 3px solid #3c5d5d;
+    border-collapse: collapse;
+}
+
+td.reservation-car-image {
+    text-align: center;
+    width: 25%;
+    border: 1px solid #3c5d5d;
+}
+
+td.reservation-descriptor {
+    text-align: left;
+    width: 25%;
+    border: 1px solid #3c5d5d;
+    font-size: 1.2em;
+}
+
+td.reservation-detail {
+    text-align: left;
+    width: 25%;
+    border: 1px solid #3c5d5d;
+    font-size: 1.2em;
+}
+
+#reservation-button-view {
+    text-align: center;
+    width: 25%;
+    border-bottom: hidden;
+}
+
+#reservation-button-delete {
+    text-align: center;
+    width: 25%;
+    border-top: hidden;
+}
+
+.reservations input[type=button] {
+    font-size: 1.3em;
+}
+
+.reservations tr {
+    border: 1px solid #3c5d5d;
+}
+
+tr.reservations-separator {
+    border-bottom: 2px solid #3c5d5d;
+}
+
+h3.empty-list {
+    color: gray;
+}

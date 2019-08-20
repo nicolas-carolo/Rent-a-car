@@ -8,3 +8,10 @@ def get_users_list():
     queryset = session.query(User)
     session.close()
     return queryset2list(queryset)
+
+
+def get_all_reservations_list():
+    session = start_session()
+    queryset = session.query(CarReservation)
+    session.close()
+    return queryset2list(queryset)
