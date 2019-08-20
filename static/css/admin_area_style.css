@@ -98,13 +98,13 @@ table.reservations {
 
 td.reservation-car-image {
     text-align: center;
-    width: 15%;
+    width: 20%;
     border: 1px solid #3c5d5d;
 }
 
 td.reservation-descriptor {
     text-align: left;
-    width: 17%;
+    width: 20%;
     border: 1px solid #3c5d5d;
     font-size: 1.2em;
 }
