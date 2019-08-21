@@ -10,54 +10,108 @@
 
 {% block admin_view %}
     <div class="car-details" id="div-details">
-        <table>
-            <tr>
-                <td rowspan="11" class="big-car-image"><img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384"></td>
-                <th>Brand:</th>
-                <td>{{ car.brand }}</td>
-            </tr>
-            <tr>
-                <th>Model:</th>
-                <td>{{ car.model }}</td>
-            </tr>
-            <tr>
-                <th>Year:</th>
-                <td>{{ car.car_year }}</td>
-            </tr>
-            <tr>
-                <th>Number of seats:</th>
-                <td>{{ car.n_seats }}</td>
-            </tr>
-            <tr>
-                <th>Type of car:</th>
-                <td>{{ car.car_type }}</td>
-            </tr>
-            <tr>
-                <th>Engine:</th>
-                <td>{{ car.engine }}</td>
-            </tr>
-            <tr>
-                <th>Fuel:</th>
-                <td>{{ car.fuel }}</td>
-            </tr>
-            <tr>
-                <th>Power:</th>
-                <td>{{ car.power }} cv</td>
-            </tr>
-            <tr>
-                <th>Transmission:</th>
-                <td>{{ car.transmission }}</td>
-            </tr>
-            <tr>
-                <th>Driver's minimum age:</th>
-                <td>{{ car.min_age }} years old</td>
-            </tr>
-            <tr>
-                <th>Price:</th>
-                <td>€ {{ car.price }} per day</td>
-            </tr>
-        </table>
-        <input type="button" id="edit-car-button" name="edit-car-button" value="Edit">
-        <input type="button" id="delete-car" name="delete-car" value="Delete" onclick="delete_car('{{ car.id }}', '{{ car.brand }}', '{{ car.model }}', '{{ session_id }}', '{{ user }}')">
+        {% if edit_mode %}
+            <form method="post" action="/edit_car?car-id={{ car.id }}&session-id={{ session_id }}&user-id={{ user }}">
+                <table>
+                    <tr>
+                        <td rowspan="11" class="big-car-image"><img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384"></td>
+                        <th>Brand:</th>
+                        <td><input type="text" id="brand-text" name="brand-text" value="{{ car.brand }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Model:</th>
+                        <td><input type="text" id="model-text" name="model-text" value="{{ car.model }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Year:</th>
+                        <td><input type="number" id="car-year-text" name="car-year-text" min="1900" max="{{ current_year }}" value="{{ car.car_year }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Number of seats:</th>
+                        <td><input type="number" id="n-seats-text" name="n-seats-text" value="{{ car.n_seats }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Type of car:</th>
+                        <td><input type="text" id="type-text" name="type-text" value="{{ car.car_type }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Engine (L):</th>
+                        <td><input type="text" id="engine-text" name="engine-text" value="{{ car.engine }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Fuel:</th>
+                        <td><input type="text" id="fuel-text" name="fuel-text" value="{{ car.fuel }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Power (cv):</th>
+                        <td><input type="number" id="power-text" name="power-text" min="1" value="{{ car.power }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Transmission:</th>
+                        <td><input type="text" id="transmission-text" name="transmission-text" value="{{ car.transmission }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Driver's minimum age:</th>
+                        <td><input type="number" id="min-age-text" name="min-age-text" min="18" max="99" value="{{ car.min_age }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Price per day (€):</th>
+                        <td><input type="number" id="price-day-text" name="price-day-text" min="0" value="{{ car.price }}"></td>
+                    </tr>
+                </table>
+                <input type="submit" id="save-button" name="save-button" value="Save">
+                <input type="button" id="cancel-button" name="cancel-button" value="Cancel" onclick="window.location.href = '/edit_car_view?car-id={{ car.id }}&session-id={{ session_id }}&user-id={{ user }}&edit=false';">
+            </form>
+        {% else %}
+            <table>
+                <tr>
+                    <td rowspan="11" class="big-car-image"><img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384"></td>
+                    <th>Brand:</th>
+                    <td>{{ car.brand }}</td>
+                </tr>
+                <tr>
+                    <th>Model:</th>
+                    <td>{{ car.model }}</td>
+                </tr>
+                <tr>
+                    <th>Year:</th>
+                    <td>{{ car.car_year }}</td>
+                </tr>
+                <tr>
+                    <th>Number of seats:</th>
+                    <td>{{ car.n_seats }}</td>
+                </tr>
+                <tr>
+                    <th>Type of car:</th>
+                    <td>{{ car.car_type }}</td>
+                </tr>
+                <tr>
+                    <th>Engine:</th>
+                    <td>{{ car.engine }}</td>
+                </tr>
+                <tr>
+                    <th>Fuel:</th>
+                    <td>{{ car.fuel }}</td>
+                </tr>
+                <tr>
+                    <th>Power:</th>
+                    <td>{{ car.power }} cv</td>
+                </tr>
+                <tr>
+                    <th>Transmission:</th>
+                    <td>{{ car.transmission }}</td>
+                </tr>
+                <tr>
+                    <th>Driver's minimum age:</th>
+                    <td>{{ car.min_age }} years old</td>
+                </tr>
+                <tr>
+                    <th>Price:</th>
+                    <td>€ {{ car.price }} per day</td>
+                </tr>
+            </table>
+            <input type="button" id="edit-car-button" name="edit-car-button" value="Edit" onclick="window.location.href = '/edit_car_view?car-id={{ car.id }}&session-id={{ session_id }}&user-id={{ user }}&edit=true';">
+            <input type="button" id="delete-car" name="delete-car" value="Delete" onclick="delete_car('{{ car.id }}', '{{ car.brand }}', '{{ car.model }}', '{{ session_id }}', '{{ user }}')">
+        {% endif %}
     </div>
 {% endblock %}

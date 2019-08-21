@@ -44,3 +44,21 @@ def delete_car(car_id):
     session.query(Car).filter(Car.id.__eq__(car_id)).delete()
     session.commit()
     session.close()
+
+
+def update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price):
+    session = start_session()
+    car = session.query(Car).get(car_id)
+    car.brand = brand
+    car.model = model
+    car.car_year = car_year
+    car.n_seats = n_seats
+    car.car_type = car_type
+    car.engine = engine
+    car.fuel = fuel
+    car.power = power
+    car.transmission = transmission
+    car.min_age = min_age
+    car.price = price
+    session.commit()
+    session.close()

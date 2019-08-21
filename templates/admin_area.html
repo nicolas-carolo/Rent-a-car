@@ -85,10 +85,10 @@
                     {% for car in cars_list %}
                         {% if loop.index0 % 2 == 0 and loop.index0 < cars_list|length - 1 %}
                             <tr>
-                                <td rowspan="6" class="car-image"><a href="/edit_car?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[loop.index0].photo_link }}" width="256" height="192"></a></td>
-                                <td class="car-description"><a href="/edit_car?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[loop.index0].brand }} {{ cars_list[loop.index0].model }}</b></a></td>
-                                <td rowspan="6" class="car-image"><a href="/edit_car?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[loop.index0 + 1].photo_link }}" width="256" height="192"></a></td>
-                                <td class="car-description"><a href="/edit_car?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[loop.index0 + 1].brand }} {{ cars_list[loop.index0 + 1].model }}</b></a></td>
+                                <td rowspan="6" class="car-image"><a href="/edit_car_view?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}&edit=false"><img class="car-image" src="{{ cars_list[loop.index0].photo_link }}" width="256" height="192"></a></td>
+                                <td class="car-description"><a href="/edit_car_view?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}&edit=false"><b>{{ cars_list[loop.index0].brand }} {{ cars_list[loop.index0].model }}</b></a></td>
+                                <td rowspan="6" class="car-image"><a href="/edit_car_view?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}&edit=false"><img class="car-image" src="{{ cars_list[loop.index0 + 1].photo_link }}" width="256" height="192"></a></td>
+                                <td class="car-description"><a href="/edit_car_view?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}&edit=false"><b>{{ cars_list[loop.index0 + 1].brand }} {{ cars_list[loop.index0 + 1].model }}</b></a></td>
                             </tr>
                             <tr>
                                 <td class="car-details"><b>Year:</b> {{ cars_list[loop.index0].car_year }}</td>
@@ -114,8 +114,8 @@
                     {% endfor %}
                     {% if cars_list|length % 2 == 1 %}
                         <tr>
-                            <td rowspan="6" class="car-image"><a href="/edit_car?car-id={{ cars_list[cars_list|length - 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[cars_list|length - 1].photo_link }}" width="256" height="192"></a></td>
-                            <td class="car-description"><a href="/edit_car?car-id={{ cars_list[cars_list|length - 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[cars_list|length - 1].brand }} {{ cars_list[cars_list|length - 1].model }}</b></a></td>
+                            <td rowspan="6" class="car-image"><a href="/edit_car_view?car-id={{ cars_list[cars_list|length - 1].id }}&session-id={{ session_id }}&user-id={{ user }}&edit=false"><img class="car-image" src="{{ cars_list[cars_list|length - 1].photo_link }}" width="256" height="192"></a></td>
+                            <td class="car-description"><a href="/edit_car_view?car-id={{ cars_list[cars_list|length - 1].id }}&session-id={{ session_id }}&user-id={{ user }}&edit=false"><b>{{ cars_list[cars_list|length - 1].brand }} {{ cars_list[cars_list|length - 1].model }}</b></a></td>
                             <td rowspan="6" class="car-image"></td>
                             <td class="car-description"></td>
                         </tr>

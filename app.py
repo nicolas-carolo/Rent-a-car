@@ -11,7 +11,8 @@ from rent_a_car.cars_showcase import get_cars_list, get_current_year, get_car_br
 from rent_a_car.user import get_user_by_id, edit_user_info, update_user_password, get_user_reservations_list,\
     get_cars_user_reservations_list, get_total_prices_reservations_list, get_reservations_status_list,\
     get_reservation_identified_by_id, is_reservation_of_the_user, delete_reservation, delete_user, is_admin_user
-from rent_a_car.admin import get_users_list, get_all_reservations_list, get_users_list_for_reservations_list, delete_car
+from rent_a_car.admin import get_users_list, get_all_reservations_list, get_users_list_for_reservations_list,\
+    delete_car, update_car
 import datetime
 
 app = Flask(__name__)
@@ -550,14 +551,20 @@ def list_all_cars():
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 
-@app.route('/edit_car')
-def edit_car():
+@app.route('/edit_car_view')
+def edit_car_view():
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     car_id = request.args.get('car-id', None)
+    edit_mode_string = request.args.get('edit', None)
+    if edit_mode_string == 'true':
+        edit_mode = True
+    else:
+        edit_mode = False
     car = get_car_identified_by_id(car_id)
     if check_authentication(session_id, user_id) and is_admin_user(user_id):
-        return render_template('cars_manager.html', user=user_id, session_id=session_id, car=car)
+        return render_template('cars_manager.html', user=user_id, session_id=session_id, car=car, edit_mode=edit_mode,
+                               current_year=get_current_year())
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
@@ -575,6 +582,33 @@ def admin_delete_car():
                                cars_list_mode=True)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                               preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+
+
+@app.route('/edit_car', methods=['POST', 'GET'])
+def edit_car():
+    session_id = request.args.get('session-id', None)
+    user_id = request.args.get('user-id', None)
+    car_id = request.args.get('car-id', None)
+    if request.method == 'POST':
+        brand = request.form['brand-text']
+        model = request.form['model-text']
+        car_year = request.form['car-year-text']
+        n_seats = request.form['n-seats-text']
+        car_type = request.form['type-text']
+        engine = request.form['engine-text']
+        fuel = request.form['fuel-text']
+        power = request.form['power-text']
+        transmission = request.form['transmission-text']
+        min_age = request.form['min-age-text']
+        price = request.form['price-day-text']
+        if check_authentication(session_id, user_id) and is_admin_user(user_id):
+            update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age,
+                       price)
+            car = get_car_identified_by_id(car_id)
+            return render_template('cars_manager.html', user=user_id, session_id=session_id, car=car, edit_mode=False)
+        else:
+            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 

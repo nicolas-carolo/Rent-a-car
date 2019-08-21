@@ -245,7 +245,7 @@ td.big-car-image {
     width: 50%;
 }
 
-div.car-details input[type=button] {
+div.car-details input[type=button], input[type=submit] {
     font-size: 1.7em;
     margin: 20px 10px 10px;
     width: 20%;
