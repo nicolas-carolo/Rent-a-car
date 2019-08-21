@@ -44,6 +44,7 @@ def delete_car(car_id):
     session.query(Car).filter(Car.id.__eq__(car_id)).delete()
     session.commit()
     session.close()
+    delete_all_reservations_associated_to_car_id(car_id)
 
 
 def update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price):
@@ -60,5 +61,12 @@ def update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, 
     car.transmission = transmission
     car.min_age = min_age
     car.price = price
+    session.commit()
+    session.close()
+
+
+def delete_all_reservations_associated_to_car_id(car_id):
+    session = start_session()
+    session.query(CarReservation).filter(CarReservation.id_car.__eq__(car_id)).delete()
     session.commit()
     session.close()
