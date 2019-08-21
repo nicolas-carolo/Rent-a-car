@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block other_styles %}
+    <link rel="stylesheet" href="/static/css/admin_area_style.css" type="text/css" />
+{% endblock %}
+
+{% block javascript_code %}
+    <script type="text/javascript" src="/static/script/admin_area.js"></script>
+{% endblock %}
+
+{% block admin_menu %}
+    <div class="vertical-menu">
+        <a href="/all_cars_list?session-id={{ session_id }}&user-id={{ user }}" class="active">Cars</a>
+        <a href="/admin_user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false" class="active">My account</a>
+        <a href="javascript:hide_show_news_items()" class="active">News</a>
+        <a href="#" id="all-news" name="news-item">All news</a>
+        <a href="#" id="add-news" name="news-item">Add news</a>
+        <a href="javascript:hide_show_reservation_items()" class="active">Reservations</a>
+        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=all" id="all-reservations" name="reservation-item">All reservations</a>
+        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=completed" id="completed-reservations" name="reservation-item">Completed reservations</a>
+        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=in-progress" id="in-progress-reservations" name="reservation-item">Reservations in progress</a>
+        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=reserved" id="reserved-reservations" name="reservation-item">Future reservations</a>
+        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=starting-today" id="starting-today-reservations" name="reservation-item">Starting today</a>
+        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=ending-today" id="ending-today-reservations" name="reservation-item">Ending today</a>
+        <a href="/users_list?session-id={{ session_id }}&user-id={{ user }}" class="active">Users</a>
+    </div>
+    <div class="car-details" id="div-details">
+        <table>
+            <tr>
+                <th>Brand:</th>
+                <td>{{ car.brand }}</td>
+            </tr>
+            <tr>
+                <th>Model:</th>
+                <td>{{ car.model }}</td>
+            </tr>
+            <tr>
+                <th>Year:</th>
+                <td>{{ car.car_year }}</td>
+            </tr>
+            <tr>
+                <th>Number of seats:</th>
+                <td>{{ car.n_seats }}</td>
+            </tr>
+            <tr>
+                <th>Type of car:</th>
+                <td>{{ car.car_type }}</td>
+            </tr>
+            <tr>
+                <th>Engine:</th>
+                <td>{{ car.engine }}</td>
+            </tr>
+            <tr>
+                <th>Fuel:</th>
+                <td>{{ car.fuel }}</td>
+            </tr>
+            <tr>
+                <th>Power:</th>
+                <td>{{ car.power }} cv</td>
+            </tr>
+            <tr>
+                <th>Transmission:</th>
+                <td>{{ car.transmission }}</td>
+            </tr>
+            <tr>
+                <th>Driver's minimum age:</th>
+                <td>{{ car.min_age }} years old</td>
+            </tr>
+            <tr>
+                <th>Price:</th>
+                <td>€ {{ car.price }} per day</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

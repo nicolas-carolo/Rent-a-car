@@ -10,7 +10,7 @@
 
 {% block admin_menu %}
     <div class="vertical-menu">
-        <a href="#" class="active">Cars</a>
+        <a href="/all_cars_list?session-id={{ session_id }}&user-id={{ user }}" class="active">Cars</a>
         <a href="/admin_user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false" class="active">My account</a>
         <a href="javascript:hide_show_news_items()" class="active">News</a>
         <a href="#" id="all-news" name="news-item">All news</a>
@@ -102,5 +102,74 @@
             assign_color_to_reservation_status();
             assign_color_to_delete_reservation_buttons();
         </script>
+    {% endif %}
+
+    {% if cars_list_mode %}
+        <div class="preview-cars">
+            {% if cars_list|length > 0 %}
+                <table>
+                    {% for car in cars_list %}
+                        {% if loop.index0 % 2 == 0 and loop.index0 < cars_list|length - 1 %}
+                            <tr>
+                                <td rowspan="6" class="car-image"><a href="/edit_car?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[loop.index0].photo_link }}" width="256" height="192"></a></td>
+                                <td class="car-description"><a href="/edit_car?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[loop.index0].brand }} {{ cars_list[loop.index0].model }}</b></a></td>
+                                <td rowspan="6" class="car-image"><a href="/edit_car?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[loop.index0 + 1].photo_link }}" width="256" height="192"></a></td>
+                                <td class="car-description"><a href="/edit_car?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[loop.index0 + 1].brand }} {{ cars_list[loop.index0 + 1].model }}</b></a></td>
+                            </tr>
+                            <tr>
+                                <td class="car-details"><b>Year:</b> {{ cars_list[loop.index0].car_year }}</td>
+                                <td class="car-details"><b>Year:</b> {{ cars_list[loop.index0 + 1].car_year }}</td>
+                            </tr>
+                            <tr>
+                                <td class="car-details"><b>Engine:</b> {{ cars_list[loop.index0].engine }} {{ cars_list[loop.index0].fuel }} {{ cars_list[loop.index0].power }} cv</td>
+                                <td class="car-details"><b>Engine:</b>  {{ cars_list[loop.index0 + 1].engine }} {{ cars_list[loop.index0 + 1].fuel }} {{ cars_list[loop.index0 + 1].power }} cv</td>
+                            </tr>
+                            <tr>
+                                <td class="car-details"><b>Transmission:</b> {{ cars_list[loop.index0].transmission }}</td>
+                                <td class="car-details"><b>Transmission:</b> {{ cars_list[loop.index0 + 1].transmission }}</td>
+                            </tr>
+                            <tr>
+                                <td class="car-details"><b>Driver's minimum age:</b> {{ cars_list[loop.index0].min_age }}</td>
+                                <td class="car-details"><b>Driver's minimum age:</b> {{ cars_list[loop.index0 + 1].min_age }}</td>
+                            </tr>
+                            <tr>
+                                <td class="car-price"><b>Price:</b> €{{ cars_list[loop.index0].price }} per day</td>
+                                <td class="car-price"><b>Price:</b> €{{ cars_list[loop.index0 + 1].price }} per day</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    {% if cars_list|length % 2 == 1 %}
+                        <tr>
+                            <td rowspan="6" class="car-image"><a href="/edit_car?car-id={{ cars_list[cars_list|length - 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[cars_list|length - 1].photo_link }}" width="256" height="192"></a></td>
+                            <td class="car-description"><a href="/edit_car?car-id={{ cars_list[cars_list|length - 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[cars_list|length - 1].brand }} {{ cars_list[cars_list|length - 1].model }}</b></a></td>
+                            <td rowspan="6" class="car-image"></td>
+                            <td class="car-description"></td>
+                        </tr>
+                        <tr>
+                            <td class="car-details"><b>Year:</b> {{ cars_list[cars_list|length - 1].car_year }}</td>
+                            <td class="car-details"></td>
+                        </tr>
+                        <tr>
+                            <td class="car-details"><b>Engine:</b> {{ cars_list[cars_list|length - 1].engine }} {{ cars_list[cars_list|length - 1].fuel }} {{ cars_list[cars_list|length - 1].power }} cv</td>
+                            <td class="car-details"></td>
+                        </tr>
+                        <tr>
+                            <td class="car-details"><b>Transmission:</b> {{ cars_list[cars_list|length - 1].transmission }}</td>
+                            <td class="car-details"></td>
+                        </tr>
+                        <tr>
+                            <td class="car-details"><b>Driver's minimum age:</b> {{ cars_list[cars_list|length - 1].min_age }}</td>
+                            <td class="car-details"></td>
+                        </tr>
+                        <tr>
+                            <td class="car-price"><b>Price:</b> €{{ cars_list[cars_list|length - 1].price }} per day</td>
+                            <td class="car-price"></td>
+                        </tr>
+                    {% endif %}
+                </table>
+            {% else %}
+                <h3 class="empty-list">No cars found</h3>
+            {% endif %}
+        </div>
     {% endif %}
 {% endblock %}

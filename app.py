@@ -342,7 +342,9 @@ def user_area():
     user = get_user_by_id(user_id)
     if check_authentication(session_id, user_id):
         if is_admin_user(user_id):
-            return render_template('admin_area.html', user=user_id, session_id=session_id)
+            cars_list = get_cars_list()
+            return render_template('admin_area.html', user=user_id, session_id=session_id, cars_list=cars_list,
+                                   cars_list_mode=True)
         else:
             return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=edit_mode,
                                    surname=user.surname, name=user.name, birthdate=user.birthdate, today=today,
@@ -530,6 +532,32 @@ def list_all_reservations():
                                reservations_status_list=reservations_status_list,
                                users_list_for_reservations=users_list_for_reservations,
                                reservations_list_mode=True)
+    else:
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                               preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+
+
+@app.route('/all_cars_list')
+def list_all_cars():
+    session_id = request.args.get('session-id', None)
+    user_id = request.args.get('user-id', None)
+    cars_list = get_cars_list()
+    if check_authentication(session_id, user_id) and is_admin_user(user_id):
+        return render_template('admin_area.html', user=user_id, session_id=session_id, cars_list=cars_list,
+                               cars_list_mode=True)
+    else:
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                               preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+
+
+@app.route('/edit_car')
+def edit_car():
+    session_id = request.args.get('session-id', None)
+    user_id = request.args.get('user-id', None)
+    car_id = request.args.get('car-id', None)
+    car = get_car_identified_by_id(car_id)
+    if check_authentication(session_id, user_id) and is_admin_user(user_id):
+        return render_template('cars_manager.html', user=user_id, session_id=session_id, car=car)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)

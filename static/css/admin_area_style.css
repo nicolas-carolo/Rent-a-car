@@ -143,3 +143,100 @@ tr.reservations-separator {
 h3.empty-list {
     color: gray;
 }
+
+div.preview-cars {
+    width: 75%;
+    text-align: center;
+    margin: 20px 20px 50px auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #c1d7d7;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+    float: right;
+}
+
+.preview-cars td {
+    width: 25%;
+    border: 2px solid #3c5d5d;
+}
+
+.preview-cars td.car-image {
+    text-align: center;
+    padding: 10px;
+}
+
+.preview-cars td.car-description {
+    font-size: 1.5em;
+    text-align: left;
+    padding: 10px;
+    border-left: hidden;
+    border-bottom: hidden;
+}
+
+.preview-cars td.car-price {
+    font-size: 1em;
+    text-align: left;
+    padding: 10px;
+    border-left: hidden;
+    border-top: hidden;
+}
+
+.preview-cars td.car-details {
+    font-size: 1em;
+    text-align: left;
+    padding: 10px;
+    border-left: hidden;
+    border-top: hidden;
+    border-bottom: hidden;
+}
+
+.preview-cars tr {
+    border: 2px solid #3c5d5d;
+}
+
+.preview-cars table {
+    margin: auto;
+    width: 96%;
+    border: 3px solid #3c5d5d;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+div.car-image {
+    float: left;
+    background-color: #c1d7d7;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+    padding: 15px;
+    margin: 20px auto 50px 20px;
+}
+
+div.car-details {
+    float: right;
+    background-color: #c1d7d7;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+    padding: 20px 15px 15px;
+    margin: 20px 20px 50px auto;
+    width: 50%;
+    text-align: center;
+}
+
+.car-details table {
+    width: 70%;
+    margin: auto;
+    // background-color: lightgreen;
+}
+
+.car-details td {
+    width: 50%;
+    text-align: right;
+    font-size: 1.4em;
+}
+
+.car-details th {
+    width: 50%;
+    text-align: left;
+    font-size: 1.4em;
+}
