@@ -35,6 +35,5 @@ def get_all_reservations_list(reservation_filter):
 def get_users_list_for_reservations_list(reservations_list):
     users_list = []
     for reservation in reservations_list:
-        print(reservation.id_user)
         users_list.append(get_user_by_id(reservation.id_user))
     return users_list

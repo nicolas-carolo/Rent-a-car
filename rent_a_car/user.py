@@ -11,7 +11,6 @@ def get_user_by_id(user_id):
     session = start_session()
     queryset = session.query(User).filter(User.id.__eq__(user_id))
     session.close()
-    print(queryset2list(queryset).__len__())
     return queryset2list(queryset)[0]
 
 
