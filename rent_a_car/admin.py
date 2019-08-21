@@ -37,3 +37,10 @@ def get_users_list_for_reservations_list(reservations_list):
     for reservation in reservations_list:
         users_list.append(get_user_by_id(reservation.id_user))
     return users_list
+
+
+def delete_car(car_id):
+    session = start_session()
+    session.query(Car).filter(Car.id.__eq__(car_id)).delete()
+    session.commit()
+    session.close()

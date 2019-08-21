@@ -229,17 +229,25 @@ div.car-details {
 }
 
 .car-details td {
-    width: 50%;
+    width: 25%;
     text-align: right;
     font-size: 1.4em;
 }
 
 .car-details th {
-    width: 50%;
+    width: 25%;
     text-align: left;
     font-size: 1.4em;
 }
 
-td.car-image {
+td.big-car-image {
     text-align: center;
+    width: 50%;
+}
+
+div.car-details input[type=button] {
+    font-size: 1.7em;
+    margin: 20px 10px 10px;
+    width: 20%;
+    padding: 10px 15px 10px;
 }

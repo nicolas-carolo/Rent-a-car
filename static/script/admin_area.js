@@ -114,3 +114,10 @@ function assign_color_to_delete_reservation_buttons() {
         }
     }
 }
+
+function delete_car(car_id, brand, model, session_id, user) {
+    var input = confirm("Do you really want to delete the car " + brand + " " + model + "?");
+    if (input == true) {
+        window.location.href = '/delete_car?car-id=' + car_id + '&session-id=' + session_id +'&user-id=' + user;
+    }
+}

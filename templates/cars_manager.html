@@ -8,26 +8,11 @@
     <script type="text/javascript" src="/static/script/admin_area.js"></script>
 {% endblock %}
 
-{% block admin_menu %}
-    <div class="vertical-menu">
-        <a href="/all_cars_list?session-id={{ session_id }}&user-id={{ user }}" class="active">Cars</a>
-        <a href="/admin_user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false" class="active">My account</a>
-        <a href="javascript:hide_show_news_items()" class="active">News</a>
-        <a href="#" id="all-news" name="news-item">All news</a>
-        <a href="#" id="add-news" name="news-item">Add news</a>
-        <a href="javascript:hide_show_reservation_items()" class="active">Reservations</a>
-        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=all" id="all-reservations" name="reservation-item">All reservations</a>
-        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=completed" id="completed-reservations" name="reservation-item">Completed reservations</a>
-        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=in-progress" id="in-progress-reservations" name="reservation-item">Reservations in progress</a>
-        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=reserved" id="reserved-reservations" name="reservation-item">Future reservations</a>
-        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=starting-today" id="starting-today-reservations" name="reservation-item">Starting today</a>
-        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=ending-today" id="ending-today-reservations" name="reservation-item">Ending today</a>
-        <a href="/users_list?session-id={{ session_id }}&user-id={{ user }}" class="active">Users</a>
-    </div>
+{% block admin_view %}
     <div class="car-details" id="div-details">
         <table>
             <tr>
-                <td rowspan="11" class="car-image"><img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384"></td>
+                <td rowspan="11" class="big-car-image"><img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384"></td>
                 <th>Brand:</th>
                 <td>{{ car.brand }}</td>
             </tr>
@@ -72,5 +57,7 @@
                 <td>€ {{ car.price }} per day</td>
             </tr>
         </table>
+        <input type="button" id="edit-car-button" name="edit-car-button" value="Edit">
+        <input type="button" id="delete-car" name="delete-car" value="Delete" onclick="delete_car('{{ car.id }}', '{{ car.brand }}', '{{ car.model }}', '{{ session_id }}', '{{ user }}')">
     </div>
 {% endblock %}
