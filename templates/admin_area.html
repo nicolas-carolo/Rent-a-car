@@ -1,30 +1,4 @@
-{% extends 'base.html' %}
-
-{% block other_styles %}
-    <link rel="stylesheet" href="/static/css/admin_area_style.css" type="text/css" />
-{% endblock %}
-
-{% block javascript_code %}
-    <script type="text/javascript" src="/static/script/admin_area.js"></script>
-{% endblock %}
-
-{% block admin_menu %}
-    <div class="vertical-menu">
-        <a href="/all_cars_list?session-id={{ session_id }}&user-id={{ user }}" class="active">Cars</a>
-        <a href="/admin_user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false" class="active">My account</a>
-        <a href="javascript:hide_show_news_items()" class="active">News</a>
-        <a href="#" id="all-news" name="news-item">All news</a>
-        <a href="#" id="add-news" name="news-item">Add news</a>
-        <a href="javascript:hide_show_reservation_items()" class="active">Reservations</a>
-        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=all" id="all-reservations" name="reservation-item">All reservations</a>
-        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=completed" id="completed-reservations" name="reservation-item">Completed reservations</a>
-        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=in-progress" id="in-progress-reservations" name="reservation-item">Reservations in progress</a>
-        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=reserved" id="reserved-reservations" name="reservation-item">Future reservations</a>
-        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=starting-today" id="starting-today-reservations" name="reservation-item">Starting today</a>
-        <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=ending-today" id="ending-today-reservations" name="reservation-item">Ending today</a>
-        <a href="/users_list?session-id={{ session_id }}&user-id={{ user }}" class="active">Users</a>
-    </div>
-{% endblock %}
+{% extends 'admin_area_base.html' %}
 
 {% block admin_view %}
     {% if users_list %}

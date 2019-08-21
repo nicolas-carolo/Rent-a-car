@@ -219,14 +219,13 @@ div.car-details {
     box-shadow: 5px 5px 5px #aaaaaa;
     padding: 20px 15px 15px;
     margin: 20px 20px 50px auto;
-    width: 50%;
+    width: 75%;
     text-align: center;
 }
 
 .car-details table {
-    width: 70%;
+    width: 95%;
     margin: auto;
-    // background-color: lightgreen;
 }
 
 .car-details td {
@@ -239,4 +238,8 @@ div.car-details {
     width: 50%;
     text-align: left;
     font-size: 1.4em;
+}
+
+td.car-image {
+    text-align: center;
 }
