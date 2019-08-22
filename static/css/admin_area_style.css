@@ -70,14 +70,6 @@ div.users-list {
     border: 1px solid #3c5d5d;
 }
 
-h2.div-title {
-    text-align: center;
-    margin-bottom: 10px;
-    color: #476b6b;
-    font-size: 2em;
-
-}
-
 div.reservations {
     width: 77%;
     text-align: center;
@@ -138,10 +130,6 @@ td.reservation-detail {
 
 tr.reservations-separator {
     border-bottom: 2px solid #3c5d5d;
-}
-
-h3.empty-list {
-    color: gray;
 }
 
 div.preview-cars {
@@ -261,4 +249,43 @@ div.car-details input[type=text], input[type=number] {
     border-radius: 7px;
     border-color: #EEEEEE;
     padding: 3px;
+}
+
+
+
+div.news-list {
+    float: right;
+    background-color: #c1d7d7;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+    padding: 20px 15px 15px;
+    margin: 20px 20px 50px auto;
+    width: 50%;
+    text-align: center;
+}
+
+.news-list table {
+    width: 95%;
+    margin: auto;
+    border-collapse: collapse;
+    border: 3px solid #3c5d5d;
+}
+
+.news-list td {
+    width: 100%;
+    text-align: left;
+    font-size: 1.4em;
+    // border: 1px solid #3c5d5d;
+    padding: 5px;
+}
+
+.news-list tr {
+    border: 1px solid #3c5d5d;
+    padding: 5px;
+}
+
+.news-list input[type=button] {
+    font-size: 1.4em;
+    margin: 10px 15px 10px;
+    padding: 5px 10px 5px;
 }

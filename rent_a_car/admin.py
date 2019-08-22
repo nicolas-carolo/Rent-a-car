@@ -1,5 +1,5 @@
 from rent_a_car.db_manager.session_manager import start_session
-from rent_a_car.db_manager.models import CarReservation, User, Car
+from rent_a_car.db_manager.models import CarReservation, User, Car, News
 from rent_a_car.db_manager.result_set import queryset2list
 from rent_a_car.user import get_user_by_id
 import datetime
@@ -68,5 +68,12 @@ def update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, 
 def delete_all_reservations_associated_to_car_id(car_id):
     session = start_session()
     session.query(CarReservation).filter(CarReservation.id_car.__eq__(car_id)).delete()
+    session.commit()
+    session.close()
+
+
+def delete_news(news_id):
+    session = start_session()
+    session.query(News).filter(News.id.__eq__(news_id)).delete()
     session.commit()
     session.close()

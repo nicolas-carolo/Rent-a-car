@@ -33,11 +33,15 @@
 {% block news %}
     <div class="news">
         <h2>News</h2>
-        <ul>
-            {% for news in news_list %}
-                <li>{{ news.description }}</li>
-            {% endfor %}
-        </ul>
+        {% if news_list|length > 0 %}
+            <ul>
+                {% for news in news_list %}
+                    <li>{{ news.description }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3 class="empty-list">There are not news available at the moment!</h3>
+        {% endif %}
     </div>
 {% endblock %}
 

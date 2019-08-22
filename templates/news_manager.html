@@ -1,0 +1,22 @@
+{% extends 'admin_area_base.html' %}
+
+{% block admin_view %}
+    <div class="news-list" id="div-news-list">
+        {% if edit_mode %}
+        {% else %}
+            <h2 class="div-title">News</h2>
+            {% if news_list|length > 0 %}
+                <table class="news">
+                    {% for news in news_list %}
+                        <tr>
+                            <td>{{ news.description }}</td>
+                            <td><input type="button" id="delete-news-button" name="delete-news-button" value="Delete" onclick="delete_news('{{ news.id }}', '{{ news.description }}', '{{ session_id }}', '{{ user }}')"></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <h3 class="empty-list">There are not news available at the moment!</h3>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

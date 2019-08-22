@@ -18,7 +18,7 @@
 {% block user_info %}
     {% if edit_mode %}
         <div class="user-info" id="div-user-info">
-            <h2>User information</h2>
+            <h2 class="div-title">User information</h2>
             <form method="post" action="/edit_user_info?session-id={{ session_id }}&user-id={{ user }}">
                 <table class="user-info">
                     <tr>
@@ -49,7 +49,7 @@
         </div>
     {% else %}
         <div class="user-info" id="div-user-info">
-            <h2>User information</h2>
+            <h2 class="div-title">User information</h2>
             <table class="user-info">
                 <tr>
                     <td class="caption"><p>Surname:</p></td>
@@ -75,7 +75,7 @@
         </div>
     {% endif %}
     <div class="change-pwd" id="div-change-pwd">
-        <h2>Change Password</h2>
+        <h2 class="div-title">Change Password</h2>
         <form method="post" action="/change_pwd?session-id={{ session_id }}&user-id={{ user }}">
             <table class="change-pwd">
                 <tr>
@@ -101,7 +101,7 @@
 
 {% block reservations_summary %}
     <div class="reservations" id="div-reservations">
-        <h2>Reservations</h2>
+        <h2 class="div-title">Reservations</h2>
         {% if reservations_list|length > 0 %}
             <table class="reservations" id="reservations-table">
                 {% for reservation in reservations_list %}

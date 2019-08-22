@@ -80,14 +80,14 @@ function assign_color_to_delete_reservation_buttons() {
 
 function delete_reservation(reservation_id, session_id, user) {
     var input = confirm("Do you really want to delete the reservation n° " + reservation_id + "?");
-    if (input == true) {
+    if (input) {
         window.location.href = '/delete_reservation?session-id=' + session_id + '&user-id=' + user + '&reservation-id=' + reservation_id;
     }
 }
 
 function delete_account(session_id, user) {
     var input = confirm("Do you really want to delete your account?");
-    if (input == true) {
+    if (input) {
         window.location.href = '/delete_user?session-id=' + session_id + '&user-id=' + user;
     }
 }
@@ -117,7 +117,14 @@ function assign_color_to_delete_reservation_buttons() {
 
 function delete_car(car_id, brand, model, session_id, user) {
     var input = confirm("Do you really want to delete the car " + brand + " " + model + "?");
-    if (input == true) {
+    if (input) {
         window.location.href = '/delete_car?car-id=' + car_id + '&session-id=' + session_id +'&user-id=' + user;
+    }
+}
+
+function delete_news(news_id, news_description, session_id, user) {
+    var input = confirm("Do you really want to delete the news \'" + news_description + "\'?");
+    if (input) {
+        window.location.href = '/delete_news?news-id=' + news_id + '&session-id=' + session_id +'&user-id=' + user;
     }
 }
