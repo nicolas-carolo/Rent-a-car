@@ -36,6 +36,9 @@ class News(Base):
     id = Column(Integer, primary_key=True)
     description = Column(String)
 
+    def __init__(self, description):
+        self.description = description
+
 
 class CarReservation(Base):
     """

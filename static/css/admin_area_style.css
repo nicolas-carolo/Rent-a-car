@@ -284,8 +284,25 @@ div.news-list {
     padding: 5px;
 }
 
-.news-list input[type=button] {
+div.news-list input[type=button], input[type=submit] {
     font-size: 1.4em;
     margin: 10px 15px 10px;
     padding: 5px 10px 5px;
+}
+
+#save-news {
+    width: 30%
+}
+
+#cancel {
+    width: 30%
+}
+
+textarea {
+    font-size: 1.5em;
+    width: 90%;
+    min-width: 90%;
+    max-width: 90%;
+    padding: 10px;
+     border-radius: 15px;
 }

@@ -77,3 +77,11 @@ def delete_news(news_id):
     session.query(News).filter(News.id.__eq__(news_id)).delete()
     session.commit()
     session.close()
+
+
+def save_news(news_content):
+    session = start_session()
+    news = News(news_content)
+    session.add(news)
+    session.commit()
+    session.close()

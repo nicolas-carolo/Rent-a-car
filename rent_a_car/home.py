@@ -16,6 +16,7 @@ def get_news_list():
     queryset = session.query(News)
     news_list = queryset2list(queryset)
     session.close()
+    return sorted(news_list, key=lambda news: news.id, reverse=True)
     return news_list
 
 

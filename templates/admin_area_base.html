@@ -14,7 +14,7 @@
         <a href="/admin_user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false" class="active">My account</a>
         <a href="javascript:hide_show_news_items()" class="active">News</a>
         <a href="/news_view?session-id={{ session_id }}&user-id={{ user }}&edit=false" id="all-news" name="news-item">All news</a>
-        <a href="#" id="add-news" name="news-item">Add news</a>
+        <a href="/news_view?session-id={{ session_id }}&user-id={{ user }}&edit=true" id="add-news" name="news-item">Add news</a>
         <a href="javascript:hide_show_reservation_items()" class="active">Reservations</a>
         <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=all" id="all-reservations" name="reservation-item">All reservations</a>
         <a href="/all_reservations_list?session-id={{ session_id }}&user-id={{ user }}&reservation-filter=completed" id="completed-reservations" name="reservation-item">Completed reservations</a>
