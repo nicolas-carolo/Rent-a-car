@@ -251,3 +251,14 @@ div.car-details input[type=button], input[type=submit] {
     width: 20%;
     padding: 10px 15px 10px;
 }
+
+div.car-details input[type=text], input[type=number] {
+    margin: 5px auto 5px;
+    width: 60%;
+    float: right;
+    background-color: white;
+    color: black;
+    border-radius: 7px;
+    border-color: #EEEEEE;
+    padding: 3px;
+}
