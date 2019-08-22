@@ -14,49 +14,49 @@
             <form method="post" action="/edit_car?car-id={{ car.id }}&session-id={{ session_id }}&user-id={{ user }}">
                 <table>
                     <tr>
-                        <td rowspan="11" class="big-car-image"><img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384"></td>
+                        <td rowspan="11" class="big-car-image"><img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384"><br></td>
                         <th>Brand:</th>
-                        <td><input type="text" id="brand-text" name="brand-text" value="{{ car.brand }}"></td>
+                        <td><input type="text" id="brand-text" name="brand-text" value="{{ car.brand }}" required></td>
                     </tr>
                     <tr>
                         <th>Model:</th>
-                        <td><input type="text" id="model-text" name="model-text" value="{{ car.model }}"></td>
+                        <td><input type="text" id="model-text" name="model-text" value="{{ car.model }}" required></td>
                     </tr>
                     <tr>
                         <th>Year:</th>
-                        <td><input type="number" id="car-year-text" name="car-year-text" min="1900" max="{{ current_year }}" value="{{ car.car_year }}"></td>
+                        <td><input type="number" id="car-year-text" name="car-year-text" min="1900" max="{{ current_year }}" value="{{ car.car_year }}" required></td>
                     </tr>
                     <tr>
                         <th>Number of seats:</th>
-                        <td><input type="number" id="n-seats-text" name="n-seats-text" value="{{ car.n_seats }}"></td>
+                        <td><input type="number" id="n-seats-text" name="n-seats-text" value="{{ car.n_seats }}" required></td>
                     </tr>
                     <tr>
                         <th>Type of car:</th>
-                        <td><input type="text" id="type-text" name="type-text" value="{{ car.car_type }}"></td>
+                        <td><input type="text" id="type-text" name="type-text" value="{{ car.car_type }}" required></td>
                     </tr>
                     <tr>
                         <th>Engine (L):</th>
-                        <td><input type="text" id="engine-text" name="engine-text" value="{{ car.engine }}"></td>
+                        <td><input type="text" id="engine-text" name="engine-text" value="{{ car.engine }}" required></td>
                     </tr>
                     <tr>
                         <th>Fuel:</th>
-                        <td><input type="text" id="fuel-text" name="fuel-text" value="{{ car.fuel }}"></td>
+                        <td><input type="text" id="fuel-text" name="fuel-text" value="{{ car.fuel }}" required></td>
                     </tr>
                     <tr>
                         <th>Power (cv):</th>
-                        <td><input type="number" id="power-text" name="power-text" min="1" value="{{ car.power }}"></td>
+                        <td><input type="number" id="power-text" name="power-text" min="1" value="{{ car.power }}" required></td>
                     </tr>
                     <tr>
                         <th>Transmission:</th>
-                        <td><input type="text" id="transmission-text" name="transmission-text" value="{{ car.transmission }}"></td>
+                        <td><input type="text" id="transmission-text" name="transmission-text" value="{{ car.transmission }}" required></td>
                     </tr>
                     <tr>
                         <th>Driver's minimum age:</th>
-                        <td><input type="number" id="min-age-text" name="min-age-text" min="18" max="99" value="{{ car.min_age }}"></td>
+                        <td><input type="number" id="min-age-text" name="min-age-text" min="18" max="99" value="{{ car.min_age }}" required></td>
                     </tr>
                     <tr>
                         <th>Price per day (€):</th>
-                        <td><input type="number" id="price-day-text" name="price-day-text" min="0" value="{{ car.price }}"></td>
+                        <td><input type="number" id="price-day-text" name="price-day-text" min="0" value="{{ car.price }}" required></td>
                     </tr>
                 </table>
                 <input type="submit" id="save-button" name="save-button" value="Save">
