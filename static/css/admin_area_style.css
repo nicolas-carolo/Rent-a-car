@@ -248,14 +248,14 @@ td.big-car-image {
     width: 50%;
 }
 
-div.car-details input[type=button], input[type=submit] {
+div.car-details input[type=button], div.car-details input[type=submit] {
     font-size: 1.7em;
     margin: 20px 10px 10px;
     width: 20%;
     padding: 10px 15px 10px;
 }
 
-div.car-details input[type=text], input[type=number] {
+div.car-details input[type=text], div.car-details input[type=number] {
     margin: 5px auto 5px;
     width: 60%;
     float: right;
@@ -299,7 +299,7 @@ div.news-list {
     padding: 5px;
 }
 
-div.news-list input[type=button], input[type=submit] {
+div.news-list input[type=button], div.news-list input[type=submit] {
     font-size: 1.4em;
     margin: 10px 15px 10px;
     padding: 5px 10px 5px;
@@ -311,6 +311,12 @@ div.news-list input[type=button], input[type=submit] {
 
 #cancel {
     width: 30%
+}
+
+#delete-news-button {
+    font-size: 1.2em;
+    margin: 10px 15px 10px;
+    padding: 5px 15px 5px;
 }
 
 textarea {
