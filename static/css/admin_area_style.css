@@ -57,6 +57,7 @@ div.users-list {
     text-align: left;
     font-size: 1.4em;
     border: 1px solid #3c5d5d;
+    padding: 5px;
 }
 
 .users-list th {
@@ -64,10 +65,12 @@ div.users-list {
     text-align: left;
     font-size: 1.4em;
     border: 1px solid #3c5d5d;
+    padding: 5px;
 }
 
 .users-list tr {
     border: 1px solid #3c5d5d;
+    padding: 5px;
 }
 
 div.reservations {
@@ -99,6 +102,7 @@ td.reservation-descriptor {
     width: 20%;
     border: 1px solid #3c5d5d;
     font-size: 1.2em;
+    padding: 3px;
 }
 
 td.reservation-detail {
@@ -106,6 +110,7 @@ td.reservation-detail {
     width: 17%;
     border: 1px solid #3c5d5d;
     font-size: 1.2em;
+    padding: 3px;
 }
 
 #reservation-button-view {
