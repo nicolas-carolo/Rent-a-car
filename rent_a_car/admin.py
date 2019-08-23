@@ -29,7 +29,8 @@ def get_all_reservations_list(reservation_filter):
     else:
         queryset = session.query(CarReservation)
     session.close()
-    return queryset2list(queryset)
+    reservations_list = queryset2list(queryset)
+    return sorted(reservations_list, key=lambda reservation: reservation.id_reservation, reverse=True)
 
 
 def get_users_list_for_reservations_list(reservations_list):
