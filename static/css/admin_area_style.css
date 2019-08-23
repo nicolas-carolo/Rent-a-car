@@ -73,6 +73,16 @@ div.users-list {
     padding: 5px;
 }
 
+td.privileges-button {
+    text-align: center;
+}
+
+input.users-list[type=button] {
+    font-size: 0.9em;
+    margin: 5px auto 5px;
+    width: 90%;
+}
+
 div.reservations {
     width: 77%;
     text-align: center;
@@ -309,5 +319,5 @@ textarea {
     min-width: 90%;
     max-width: 90%;
     padding: 10px;
-     border-radius: 15px;
+    border-radius: 15px;
 }

@@ -89,6 +89,6 @@ INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('seb
 INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('lewis.hamilton@pilot.com', 'mercedes', 'Lewis', 'Hamilton', '1985-01-07', false);
 INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('charles.leclerc@pilot.com', 'ferrari2', 'Charles', 'Leclerc', '1997-10-16', false);
 INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('utente30@test.com', '123', 'Utente', 'Trenta', '1989-01-01', false);
-INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('utente40@test.com', '456', 'Utente', 'Quaranta', '1979-01-01', false);
+INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('utente40@test.com', '456', 'Utente', 'Quaranta', '1979-01-01', true);
 
 

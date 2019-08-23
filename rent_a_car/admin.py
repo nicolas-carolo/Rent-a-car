@@ -86,3 +86,14 @@ def save_news(news_content):
     session.add(news)
     session.commit()
     session.close()
+
+
+def update_account_type(user_id, account_type):
+    session = start_session()
+    user = session.query(User).get(user_id)
+    if account_type == 'admin':
+        user.is_admin = True
+    else:
+        user.is_admin = False
+    session.commit()
+    session.close()

@@ -11,17 +11,24 @@
                     <th>Name</th>
                     <th>Date of birth</th>
                     <th>Account type</th>
+                    <th></th>
                 </tr>
-                {% for user in users_list %}
+                {% for account in users_list %}
                     <tr>
-                        <td>{{ user.id }}</td>
-                        <td>{{ user.surname }}</td>
-                        <td>{{ user.name }}</td>
-                        <td>{{ user.birthdate }}</td>
-                        {% if user.is_admin == 0 %}
+                        <td>{{ account.id }}</td>
+                        <td>{{ account.surname }}</td>
+                        <td>{{ account.name }}</td>
+                        <td>{{ account.birthdate }}</td>
+                        {% if account.is_admin == 0 %}
                             <td>Standard</td>
+                            <td class="privileges-button"><input type="button" class="users-list" id="grant-admin-privileges-button" name="grant-admin-privileges-button" value="Make admin" onclick="update_account_type('{{ account.id }}', 'admin', '{{ session_id }}', '{{ user }}');"></td>
                         {% else %}
                             <td>Admin</td>
+                            {% if account.id != user %}
+                                <td class="privileges-button"><input type="button" class="users-list" id="remove-admin-privileges-button" name="remove-admin-privileges-button" value="Make standard" onclick="update_account_type('{{ account.id }}', 'standard', '{{ session_id }}', '{{ user }}');"></td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
                         {% endif %}
                     </tr>
                 {% endfor %}

@@ -128,3 +128,15 @@ function delete_news(news_id, news_description, session_id, user) {
         window.location.href = '/delete_news?news-id=' + news_id + '&session-id=' + session_id +'&user-id=' + user;
     }
 }
+
+function update_account_type(user_id_to_update, account_type, session_id, user) {
+    if (account_type == 'admin') {
+        var input = confirm("Do you really want to grant admin privileges to the user " + user_id_to_update + "?");
+    } else {
+        var input = confirm("Do you really want to revoke admin privileges to the user " + user_id_to_update + "?");
+    }
+    if (input) {
+        window.location.href = '/update_account_type?user-id-to-update=' + user_id_to_update + '&account-type=' + account_type + '&session-id=' + session_id +'&user-id=' + user;
+    }
+}
+

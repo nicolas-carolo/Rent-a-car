@@ -12,7 +12,7 @@ from rent_a_car.user import get_user_by_id, edit_user_info, update_user_password
     get_cars_user_reservations_list, get_total_prices_reservations_list, get_reservations_status_list,\
     get_reservation_identified_by_id, is_reservation_of_the_user, delete_reservation, delete_user, is_admin_user
 from rent_a_car.admin import get_users_list, get_all_reservations_list, get_users_list_for_reservations_list,\
-    delete_car, update_car, delete_news, save_news
+    delete_car, update_car, delete_news, save_news, update_account_type
 import datetime
 
 app = Flask(__name__)
@@ -659,6 +659,21 @@ def admin_add_news():
         else:
             return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                    preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+
+
+@app.route('/update_account_type')
+def admin_update_account_type():
+    session_id = request.args.get('session-id', None)
+    user_id = request.args.get('user-id', None)
+    user_id_to_update = request.args.get('user-id-to-update', None)
+    account_type = request.args.get('account-type', None)
+    if check_authentication(session_id, user_id) and is_admin_user(user_id):
+        update_account_type(user_id_to_update, account_type)
+        users_list = get_users_list()
+        return render_template('admin_area.html', user=user_id, session_id=session_id, users_list=users_list)
+    else:
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                               preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 
 if __name__ == '__main__':
