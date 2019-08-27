@@ -16,7 +16,7 @@ from rent_a_car.user import get_user_by_id, edit_user_info, update_user_password
     get_cars_user_reservations_list, get_total_prices_reservations_list, get_reservations_status_list,\
     get_reservation_identified_by_id, is_reservation_of_the_user, delete_reservation, delete_user, is_admin_user
 from rent_a_car.admin import get_users_list, get_all_reservations_list, get_users_list_for_reservations_list,\
-    delete_car, update_car, delete_news, save_news, update_account_type
+    delete_car, update_car, delete_news, save_news, update_account_type, add_car
 import datetime
 
 
@@ -696,6 +696,63 @@ def admin_update_account_type():
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+
+
+@app.route('/add_car')
+def admin_add_car():
+    session_id = request.args.get('session-id', None)
+    user_id = request.args.get('user-id', None)
+    if check_authentication(session_id, user_id) and is_admin_user(user_id):
+        return render_template('new_car.html', user=user_id, session_id=session_id,
+                               current_year=get_current_year())
+    else:
+        return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                               preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+
+
+@app.route('/save_new_car', methods=['POST', 'GET'])
+def save_new_car():
+    session_id = request.args.get('session-id', None)
+    user_id = request.args.get('user-id', None)
+    if request.method == 'POST':
+        brand = request.form['brand-text']
+        model = request.form['model-text']
+        car_year = request.form['car-year-text']
+        n_seats = request.form['n-seats-text']
+        car_type = request.form['type-text']
+        engine = request.form['engine-text']
+        fuel = request.form['fuel-text']
+        power = request.form['power-text']
+        transmission = request.form['transmission-text']
+        min_age = request.form['min-age-text']
+        price = request.form['price-day-text']
+        str_preview = request.form['preview']
+        if str_preview == "Yes":
+            preview = True
+        else:
+            preview = False
+        if check_authentication(session_id, user_id) and is_admin_user(user_id):
+            if 'file' in request.files:
+                file = request.files['file']
+                if file and allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    car_id = add_car(brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age,
+                                  price, filename, preview)
+                    print(car_id)
+                    car = get_car_identified_by_id(car_id)
+                    return render_template('cars_manager.html', user=user_id, session_id=session_id, car=car,
+                                           edit_mode=False)
+                else:
+                    return render_template('new_car.html', user=user_id, session_id=session_id,
+                                           current_year=get_current_year(), img_error=True)
+            else:
+                return render_template('new_car.html', user=user_id, session_id=session_id,
+                                       current_year=get_current_year(), img_error=True)
+
+        else:
+            return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
+                                   preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 
 def allowed_file(filename):

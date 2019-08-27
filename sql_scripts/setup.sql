@@ -10,7 +10,6 @@ CREATE TABLE cars(
 	brand    		  VARCHAR(30) NOT NULL,
 	model  		      VARCHAR(50) NOT NULL,
 	car_year          INT NOT NULL,
-	plate             VARCHAR(10) NOT NULL,
 	n_seats           INT NOT NULL,
 	car_type          VARCHAR(30) NOT NULL,
 	min_age           INT NOT NULL,
@@ -23,19 +22,19 @@ CREATE TABLE cars(
 	preview           BOOLEAN
 );
 
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('BMW', 'X1 16d sDrive', 2016, 'FF001XB', 5, 'SUV', 23, '1.5', 'Diesel', 116, 'Manual', '/static/media/cars/bmw-x1-2016.jpg', 65, false );
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Mercedes', 'A180d', 2018, 'FP821DA', 5, 'Hatchback', 23, '1.5', 'Diesel', 116, 'Automatic', '/static/media/cars/mercedes-a180d.jpg', 65, true);
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Volkswagen', 'Tiguan', 2017, 'FN342BF', 5, 'SUV', 25, '2.0', 'Diesel', 150, 'Automatic', '/static/media/cars/vw-tiguan.jpg', 70, false );
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Peugeot', '3008', 2018, 'FP729HF', 5, 'SUV', 25, '2.0', 'Diesel', 150, 'Automatic', '/static/media/cars/peugeot-3008.jpg', 60, false );
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Ford', 'Fiesta', 2019, 'FV382LP', 5, 'Hatchback', 18, '1.0', 'Gasoline', 86, 'Manual', '/static/media/cars/ford-fiesta.jpg', 40, true);
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('BMW', '530d', 2012, 'EN161PV', 5, 'Station Wagon', 30, '3.0', 'Diesel', 245, 'Automatic', '/static/media/cars/bmw-530d.jpg', 90, true);
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('BMW', 'M5', 2018, 'FS086FH', 5, 'Sedan', 35, '4.4', 'Gasoline', 600, 'Automatic', '/static/media/cars/bmw-m5.jpg', 300, true);
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Fiat', 'Panda', 2013, 'ER453HS', 4, 'City Car', 18, '1.2', 'Gasoline', 69, 'Manual', '/static/media/cars/fiat-panda.jpg', 28, false );
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Lancia', 'Ypsilon', 2015, 'FA749LF', 4, 'City Car', 18, '1.2', 'Gasoline', 69, 'Manual', '/static/media/cars/lancia-y.jpg', 30, false );
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Mercedes', 'SLC200', 2018, 'FP271DT', 2, 'Roadster', 25, '2.0', 'Gasoline', 184, 'Automatic', '/static/media/cars/mercedes-slc200.jpg', 120, false );
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Porsche', 'Cayenne', 2012, 'EM383YR', 5, 'SUV', 30, '3.0', 'Diesel', 245, 'Automatic', '/static/media/cars/porsche-cayenne-2012.jpg', 100, false );
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Volkswagen', 'Passat Variant', 2017, 'FR764PP', 5, 'Station Wagon', 25, '2.0', 'Gasoline', 150, 'Manual', '/static/media/cars/vw-passat-variant.jpg', 70, false );
-INSERT INTO cars(brand, model, car_year, plate, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Volkswagen', 'Polo', 2016, 'FG954ER', 5, 'Hatchback', 18, '1.4', 'Diesel', 75, 'Manual', '/static/media/cars/vw-polo.jpg', 35, false );
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('BMW', 'X1 16d sDrive', 2016, 5, 'SUV', 23, '1.5', 'Diesel', 116, 'Manual', '/static/media/cars/bmw-x1-2016.jpg', 65, false );
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Mercedes', 'A180d', 2018, 5, 'Hatchback', 23, '1.5', 'Diesel', 116, 'Automatic', '/static/media/cars/mercedes-a180d.jpg', 65, true);
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Volkswagen', 'Tiguan', 2017, 5, 'SUV', 25, '2.0', 'Diesel', 150, 'Automatic', '/static/media/cars/vw-tiguan.jpg', 70, false );
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Peugeot', '3008', 2018, 5, 'SUV', 25, '2.0', 'Diesel', 150, 'Automatic', '/static/media/cars/peugeot-3008.jpg', 60, false );
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Ford', 'Fiesta', 2019, 5, 'Hatchback', 18, '1.0', 'Gasoline', 86, 'Manual', '/static/media/cars/ford-fiesta.jpg', 40, true);
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('BMW', '530d', 2012, 5, 'Station Wagon', 30, '3.0', 'Diesel', 245, 'Automatic', '/static/media/cars/bmw-530d.jpg', 90, true);
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('BMW', 'M5', 2018, 5, 'Sedan', 35, '4.4', 'Gasoline', 600, 'Automatic', '/static/media/cars/bmw-m5.jpg', 300, true);
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Fiat', 'Panda', 2013, 4, 'City Car', 18, '1.2', 'Gasoline', 69, 'Manual', '/static/media/cars/fiat-panda.jpg', 28, false );
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Lancia', 'Ypsilon', 2015, 4, 'City Car', 18, '1.2', 'Gasoline', 69, 'Manual', '/static/media/cars/lancia-y.jpg', 30, false );
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Mercedes', 'SLC200', 2018, 2, 'Roadster', 25, '2.0', 'Gasoline', 184, 'Automatic', '/static/media/cars/mercedes-slc200.jpg', 120, false );
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Porsche', 'Cayenne', 2012, 5, 'SUV', 30, '3.0', 'Diesel', 245, 'Automatic', '/static/media/cars/porsche-cayenne-2012.jpg', 100, false );
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Volkswagen', 'Passat Variant', 2017, 5, 'Station Wagon', 25, '2.0', 'Gasoline', 150, 'Manual', '/static/media/cars/vw-passat-variant.jpg', 70, false );
+INSERT INTO cars(brand, model, car_year, n_seats, car_type, min_age, engine, fuel, power, transmission, photo_link, price, preview) VALUES ('Volkswagen', 'Polo', 2016, 5, 'Hatchback', 18, '1.4', 'Diesel', 75, 'Manual', '/static/media/cars/vw-polo.jpg', 35, false );
 
 
 DROP TABLE IF EXISTS news;

@@ -1,4 +1,4 @@
-from sqlalchemy import and_
+from sqlalchemy import and_, func
 
 from rent_a_car.db_manager.session_manager import start_session
 from rent_a_car.db_manager.models import CarReservation, User, Car, News
@@ -105,15 +105,15 @@ def update_account_type(user_id, account_type):
     session.close()
 
 
-def add_car(brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price, photo_name):
+def add_car(brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price, photo_name,
+            preview):
+    photo_link = "/static/media/cars/" + photo_name
     session = start_session()
-    new_car = Car(brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price, photo_name)
+    new_car = Car(brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price,
+                  photo_link, preview)
     session.add(new_car)
     session.commit()
-    queryset = session.query(Car).filter(and_(CarReservation.id_car.__eq__(car_id),
-                                                         CarReservation.id_user.__eq__(username),
-                                                         CarReservation.date_from.__eq__(date_from),
-                                                         CarReservation.date_to.__eq__(date_to)))
-    reservation = queryset2list(queryset)[0]
+    queryset = session.query(func.max(Car.id).label("max_id"))
+    res = queryset.one()
     session.close()
-    return reservation.id_reservation
+    return res.max_id

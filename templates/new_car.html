@@ -1,0 +1,72 @@
+{% extends 'admin_area_base.html' %}
+
+{% block admin_view %}
+    {% if img_error %}
+        <script>alert("Error! Please insert a valid car's image (.jpeg or .jpg).")</script>
+    {% endif %}
+    <div class="car-details" id="div-details">
+        <form method="post" action="/save_new_car?session-id={{ session_id }}&user-id={{ user }}" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <th>Car's photo:</th>
+                    <td><input type="file" name="file" required></td>
+                </tr>
+                <tr>
+                    <th>Brand:</th>
+                    <td><input type="text" id="brand-text" name="brand-text" required></td>
+                </tr>
+                <tr>
+                    <th>Model:</th>
+                    <td><input type="text" id="model-text" name="model-text" required></td>
+                </tr>
+                <tr>
+                    <th>Year:</th>
+                    <td><input type="number" id="car-year-text" name="car-year-text" min="1900" max="{{ current_year }}" required></td>
+                </tr>
+                <tr>
+                    <th>Number of seats:</th>
+                    <td><input type="number" id="n-seats-text" name="n-seats-text" required></td>
+                </tr>
+                <tr>
+                    <th>Type of car:</th>
+                    <td><input type="text" id="type-text" name="type-text" required></td>
+                </tr>
+                <tr>
+                    <th>Engine (L):</th>
+                    <td><input type="text" id="engine-text" name="engine-text" required></td>
+                </tr>
+                <tr>
+                    <th>Fuel:</th>
+                    <td><input type="text" id="fuel-text" name="fuel-text" required></td>
+                </tr>
+                <tr>
+                    <th>Power (cv):</th>
+                    <td><input type="number" id="power-text" name="power-text" min="1" required></td>
+                </tr>
+                <tr>
+                    <th>Transmission:</th>
+                    <td><input type="text" id="transmission-text" name="transmission-text" required></td>
+                </tr>
+                <tr>
+                    <th>Driver's minimum age:</th>
+                    <td><input type="number" id="min-age-text" name="min-age-text" min="18" max="99" required></td>
+                </tr>
+                <tr>
+                    <th>Price per day (€):</th>
+                    <td><input type="number" id="price-day-text" name="price-day-text" min="0" required></td>
+                </tr>
+                <tr>
+                    <th>Show in Home page:</th>
+                    <td>
+                        <select id="preview" name="preview">
+                            <option value="No" selected="selected">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" id="save-button" name="save-button" value="Save">
+            <input type="button" id="cancel-button" name="cancel-button" value="Cancel" onclick="window.location.href = '/user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false';">
+        </form>
+    </div>
+{% endblock %}
