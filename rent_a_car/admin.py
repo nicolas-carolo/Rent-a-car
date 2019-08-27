@@ -48,7 +48,7 @@ def delete_car(car_id):
     delete_all_reservations_associated_to_car_id(car_id)
 
 
-def update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price):
+def update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price, photo_name):
     session = start_session()
     car = session.query(Car).get(car_id)
     car.brand = brand
@@ -62,6 +62,8 @@ def update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, 
     car.transmission = transmission
     car.min_age = min_age
     car.price = price
+    if photo_name != "":
+        car.photo_link = "/static/media/cars/" + photo_name
     session.commit()
     session.close()
 

@@ -11,10 +11,13 @@
 {% block admin_view %}
     <div class="car-details" id="div-details">
         {% if edit_mode %}
-            <form method="post" action="/edit_car?car-id={{ car.id }}&session-id={{ session_id }}&user-id={{ user }}">
+            <form method="post" action="/edit_car?car-id={{ car.id }}&session-id={{ session_id }}&user-id={{ user }}" enctype="multipart/form-data">
                 <table>
                     <tr>
-                        <td rowspan="11" class="big-car-image"><img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384"><br></td>
+                        <td rowspan="11" class="big-car-image">
+                            <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384"><br>
+                            <input type="file" name="file">
+                        </td>
                         <th>Brand:</th>
                         <td><input type="text" id="brand-text" name="brand-text" value="{{ car.brand }}" required></td>
                     </tr>

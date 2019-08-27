@@ -1,4 +1,8 @@
-from flask import Flask, render_template, request
+import os
+
+from flask import Flask, render_template, request, flash, redirect
+from werkzeug.utils import secure_filename
+
 from rent_a_car.home import get_cars_preview, get_news_list, get_car_identified_by_id
 from rent_a_car.rent import is_car_available_in_the_selected_period, get_total_price, are_dates_valid,\
     save_car_reservation, has_user_age_requirement
@@ -15,7 +19,13 @@ from rent_a_car.admin import get_users_list, get_all_reservations_list, get_user
     delete_car, update_car, delete_news, save_news, update_account_type
 import datetime
 
+
+UPLOAD_FOLDER = './static/media/cars'
+ALLOWED_EXTENSIONS = set(['jpg', 'jpeg'])
+
+
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 @app.route('/')
@@ -602,9 +612,16 @@ def edit_car():
         transmission = request.form['transmission-text']
         min_age = request.form['min-age-text']
         price = request.form['price-day-text']
+        photo_name = ""
         if check_authentication(session_id, user_id) and is_admin_user(user_id):
+            if 'file' in request.files:
+                file = request.files['file']
+                if file and allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    photo_name = filename
             update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age,
-                       price)
+                       price, photo_name)
             car = get_car_identified_by_id(car_id)
             return render_template('cars_manager.html', user=user_id, session_id=session_id, car=car, edit_mode=False)
         else:
@@ -674,6 +691,11 @@ def admin_update_account_type():
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 if __name__ == '__main__':
