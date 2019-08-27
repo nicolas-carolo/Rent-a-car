@@ -68,14 +68,6 @@ def get_cars_user_reservations_list(reservations_list):
     return car_list
 
 
-def get_total_prices_reservations_list(reservations_list):
-    total_prices_list = []
-    for reservation in reservations_list:
-        car = get_car_identified_by_id(reservation.id_car)
-        total_prices_list.append(get_total_price(car.price, str(reservation.date_from), str(reservation.date_to)))
-    return total_prices_list
-
-
 def get_reservations_status_list(reservations_list):
     status_list = []
     today = datetime.datetime.today().date()

@@ -66,12 +66,14 @@ class CarReservation(Base):
     id_user = Column(String)
     date_from = Column(String)
     date_to = Column(String)
+    price = Column(Integer)
 
-    def __init__(self, id_car, id_user, date_from, date_to):
+    def __init__(self, id_car, id_user, date_from, date_to, price):
         self.id_car = id_car
         self.id_user = id_user
         self.date_from = date_from
         self.date_to = date_to
+        self.price = price
 
 
 class UserSession(Base):

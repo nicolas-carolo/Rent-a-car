@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 
 from rent_a_car.home import get_cars_preview, get_news_list, get_car_identified_by_id
 from rent_a_car.rent import is_car_available_in_the_selected_period, get_total_price, are_dates_valid,\
-    save_car_reservation, has_user_age_requirement
+    save_car_reservation, has_user_age_requirement, calc_total_price
 from rent_a_car.authentication import authenticate as check_credentials, generate_session, delete_session,\
     check_authentication, get_user_by_session_id, edit_session
 from rent_a_car.sign_up import create_account
@@ -13,7 +13,7 @@ from rent_a_car.cars_showcase import get_cars_list, get_current_year, get_car_br
     get_car_n_seats_list, get_fuel_list, get_min_car_power_value, get_max_car_power_value, get_oldest_car_age,\
     get_max_car_price_per_day, get_min_car_price_per_day, filter_cars_by_user_parameters
 from rent_a_car.user import get_user_by_id, edit_user_info, update_user_password, get_user_reservations_list,\
-    get_cars_user_reservations_list, get_total_prices_reservations_list, get_reservations_status_list,\
+    get_cars_user_reservations_list, get_reservations_status_list,\
     get_reservation_identified_by_id, is_reservation_of_the_user, delete_reservation, delete_user, is_admin_user
 from rent_a_car.admin import get_users_list, get_all_reservations_list, get_users_list_for_reservations_list,\
     delete_car, update_car, delete_news, save_news, update_account_type, add_car
@@ -101,11 +101,12 @@ def check_car_availability():
         if is_car_available_in_the_selected_period(date_from, date_to, car_id):
             if check_authentication(session_id, user_id):
                 return render_template('car_details.html', car=car, is_available=True,
-                                       total_price=get_total_price(car.price, date_from, date_to), show_confirm_div=True,
-                                       date_from=date_from, date_to=date_to, user=user_id, session_id=session_id, today=today)
+                                       total_price=calc_total_price(car.price, date_from, date_to), show_confirm_div=True,
+                                       date_from=date_from, date_to=date_to, user=user_id, session_id=session_id,
+                                       today=today)
             else:
                 return render_template('car_details.html', car=car, is_available=True,
-                                       total_price=get_total_price(car.price, date_from, date_to),
+                                       total_price=calc_total_price(car.price, date_from, date_to),
                                        show_confirm_div=True,
                                        date_from=date_from, date_to=date_to, today=today)
         else:
@@ -223,7 +224,7 @@ def confirm_car_reservation():
                     reservation_id = save_car_reservation(car_id, user_id, date_from, date_to)
                     return render_template('car_reservation_details.html', user=user_id, session_id=session_id,
                                            reservation_id=reservation_id, car=car, date_from=date_from, date_to=date_to,
-                                           total_price=get_total_price(car.price, date_from, date_to))
+                                           total_price=calc_total_price(car.price, date_from, date_to))
                 else:
                     error_msg = "The reservation has failed because you are not at least " + str(car.min_age) +\
                                 " years old!"
@@ -343,7 +344,6 @@ def user_area():
     edit = request.args.get('edit', None)
     today = datetime.date.today()
     reservations_list = get_user_reservations_list(user_id)
-    total_prices_list = get_total_prices_reservations_list(reservations_list)
     cars_reservations_list = get_cars_user_reservations_list(reservations_list)
     reservations_status_list = get_reservations_status_list(reservations_list)
     if edit == "true":
@@ -360,7 +360,7 @@ def user_area():
             return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=edit_mode,
                                    surname=user.surname, name=user.name, birthdate=user.birthdate, today=today,
                                    reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
-                                   total_prices_list=total_prices_list, reservations_status_list=reservations_status_list)
+                                   reservations_status_list=reservations_status_list)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
@@ -378,7 +378,6 @@ def edit_user_information():
         new_username = request.form['username']
         today = datetime.date.today()
         reservations_list = get_user_reservations_list(old_username)
-        total_prices_list = get_total_prices_reservations_list(reservations_list)
         cars_reservations_list = get_cars_user_reservations_list(reservations_list)
         reservations_status_list = get_reservations_status_list(reservations_list)
         if check_authentication(session_id, old_username):
@@ -391,14 +390,12 @@ def edit_user_information():
             return render_template('user_area.html', user=new_username, session_id=session_id, edit_mode=False,
                                    surname=surname, name=name, birthdate=birthdate, today=today,
                                    reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
-                                   total_prices_list=total_prices_list,
                                    reservations_status_list=reservations_status_list)
         else:
             return render_template('user_area.html', user=user.id, session_id=session_id, edit_mode=True,
                                    surname=user.surname, name=user.name, birthdate=user.birthdate,
                                    feedback_msg=are_changes_valid, today=today,
                                    reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
-                                   total_prices_list=total_prices_list,
                                    reservations_status_list=reservations_status_list)
 
 
@@ -413,7 +410,6 @@ def change_user_password():
         confirm_password = request.form['confirm-password']
         today = datetime.date.today()
         reservations_list = get_user_reservations_list(user_id)
-        total_prices_list = get_total_prices_reservations_list(reservations_list)
         cars_reservations_list = get_cars_user_reservations_list(reservations_list)
         reservations_status_list = get_reservations_status_list(reservations_list)
         if check_authentication(session_id, user_id):
@@ -426,14 +422,12 @@ def change_user_password():
                                    surname=user.surname, name=user.name, birthdate=user.birthdate,
                                    feedback_msg="Password successfully updated!", today=today,
                                    reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
-                                   total_prices_list=total_prices_list,
                                    reservations_status_list=reservations_status_list)
         else:
             return render_template('user_area.html', user=user.id, session_id=session_id, edit_mode=False,
                                    surname=user.surname, name=user.name, birthdate=user.birthdate,
                                    feedback_msg=is_password_updated, today=today,
                                    reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
-                                   total_prices_list=total_prices_list,
                                    reservations_status_list=reservations_status_list)
 
 
@@ -446,7 +440,7 @@ def reservation_details():
     car = get_car_identified_by_id(reservation.id_car)
     date_from = str(reservation.date_from)
     date_to = str(reservation.date_to)
-    total_price = get_total_price(car.price, date_from, date_to)
+    total_price = get_total_price(reservation_id)
     if check_authentication(session_id, user_id) and is_reservation_of_the_user(reservation_id, user_id):
         return render_template('car_reservation_details.html', user=user_id, session_id=session_id, car=car,
                                reservation_id=reservation_id, date_from=date_from,
@@ -465,14 +459,13 @@ def detele_car_reservation():
     if check_authentication(session_id, user_id) and is_reservation_of_the_user(reservation_id, user_id):
         delete_reservation(reservation_id)
         reservations_list = get_user_reservations_list(user_id)
-        total_prices_list = get_total_prices_reservations_list(reservations_list)
         cars_reservations_list = get_cars_user_reservations_list(reservations_list)
         reservations_status_list = get_reservations_status_list(reservations_list)
         user = get_user_by_id(user_id)
         return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=False,
                                surname=user.surname, name=user.name, birthdate=user.birthdate, today=today,
                                reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
-                               total_prices_list=total_prices_list, reservations_status_list=reservations_status_list)
+                               reservations_status_list=reservations_status_list)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
@@ -495,7 +488,6 @@ def admin_user_area():
     edit = request.args.get('edit', None)
     today = datetime.date.today()
     reservations_list = get_user_reservations_list(user_id)
-    total_prices_list = get_total_prices_reservations_list(reservations_list)
     cars_reservations_list = get_cars_user_reservations_list(reservations_list)
     reservations_status_list = get_reservations_status_list(reservations_list)
     if edit == "true":
@@ -507,8 +499,7 @@ def admin_user_area():
         return render_template('user_area.html', user=user_id, session_id=session_id, edit_mode=edit_mode,
                                surname=user.surname, name=user.name, birthdate=user.birthdate, today=today,
                                reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
-                               total_prices_list=total_prices_list, reservations_status_list=reservations_status_list,
-                               admin=True)
+                               reservations_status_list=reservations_status_list, admin=True)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
                                preview_length=get_cars_preview().__len__(), del_session_cookie=True)
@@ -532,14 +523,12 @@ def list_all_reservations():
     user_id = request.args.get('user-id', None)
     reservation_filter = request.args.get('reservation-filter', None)
     reservations_list = get_all_reservations_list(reservation_filter)
-    total_prices_list = get_total_prices_reservations_list(reservations_list)
     cars_reservations_list = get_cars_user_reservations_list(reservations_list)
     reservations_status_list = get_reservations_status_list(reservations_list)
     users_list_for_reservations = get_users_list_for_reservations_list(reservations_list)
     if check_authentication(session_id, user_id) and is_admin_user(user_id):
         return render_template('admin_area.html', user=user_id, session_id=session_id,
-                               reservations_list=reservations_list, total_prices_list=total_prices_list,
-                               cars_reservations_list=cars_reservations_list,
+                               reservations_list=reservations_list, cars_reservations_list=cars_reservations_list,
                                reservations_status_list=reservations_status_list,
                                users_list_for_reservations=users_list_for_reservations,
                                reservations_list_mode=True)

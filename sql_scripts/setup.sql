@@ -54,16 +54,17 @@ CREATE TABLE car_reservations(
     id_car           INT NOT NULL,
     id_user          VARCHAR(100) NOT NULL,
     date_from        DATE NOT NULL,
-    date_to          DATE NOT NULL
+    date_to          DATE NOT NULL,
+    price            INT NOT NULL
 );
 
-INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (1, 'sebastian.vettel@pilot.com', '2019-08-09', '2019-08-13');
-INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (3, 'lewis.hamilton@pilot.com', '2019-07-30', '2019-08-04');
-INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (2, 'lewis.hamilton@pilot.com', '2019-09-01', '2019-09-07');
-INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (7, 'utente40@test.com', '2019-07-10', '2019-07-12');
-INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (8, 'utente40@test.com', '2019-08-01', '2019-09-30');
-INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (5, 'utente40@test.com', '2020-01-01', '2020-01-15');
-INSERT INTO car_reservations(id_car, id_user, date_from, date_to) VALUES (10, 'utente30@test.com', '2019-09-05', '2019-09-05');
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (1, 'sebastian.vettel@pilot.com', '2019-08-09', '2019-08-13', 260);
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (3, 'lewis.hamilton@pilot.com', '2019-07-30', '2019-08-04', 420);
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (2, 'lewis.hamilton@pilot.com', '2019-09-01', '2019-09-07', 455);
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (7, 'utente40@test.com', '2019-07-10', '2019-07-12', 900);
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (8, 'utente40@test.com', '2019-08-01', '2019-09-30', 455);
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (5, 'utente40@test.com', '2020-01-01', '2020-01-15', 840);
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (10, 'utente30@test.com', '2019-09-05', '2019-09-05', 120);
 
 
 DROP TABLE IF EXISTS sessions;

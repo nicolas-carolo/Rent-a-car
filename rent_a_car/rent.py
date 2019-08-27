@@ -2,6 +2,7 @@ from rent_a_car.db_manager.session_manager import start_session
 from rent_a_car.db_manager.models import CarReservation, User, Car
 from rent_a_car.db_manager.result_set import queryset2list
 from rent_a_car.sign_up import get_age
+from rent_a_car.home import get_car_identified_by_id
 from datetime import datetime
 from sqlalchemy import and_
 
@@ -23,12 +24,18 @@ def is_car_available_in_the_selected_period(date_from, date_to, car_id):
     return is_available
 
 
-def get_total_price(price_per_day, date_from, date_to):
+def calc_total_price(price_per_day, date_from, date_to):
     date_from = datetime.strptime(date_from, '%Y-%m-%d')
     date_to = datetime.strptime(date_to, '%Y-%m-%d')
     n_days = date_to - date_from
     n_days = n_days.days + 1
     return price_per_day * n_days
+
+
+def get_total_price(reservation_id):
+    session = start_session()
+    reservation = session.query(CarReservation).get(reservation_id)
+    return reservation.price
 
 
 def are_dates_valid(date_from, date_to):
@@ -39,14 +46,17 @@ def are_dates_valid(date_from, date_to):
 
 
 def save_car_reservation(car_id, username, date_from, date_to):
+    car = get_car_identified_by_id(car_id)
+    price = calc_total_price(car.price, date_from, date_to)
     session = start_session()
-    new_car_reservation = CarReservation(car_id, username, date_from, date_to)
+    new_car_reservation = CarReservation(car_id, username, date_from, date_to, price)
     session.add(new_car_reservation)
     session.commit()
     queryset = session.query(CarReservation).filter(and_(CarReservation.id_car.__eq__(car_id),
                                                          CarReservation.id_user.__eq__(username),
                                                          CarReservation.date_from.__eq__(date_from),
-                                                         CarReservation.date_to.__eq__(date_to)))
+                                                         CarReservation.date_to.__eq__(date_to),
+                                                         CarReservation.price.__eq__(price)))
     reservation = queryset2list(queryset)[0]
     session.close()
     return reservation.id_reservation
