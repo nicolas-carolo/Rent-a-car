@@ -14,7 +14,6 @@ class Car(Base):
     brand = Column(String)
     model = Column(Integer)
     car_year = Column(Integer)
-    plate = Column(String)
     n_seats = Column(Integer)
     car_type = Column(String)
     min_age = Column(Integer)
@@ -25,6 +24,22 @@ class Car(Base):
     photo_link = Column(String)
     price = Column(Integer)
     preview = Column(Integer)
+
+    def __init__(self, brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price,
+                 photo_link, preview):
+        self.brand = brand
+        self.model = model
+        self.car_year = car_year
+        self.n_seats = n_seats
+        self.car_type = car_type
+        self.engine = engine
+        self.fuel = fuel
+        self.power = power
+        self.transmission = transmission
+        self.min_age = min_age
+        self.price = price
+        self.photo_link = photo_link
+        self.preview = preview
 
 
 class News(Base):

@@ -10,7 +10,9 @@
 
 {% block admin_menu %}
     <div class="vertical-menu">
-        <a href="/all_cars_list?session-id={{ session_id }}&user-id={{ user }}" class="active">Cars</a>
+        <a href="javascript:hide_show_cars_items()" class="active">Cars</a>
+        <a href="/all_cars_list?session-id={{ session_id }}&user-id={{ user }}" id="all-cars" name="cars-item">All cars</a>
+        <a href="/add_car?session-id={{ session_id }}&user-id={{ user }}" id="add-car" name="cars-item">Add car</a>
         <a href="/admin_user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false" class="active">My account</a>
         <a href="javascript:hide_show_news_items()" class="active">News</a>
         <a href="/news_view?session-id={{ session_id }}&user-id={{ user }}&edit=false" id="all-news" name="news-item">All news</a>

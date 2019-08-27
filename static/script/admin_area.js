@@ -24,6 +24,19 @@ function hide_show_news_items() {
     }
 }
 
+function hide_show_cars_items() {
+    var items = document.getElementsByName("cars-item");
+    if (document.getElementById("all-cars").style.display == "block") {
+        for (var i = 0; i < items.length; i++) {
+                items[i].style.display = "none"
+        }
+    } else {
+        for (var i = 0; i < items.length; i++) {
+                items[i].style.display = "block"
+        }
+    }
+}
+
 function show_div_change_password() {
     document.getElementById("div-user-info").style.display = "none";
     document.getElementById("div-change-pwd").style.display = "block";

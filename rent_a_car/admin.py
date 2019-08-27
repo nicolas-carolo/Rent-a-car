@@ -1,3 +1,5 @@
+from sqlalchemy import and_
+
 from rent_a_car.db_manager.session_manager import start_session
 from rent_a_car.db_manager.models import CarReservation, User, Car, News
 from rent_a_car.db_manager.result_set import queryset2list
@@ -48,7 +50,8 @@ def delete_car(car_id):
     delete_all_reservations_associated_to_car_id(car_id)
 
 
-def update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price, photo_name):
+def update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price,
+               photo_name, preview):
     session = start_session()
     car = session.query(Car).get(car_id)
     car.brand = brand
@@ -62,6 +65,7 @@ def update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, 
     car.transmission = transmission
     car.min_age = min_age
     car.price = price
+    car.preview = preview
     if photo_name != "":
         car.photo_link = "/static/media/cars/" + photo_name
     session.commit()
@@ -99,3 +103,17 @@ def update_account_type(user_id, account_type):
         user.is_admin = False
     session.commit()
     session.close()
+
+
+def add_car(brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price, photo_name):
+    session = start_session()
+    new_car = Car(brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age, price, photo_name)
+    session.add(new_car)
+    session.commit()
+    queryset = session.query(Car).filter(and_(CarReservation.id_car.__eq__(car_id),
+                                                         CarReservation.id_user.__eq__(username),
+                                                         CarReservation.date_from.__eq__(date_from),
+                                                         CarReservation.date_to.__eq__(date_to)))
+    reservation = queryset2list(queryset)[0]
+    session.close()
+    return reservation.id_reservation

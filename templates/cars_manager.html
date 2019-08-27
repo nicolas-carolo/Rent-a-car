@@ -14,7 +14,7 @@
             <form method="post" action="/edit_car?car-id={{ car.id }}&session-id={{ session_id }}&user-id={{ user }}" enctype="multipart/form-data">
                 <table>
                     <tr>
-                        <td rowspan="11" class="big-car-image">
+                        <td rowspan="12" class="big-car-image">
                             <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384"><br>
                             <input type="file" name="file">
                         </td>
@@ -61,6 +61,20 @@
                         <th>Price per day (€):</th>
                         <td><input type="number" id="price-day-text" name="price-day-text" min="0" value="{{ car.price }}" required></td>
                     </tr>
+                    <tr>
+                        <th>Show in Home page:</th>
+                        <td>
+                            <select id="preview" name="preview">
+                                {% if car.preview == 0 %}
+                                    <option value="No" selected="selected">No</option>
+                                    <option value="Yes">Yes</option>
+                                {% else %}
+                                    <option value="No">No</option>
+                                    <option value="Yes" selected="selected">Yes</option>
+                                {% endif %}
+                            </select>
+                        </td>
+                    </tr>
                 </table>
                 <input type="submit" id="save-button" name="save-button" value="Save">
                 <input type="button" id="cancel-button" name="cancel-button" value="Cancel" onclick="window.location.href = '/edit_car_view?car-id={{ car.id }}&session-id={{ session_id }}&user-id={{ user }}&edit=false';">
@@ -68,7 +82,7 @@
         {% else %}
             <table>
                 <tr>
-                    <td rowspan="11" class="big-car-image"><img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384"></td>
+                    <td rowspan="12" class="big-car-image"><img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="512" height="384"></td>
                     <th>Brand:</th>
                     <td>{{ car.brand }}</td>
                 </tr>
@@ -111,6 +125,14 @@
                 <tr>
                     <th>Price:</th>
                     <td>€ {{ car.price }} per day</td>
+                </tr>
+                <tr>
+                    <th>Show in Home page:</th>
+                    {% if car.preview == 1 %}
+                        <td>Yes</td>
+                    {% else %}
+                        <td>No</td>
+                    {% endif %}
                 </tr>
             </table>
             <input type="button" id="edit-car-button" name="edit-car-button" value="Edit" onclick="window.location.href = '/edit_car_view?car-id={{ car.id }}&session-id={{ session_id }}&user-id={{ user }}&edit=true';">

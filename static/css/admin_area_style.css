@@ -266,7 +266,16 @@ div.car-details input[type=text], div.car-details input[type=number] {
     padding: 3px;
 }
 
-
+div.car-details select {
+    margin: 5px auto 5px;
+    width: 63%;
+    float: right;
+    background-color: white;
+    color: black;
+    border-radius: 7px;
+    border-color: #EEEEEE;
+    padding: 3px;
+}
 
 div.news-list {
     float: right;

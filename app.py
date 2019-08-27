@@ -612,7 +612,12 @@ def edit_car():
         transmission = request.form['transmission-text']
         min_age = request.form['min-age-text']
         price = request.form['price-day-text']
+        str_preview = request.form['preview']
         photo_name = ""
+        if str_preview == "Yes":
+            preview = True
+        else:
+            preview = False
         if check_authentication(session_id, user_id) and is_admin_user(user_id):
             if 'file' in request.files:
                 file = request.files['file']
@@ -621,12 +626,12 @@ def edit_car():
                     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                     photo_name = filename
             update_car(car_id, brand, model, car_year, n_seats, car_type, engine, fuel, power, transmission, min_age,
-                       price, photo_name)
+                       price, photo_name, preview)
             car = get_car_identified_by_id(car_id)
             return render_template('cars_manager.html', user=user_id, session_id=session_id, car=car, edit_mode=False)
         else:
             return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False,
-                               preview_length=get_cars_preview().__len__(), del_session_cookie=True)
+                                   preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 
 @app.route('/news_view')
