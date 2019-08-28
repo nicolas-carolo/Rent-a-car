@@ -1,3 +1,35 @@
+.company-description p {
+    font-size: 1.4em;
+}
+
+div.company-description {
+    margin-left: 20px;
+    padding-left: 10px;
+    width: 50%;
+    float: left;
+    text-align: justify;
+}
+
+div.news {
+    margin-right: 20px;
+    padding: 10px;
+    width: 40%;
+    float: right;
+    background-color: #c1d7d7;
+    text-align: justify;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+}
+
+.news li {
+    font-size: 1.2em;
+}
+
+.company-description h2 {
+    font-size: 1.7em;
+    color: #3c5d5d;
+}
+
 div.preview-cars {
     width: 95%;
     text-align: center;
@@ -55,4 +87,8 @@ div.preview-cars {
     border: 3px solid #3c5d5d;
     border-collapse: collapse;
     border-spacing: 0;
+}
+
+img.car-image:hover {
+    box-shadow: 2px 2px 2px 2px #3c5d5d;
 }

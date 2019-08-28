@@ -76,15 +76,12 @@ div.logo-and-title {
 }
 
 .logo-and-title table {
-    // background-color: lightgreen;
     width: 50%;
-    // border: 1px solid black;
     margin: auto;
     padding: 0px;
 }
 
 .logo-and-title td {
-    // border: 1px solid black;
     padding: 0px 15px 0px 15px;
     white-space: nowrap;
 }
@@ -99,42 +96,6 @@ h1 {
     text-align: left;
 }
 
-.company-description p {
-    font-size: 1.4em;
-}
-
-div.company-description {
-    margin-left: 20px;
-    padding-left: 10px;
-    width: 50%;
-    float: left;
-    text-align: justify;
-}
-
-div.news {
-    margin-right: 20px;
-    padding: 10px 10px 10px 20px;
-    width: 40%;
-    float: right;
-    background-color: #c1d7d7;
-    text-align: justify;
-    border-radius: 15px;
-    box-shadow: 5px 5px 5px #aaaaaa;
-}
-
-.news li {
-    font-size: 1.2em;
-}
-
-.company-description h2 {
-    font-size: 1.7em;
-    color: #3c5d5d;
-}
-
-img.car-image:hover {
-    box-shadow: 2px 2px 2px 2px #3c5d5d;
-}
-
 input[type=submit] {
     text-align: center;
     background-color: orange;
@@ -144,7 +105,6 @@ input[type=submit] {
     box-shadow: 1px 1px 1px #3c5d5d;
     text-shadow:none;
     padding: 5px;
-    // margin: 15px auto 5px;
 }
 
 input[type=submit]:hover {
@@ -160,7 +120,6 @@ input[type=button] {
     box-shadow: 1px 1px 1px #3c5d5d;
     text-shadow:none;
     padding: 5px;
-    // margin: 15px auto 5px;
 }
 
 input[type=button]:hover {
@@ -173,8 +132,7 @@ h3.empty-list {
 
 h2.div-title {
     text-align: center;
-    margin-bottom: 10px;
+    margin: 10px auto 10px;
     color: #476b6b;
     font-size: 2em;
-
 }
