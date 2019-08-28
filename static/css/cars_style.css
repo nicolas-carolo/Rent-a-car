@@ -50,7 +50,7 @@ div.preview-cars {
 }
 
 .preview-cars table {
-    margin: auto;
+    margin: 15px auto 10px;
     width: 96%;
     border: 3px solid #3c5d5d;
     border-collapse: collapse;
@@ -101,7 +101,7 @@ td.user-input {
 
 .searching-filters select {
     margin: 5px auto 5px;
-    width: 100%;
+    width: 96%;
     float: right;
     background-color: white;
     color: black;
@@ -118,8 +118,8 @@ td.user-input {
 }
 
 #filter-cars-button {
-    margin: 20px auto 20px;
+    margin: 20px auto 10px;
     float: none;
-    font-size: 1.3em;
+    font-size: 1.5em;
     width: 70%;
 }

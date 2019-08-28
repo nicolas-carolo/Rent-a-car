@@ -15,6 +15,7 @@
 
 {% block searching_filters %}
     <div class="searching-filters">
+        <h2 class="div-title">Filters</h2>
         <form id="form-cars-filter" name="form-cars-filter" method="post" action="/filter_cars?session-id={{ session_id }}&user-id={{ user }}">
             <table id="filter-table">
                 <tr>
@@ -228,6 +229,7 @@
 
 {% block preview_cars %}
     <div class="preview-cars">
+        <h2 class="div-title">Cars available</h2>
         {% if cars_list|length > 0 %}
             <table>
                 {% for car in cars_list %}
