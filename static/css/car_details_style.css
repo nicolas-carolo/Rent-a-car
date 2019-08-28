@@ -12,15 +12,15 @@ div.car-details {
     background-color: #c1d7d7;
     border-radius: 15px;
     box-shadow: 5px 5px 5px #aaaaaa;
-    padding: 20px 15px 15px;
-    margin: 20px 20px 50px auto;
+    padding: 20px;
+    margin: 20px 50px 50px auto;
     width: 50%;
     text-align: center;
 }
 
 .car-details table {
     width: 70%;
-    margin: auto;
+    margin: 10px auto 10px;
     // background-color: lightgreen;
 }
 
@@ -44,7 +44,7 @@ h2.car-details-header {
 
 }
 
-input[type=button] {
+/*input[type=button] {
     text-align: center;
     background-color: orange;
     color: #FFFFFF;
@@ -54,11 +54,11 @@ input[type=button] {
     text-shadow:none;
     padding: 5px;
     margin: 15px auto 5px;
-}
+}*/
 
-input[type=button]:hover {
+/*input[type=button]:hover {
     background-color: darkorange;
-}
+}*/
 
 div.hire {
     padding: 15px;
@@ -72,16 +72,17 @@ div.hire {
 #hire-button {
     width: 40%;
     font-size: 1.7em;
+    margin: 10px auto 10px;
 }
 
 #check-availability-button {
     width: auto;
-    padding: 5px 10px 5px;
+    padding: 5px 15px 5px;
     font-size: 1.2em;
     margin: 5px;
 }
 
-input[type=submit] {
+/*input[type=submit] {
     text-align: center;
     background-color: orange;
     color: #FFFFFF;
@@ -95,7 +96,7 @@ input[type=submit] {
 
 input[type=submit]:hover {
     background-color: darkorange;
-}
+}*/
 
 p.hire {
     margin-bottom: 0px;
@@ -113,7 +114,7 @@ input[type=date] {
 
 div.confirm-hire {
     padding: 15px;
-    margin: 20px;
+    margin: 10px auto 10px;
 }
 
 #div-confirm-hire {
@@ -123,6 +124,7 @@ div.confirm-hire {
 #confirm-reservation-button {
     width: 40%;
     font-size: 1.7em;
+    margin: 10px auto 0px;
 }
 
 #msg-availability-confirm-hire {

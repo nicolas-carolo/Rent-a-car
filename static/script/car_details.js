@@ -23,7 +23,7 @@ function show_div_confirm_hire(isAvailable, strDateFrom, strDateTo) {
     document.getElementById("hire-button").style.borderColor = "gray";
     document.getElementById("date-from").value = strDateFrom;
     document.getElementById("date-to").value = strDateTo;
-    window.scrollBy(0,150);
+    window.scrollBy(0,500);
     if (isAvailable == "True") {
         document.getElementById("msg-confirm-hire").style.color = "black";
     } else {

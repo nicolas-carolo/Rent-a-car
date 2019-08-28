@@ -5,6 +5,7 @@
         <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="576" height="432">
     </div>
     <div class="car-details" id="div-details">
+        <h2 class="div-title">Car's specs</h2>
         <table>
             <tr>
                 <th>Brand:</th>
@@ -55,7 +56,7 @@
         <div class="hire" id="div-hire">
             <hr width="100%" height="1">
             <p class="hire">Select the interval of days you will hire the car:</p><br>
-            <form method="post" action="/check_availability?session-id={{ session_id }}&user-id={{ user }}">
+            <form id="date-form" method="post" action="/check_availability?session-id={{ session_id }}&user-id={{ user }}">
                 <input type="hidden" id="car-id" name="car-id" value="{{ car.id }}">
                 <label for date-from>From:</label>
                 <input type="date" id="date-from" name="date-from" min="{{ today }}" onchange="hidden_div_confirm_hire()">

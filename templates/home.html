@@ -49,6 +49,7 @@
 {% block preview_cars %}
     {% if cars_list|length > 0 %}
         <div class="preview-cars">
+            <h2 class="div-title">Cars preview</h2>
             <table>
                 {% for car in cars_list %}
                     {% if loop.index0 % 2 == 0 and loop.index0 < preview_length - 1 %}

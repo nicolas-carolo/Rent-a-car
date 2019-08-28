@@ -34,8 +34,8 @@ div.preview-cars {
     width: 95%;
     text-align: center;
     margin: 20px auto 50px 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 25px;
     background-color: #c1d7d7;
     border-radius: 20px;
     box-shadow: 5px 5px 5px #aaaaaa;
@@ -82,7 +82,7 @@ div.preview-cars {
 }
 
 .preview-cars table {
-    margin: auto;
+    margin: 15px auto 10px;
     width: 96%;
     border: 3px solid #3c5d5d;
     border-collapse: collapse;
