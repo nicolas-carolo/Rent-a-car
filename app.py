@@ -744,6 +744,16 @@ def save_new_car():
                                    preview_length=get_cars_preview().__len__(), del_session_cookie=True)
 
 
+@app.route('/about')
+def about():
+    session_id = request.args.get('session-id', None)
+    user_id = request.args.get('user-id', None)
+    if check_authentication(session_id, user_id):
+        return render_template('about.html', user=user_id, session_id=session_id)
+    else:
+        return render_template('about.html')
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

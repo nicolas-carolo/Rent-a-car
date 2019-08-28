@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block other_styles %}
+    <link rel="stylesheet" href="/static/css/about_style.css" type="text/css" />
+{% endblock %}
+
+{% block right_buttons %}
+    <a class="a-right" href="/sign-up">Sign up</a>
+    <a class="a-right" href="/login?back=cars.html">Log in</a>
+{% endblock %}
+
+{% block about %}
+    <div class="information">
+        <h2 class="div-title">About us</h2>
+        <table class="information">
+            <tr>
+                <th>Opening times:</th>
+                <td>24 hours a day, 7 days a week</td>
+            </tr>
+            <tr>
+                <th>Address:</th>
+                <td>Via Ferrata, 1, Pavia</td>
+            </tr>
+            <tr>
+                <th>Phone number:</th>
+                <td>(+39) 0382 123456</td>
+            </tr>
+            <tr>
+                <th>Fax:</th>
+                <td>(+39) 0382 527182</td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td><a href="mailto:info@rentacar.it">info@rentacar.it</a></td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

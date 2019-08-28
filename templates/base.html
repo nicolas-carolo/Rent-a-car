@@ -20,7 +20,7 @@
     <div class="navbar">
         <a class="a-logo" href="/?session-id={{ session_id }}&user-id={{ user }}"><img class="small-logo" src="/static/media/logo.png" width="30" height="30"></a>
         <a class="a-left" href="/cars?session-id={{ session_id }}&user-id={{ user }}">Car Hire</a>
-        <a class="a-left" href="/contacts?session-id={{ session_id }}&user-id={{ user }}">Contacts</a>
+        <a class="a-left" href="/about?session-id={{ session_id }}&user-id={{ user }}">About us</a>
         {% if user %}
             <a class="a-right" href="/logout?session-id={{ session_id }}" onclick="logout()">Log out</a>
             <a class="a-right" href="/user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false">{{ user }}</a>
@@ -55,6 +55,8 @@
     {% block admin_menu %}
     {% endblock %}
     {% block admin_view %}
+    {% endblock %}
+    {% block about %}
     {% endblock %}
     <footer>
         <p>Rent a car | &copy;2019 Nicolas Carolo | All rights reserved</p>
