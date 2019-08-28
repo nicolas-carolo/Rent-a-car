@@ -21,18 +21,19 @@
 
 {% block company_description %}
     <div class="company-description">
-        <h2>Information about the company</h2>
+        <h2 class="div-title">Information about the company</h2>
         <p>
-            <i>Rent a Car</i> is a company located in Pavia that offers you the possibility of renting cars or vans.
-            Our fleet consists of 30 cars. You can rent the car that best suits your needs
-            based on the brand, model, type of vehicle, size, engine specifications and other needs.
+            <i>Rent a Car</i> is a company located in Pavia that offers you the possibility of renting cars.
+            Our fleet consists of a multitude of cars ranging from small cars to luxury cars. You can rent the
+            car that best suits your needs based on the brand, model, type of vehicle, size, engine specifications
+            and other specs.
         </p>
     </div>
 {% endblock %}
 
 {% block news %}
     <div class="news">
-        <h2>News</h2>
+        <h2 class="div-title">News</h2>
         {% if news_list|length > 0 %}
             <ul>
                 {% for news in news_list %}

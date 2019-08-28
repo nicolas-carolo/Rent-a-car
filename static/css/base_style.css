@@ -131,11 +131,6 @@ div.news {
     color: #3c5d5d;
 }
 
-.news h2 {
-    font-size: 1.7em;
-    color: #3c5d5d;
-}
-
 img.car-image:hover {
     box-shadow: 2px 2px 2px 2px #3c5d5d;
 }
