@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 
 from rent_a_car.home import get_cars_preview, get_news_list, get_car_identified_by_id
@@ -175,6 +175,8 @@ def after_auth_redirect(template, car_id, username):
     elif template == "car_details.html":
         car = get_car_identified_by_id(car_id)
         return render_template('car_details.html', car=car, user=username, session_id=session_id, today=today)
+    elif template == "about.html":
+        return render_template('about.html', user=username, session_id=session_id)
     else:
         return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), user=username, session_id=session_id, authjs=False, preview_length=get_cars_preview().__len__())
 
