@@ -123,3 +123,7 @@ td.user-input {
     font-size: 1.5em;
     width: 70%;
 }
+
+img.car-image:hover {
+    box-shadow: 2px 2px 2px 2px #3c5d5d;
+}

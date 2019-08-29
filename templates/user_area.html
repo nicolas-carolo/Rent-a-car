@@ -18,7 +18,7 @@
 {% block user_info %}
     {% if edit_mode %}
         <div class="user-info" id="div-user-info">
-            <h2 class="div-title">User information</h2>
+            <h2 class="div-title">User's information</h2>
             <form method="post" action="/edit_user_info?session-id={{ session_id }}&user-id={{ user }}">
                 <table class="user-info">
                     <tr>
@@ -49,7 +49,7 @@
         </div>
     {% else %}
         <div class="user-info" id="div-user-info">
-            <h2 class="div-title">User information</h2>
+            <h2 class="div-title">User's information</h2>
             <table class="user-info">
                 <tr>
                     <td class="caption"><p>Surname:</p></td>
@@ -124,9 +124,9 @@
                         <td class="reservation-detail">{{ cars_reservations_list[loop.index0].brand }} {{ cars_reservations_list[loop.index0].model }}</td>
                         <td class="reservation-button" id="reservation-button-delete" rowspan="3">
                             {% if reservations_status_list[loop.index0] == 'Reserved' %}
-                                <input type="button" id="detele-reservation-button" name="delete-reservation-button" value="Delete reservation" onclick="delete_reservation('{{ reservations_list[loop.index0].id_reservation }}', '{{ session_id }}', '{{ user }}')">
+                                <input type="button" id="detele-reservation-button" name="delete-reservation-button" value="Delete" onclick="delete_reservation('{{ reservations_list[loop.index0].id_reservation }}', '{{ session_id }}', '{{ user }}')">
                             {% else %}
-                                <input type="button" id="detele-reservation-button" name="delete-reservation-button" value="Delete reservation" disabled="true">
+                                <input type="button" id="detele-reservation-button" name="delete-reservation-button" value="Delete" disabled="true">
                             {% endif %}
                         </td>
                     </tr>

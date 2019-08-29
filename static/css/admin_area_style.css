@@ -336,3 +336,7 @@ textarea {
     padding: 10px;
     border-radius: 15px;
 }
+
+img.car-image:hover {
+    box-shadow: 2px 2px 2px 2px #3c5d5d;
+}

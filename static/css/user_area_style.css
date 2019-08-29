@@ -9,6 +9,10 @@ div.user-info {
     float: left;
 }
 
+div.user-info input[type=button], div.user-info input[type=submit], div.change-pwd input[type=button], div.change-pwd input[type=submit] {
+    margin: 15px auto 15px;
+}
+
 input {
     font-size: 1.5em;
     background-color: white;
@@ -88,6 +92,7 @@ td.reservation-descriptor {
     width: 25%;
     border: 1px solid #3c5d5d;
     font-size: 1.2em;
+    padding: 3px;
 }
 
 td.reservation-detail {
@@ -95,6 +100,7 @@ td.reservation-detail {
     width: 25%;
     border: 1px solid #3c5d5d;
     font-size: 1.2em;
+    padding: 3px;
 }
 
 #reservation-button-view {
@@ -123,4 +129,8 @@ tr.reservations-separator {
 
 h3.empty-list {
     color: gray;
+}
+
+img.car-image:hover {
+    box-shadow: 2px 2px 2px 2px #3c5d5d;
 }
