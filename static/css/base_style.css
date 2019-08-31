@@ -144,14 +144,16 @@ h2.div-title {
     bottom: 40px;
     right: 10px;
     z-index: 99;
-    font-size: 18px;
     border: none;
     outline: none;
     background: rgba(92, 138, 138, 0.3);
     color: white;
     cursor: pointer;
-    padding: 15px;
     border-radius: 4px;
+    font-size: 40px;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
 }
 
 #go-to-top:hover {

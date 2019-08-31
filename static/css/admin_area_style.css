@@ -249,7 +249,7 @@ td.big-car-image {
 }
 
 div.car-details input[type=button], div.car-details input[type=submit] {
-    font-size: 1.7em;
+    font-size: 1.4em;
     margin: 20px 10px 10px;
     width: 20%;
     padding: 10px 15px 10px;
@@ -266,9 +266,13 @@ div.car-details input[type=text], div.car-details input[type=number] {
     padding: 3px;
 }
 
+div.car-details input[type=file] {
+    width: 61%;
+}
+
 div.car-details select {
     margin: 5px auto 5px;
-    width: 63%;
+    width: 62%;
     float: right;
     background-color: white;
     color: black;
@@ -283,8 +287,8 @@ div.news-list {
     border-radius: 15px;
     box-shadow: 5px 5px 5px #aaaaaa;
     padding: 20px 15px 15px;
-    margin: 20px 20px 50px auto;
-    width: 50%;
+    margin: 20px 50px 50px auto;
+    width: 60%;
     text-align: center;
 }
 
@@ -315,11 +319,13 @@ div.news-list input[type=button], div.news-list input[type=submit] {
 }
 
 #save-news {
-    width: 30%
+    width: 30%;
+    margin: 20px;
 }
 
 #cancel {
-    width: 30%
+    width: 30%;
+    margin: 20px 20px 0px;
 }
 
 #delete-news-button {
