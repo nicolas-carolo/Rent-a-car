@@ -5,6 +5,7 @@
     <title>Rent a Car</title>
     <link rel="stylesheet" href="/static/css/base_style.css" type="text/css" />
     <script type="text/javascript" src="/static/script/login.js"></script>
+    <script type="text/javascript" src="/static/script/base.js"></script>
     {% block other_styles %}
     {% endblock %}
     {% block javascript_code %}
@@ -17,6 +18,7 @@
     {% endif %}
 </head>
 <body>
+    <button onclick="topFunction()" id="go-to-top" title="Go to top">Top</button>
     <div class="navbar">
         <a class="a-logo" href="/?session-id={{ session_id }}&user-id={{ user }}"><img class="small-logo" src="/static/media/logo.png" width="30" height="30"></a>
         <a class="a-left" href="/cars?session-id={{ session_id }}&user-id={{ user }}">Car Hire</a>

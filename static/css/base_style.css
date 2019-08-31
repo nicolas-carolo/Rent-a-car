@@ -137,3 +137,23 @@ h2.div-title {
     color: #476b6b;
     font-size: 2em;
 }
+
+#go-to-top {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 10px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background: rgba(92, 138, 138, 0.3);
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#go-to-top:hover {
+    background: rgba(92, 138, 138, 1);
+}
