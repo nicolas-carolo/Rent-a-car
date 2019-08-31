@@ -10,7 +10,7 @@ div.information {
 
 table.information {
     margin: 10px auto 10px;
-    width: 50%;
+    width: 60%;
     font-size: 1.2em;
 }
 
@@ -20,4 +20,19 @@ table.information {
 
 .information {
     text-align: left;
+}
+
+input[type=button] {
+    font-size: 1.2em;
+    padding: 5px 15px 5px;
+}
+
+#home-button {
+    position: relative;
+    right: 10%;
+}
+
+#git-button {
+    position: relative;
+    left: 10%;
 }

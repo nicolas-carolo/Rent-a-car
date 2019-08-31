@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="/static/css/about_style.css" type="text/css" />
 {% endblock %}
 
+{% block javascript_code %}
+    <script type="text/javascript" src="/static/script/about.js"></script>
+{% endblock %}
+
 {% block right_buttons %}
     <a class="a-right" href="/sign-up">Sign up</a>
     <a class="a-right" href="/login?back=about.html">Log in</a>
@@ -34,5 +38,7 @@
                 <td><a href="mailto:info@rentacar.it">info@rentacar.it</a></td>
             </tr>
         </table>
+        <input type="button" id="home-button" name="home-button" value="Go to the Homepage" onclick="window.location.href = '/?session-id={{ session_id }}&user-id={{ user }}'">
+        <input type="button" id="git-button" name="git-button" value="GitHub page of the project" onclick="openInNewTab('https://github.com/nicolas-carolo/Rent-a-car')">
     </div>
 {% endblock %}
