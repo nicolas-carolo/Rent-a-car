@@ -51,12 +51,15 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 3.5%;
     background-color: #5c8a8a;
     color: white;
     text-align: center;
-    font-size: 0.8em;
-    padding: 1px;
+}
+
+p.footer {
+    font-size: 1em;
+    padding: 2px;
+    margin: 2px;
 }
 
 img.big-logo {
