@@ -60,7 +60,7 @@ div.hire {
 
 #check-availability-button {
     width: auto;
-    padding: 5px 15px 5px;
+    padding: 6px 15px 6px;
     font-size: 1.2em;
     margin: 5px;
 }
@@ -75,8 +75,9 @@ input[type=date] {
     color: black;
     border-radius: 10px;
     border-color: #EEEEEE;
-    padding: 5px;
+    padding: 7px 5px 7px;
     margin: 5px;
+    font-size: 1.4em;
 }
 
 div.confirm-hire {
