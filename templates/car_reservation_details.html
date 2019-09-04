@@ -1,4 +1,9 @@
 {% extends 'details.html' %}
+
+{% block page_title %}
+    <title>Rent a Car - Reservation n. {{ reservation_id }}</title>
+{% endblock %}
+
 {% block car_details %}
     <div class="car-image">
         <img src="{{ car.photo_link }}" alt="{{ car.brand }} {{ car.model }}" width="576" height="432">
