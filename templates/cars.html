@@ -239,10 +239,17 @@
                 {% for car in cars_list %}
                     {% if loop.index0 % 2 == 0 and loop.index0 < n_cars - 1 %}
                         <tr>
-                            <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[loop.index0].photo_link }}" width="256" height="192"></a></td>
-                            <td class="car-description"><a href="/car_details?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[loop.index0].brand }} {{ cars_list[loop.index0].model }}</b></a></td>
-                            <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[loop.index0 + 1].photo_link }}" width="256" height="192"></a></td>
-                            <td class="car-description"><a href="/car_details?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[loop.index0 + 1].brand }} {{ cars_list[loop.index0 + 1].model }}</b></a></td>
+                            {% if rent_date_from_filter and rent_date_to_filter %}
+                                <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}&rent-from={{ rent_date_from_filter }}&rent-to={{ rent_date_to_filter }}"><img class="car-image" src="{{ cars_list[loop.index0].photo_link }}" width="256" height="192"></a></td>
+                                <td class="car-description"><a href="/car_details?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}&rent-from={{ rent_date_from_filter }}&rent-to={{ rent_date_to_filter }}"><b>{{ cars_list[loop.index0].brand }} {{ cars_list[loop.index0].model }}</b></a></td>
+                                <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}&rent-from={{ rent_date_from_filter }}&rent-to={{ rent_date_to_filter }}"><img class="car-image" src="{{ cars_list[loop.index0 + 1].photo_link }}" width="256" height="192"></a></td>
+                                <td class="car-description"><a href="/car_details?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}&rent-from={{ rent_date_from_filter }}&rent-to={{ rent_date_to_filter }}"><b>{{ cars_list[loop.index0 + 1].brand }} {{ cars_list[loop.index0 + 1].model }}</b></a></td>
+                            {% else %}
+                                <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[loop.index0].photo_link }}" width="256" height="192"></a></td>
+                                <td class="car-description"><a href="/car_details?car-id={{ cars_list[loop.index0].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[loop.index0].brand }} {{ cars_list[loop.index0].model }}</b></a></td>
+                                <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[loop.index0 + 1].photo_link }}" width="256" height="192"></a></td>
+                                <td class="car-description"><a href="/car_details?car-id={{ cars_list[loop.index0 + 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[loop.index0 + 1].brand }} {{ cars_list[loop.index0 + 1].model }}</b></a></td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td class="car-details"><b>Year:</b> {{ cars_list[loop.index0].car_year }}</td>
@@ -268,10 +275,17 @@
                 {% endfor %}
                 {% if n_cars % 2 == 1 %}
                     <tr>
-                        <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[n_cars - 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[n_cars - 1].photo_link }}" width="256" height="192"></a></td>
-                        <td class="car-description"><a href="/car_details?car-id={{ cars_list[n_cars - 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[n_cars - 1].brand }} {{ cars_list[n_cars - 1].model }}</b></a></td>
-                        <td rowspan="6" class="car-image"></td>
-                        <td class="car-description"></td>
+                        {% if rent_date_from_filter and rent_date_to_filter %}
+                            <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[n_cars - 1].id }}&session-id={{ session_id }}&user-id={{ user }}&rent-from={{ rent_date_from_filter }}&rent-to={{ rent_date_to_filter }}"><img class="car-image" src="{{ cars_list[n_cars - 1].photo_link }}" width="256" height="192"></a></td>
+                            <td class="car-description"><a href="/car_details?car-id={{ cars_list[n_cars - 1].id }}&session-id={{ session_id }}&user-id={{ user }}&rent-from={{ rent_date_from_filter }}&rent-to={{ rent_date_to_filter }}"><b>{{ cars_list[n_cars - 1].brand }} {{ cars_list[n_cars - 1].model }}</b></a></td>
+                            <td rowspan="6" class="car-image"></td>
+                            <td class="car-description"></td>
+                        {% else %}
+                            <td rowspan="6" class="car-image"><a href="/car_details?car-id={{ cars_list[n_cars - 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><img class="car-image" src="{{ cars_list[n_cars - 1].photo_link }}" width="256" height="192"></a></td>
+                            <td class="car-description"><a href="/car_details?car-id={{ cars_list[n_cars - 1].id }}&session-id={{ session_id }}&user-id={{ user }}"><b>{{ cars_list[n_cars - 1].brand }} {{ cars_list[n_cars - 1].model }}</b></a></td>
+                            <td rowspan="6" class="car-image"></td>
+                            <td class="car-description"></td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td class="car-details"><b>Year:</b> {{ cars_list[n_cars - 1].car_year }}</td>

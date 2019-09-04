@@ -75,10 +75,17 @@ def car_details():
     car_id = request.args.get('car-id', None)
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
+    date_from = request.args.get('rent-from', None)
+    date_to = request.args.get('rent-to', None)
     car = get_car_identified_by_id(car_id)
     today = datetime.date.today()
     if check_authentication(session_id, user_id):
-        return render_template('car_details.html', car=car, user=user_id, session_id=session_id, today=today)
+        if is_car_available_in_the_selected_period(str(date_from), str(date_to), car_id):
+            return render_template('car_details.html', car=car, user=user_id, session_id=session_id, today=today,
+                                   is_available=True, show_confirm_div=True, date_from=date_from, date_to=date_to,
+                                   total_price=calc_total_price(car.price, date_from, date_to))
+        else:
+            return render_template('car_details.html', car=car, user=user_id, session_id=session_id, today=today)
     else:
         return render_template('car_details.html', car=car, today=today)
 
