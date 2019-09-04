@@ -56,7 +56,7 @@
                 <td>€ {{ car.price }} per day</td>
             </tr>
         </table>
-        <input type="button" id="hire-button" value="Hire" onclick="show_div_hire()">
+        <input type="button" id="hire-button" value="Hire" onclick="hire('{{ user }}')">
         <div class="hire" id="div-hire">
             <hr width="100%" height="1">
             <p class="hire">Select the interval of days you will hire the car:</p><br>

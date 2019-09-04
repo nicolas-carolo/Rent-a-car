@@ -1,3 +1,12 @@
+function hire(user) {
+    if (user != "") {
+        show_div_hire();
+    } else {
+        alert("Please login before continuing!")
+    }
+}
+
+
 function show_div_hire(){
     document.getElementById("div-hire").style.display = "block";
     window.scrollBy(0,150);

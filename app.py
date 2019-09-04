@@ -226,7 +226,8 @@ def confirm_car_reservation():
                     reservation_id = save_car_reservation(car_id, user_id, date_from, date_to)
                     return render_template('car_reservation_details.html', user=user_id, session_id=session_id,
                                            reservation_id=reservation_id, car=car, date_from=date_from, date_to=date_to,
-                                           total_price=calc_total_price(car.price, date_from, date_to))
+                                           total_price=calc_total_price(car.price, date_from, date_to),
+                                           reservation_just_completed=True)
                 else:
                     error_msg = "The reservation has failed because you are not at least " + str(car.min_age) +\
                                 " years old!"

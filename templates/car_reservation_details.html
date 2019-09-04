@@ -79,4 +79,7 @@
         </table>
         <input type="button" id="user-area-button" name="user-area-button" value="Go to your account" onclick="window.location.href = '/user_area?session-id={{ session_id }}&user-id={{ user }}&edit=false';">
     </div>
+    {% if reservation_just_completed %}
+        <script type="text/javascript">alert("Reservation completed successfully!\nThank you for renting from us")</script>
+    {% endif %}
 {% endblock %}
