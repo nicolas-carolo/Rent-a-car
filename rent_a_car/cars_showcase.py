@@ -10,6 +10,10 @@ import datetime
 
 
 def get_cars_list():
+    """
+    Get the list of all cars saved into the database
+    :return: a list containing objects of type Car
+    """
     session = start_session()
     queryset = session.query(Car)
     cars_list = queryset2list(queryset)
@@ -18,11 +22,19 @@ def get_cars_list():
 
 
 def get_current_year():
+    """
+    Get the current year
+    :return: an object of type datetime.date
+    """
     now = datetime.date.today()
     return now.year
 
 
 def get_car_brands_list():
+    """
+    Get the list of all brands saved into database
+    :return: a list containing all brands available
+    """
     cars_list = get_cars_list()
     brands_list = []
     for car in cars_list:
@@ -32,6 +44,10 @@ def get_car_brands_list():
 
 
 def get_car_types_list():
+    """
+    Get the list of all type of cars saved into the database
+    :return: a list containing all types of cars available
+    """
     cars_list = get_cars_list()
     types_list = []
     for car in cars_list:
@@ -41,6 +57,10 @@ def get_car_types_list():
 
 
 def get_car_n_seats_list():
+    """
+    Get the list of all the number of seats saved into the database
+    :return: a list containing all the number of seats available
+    """
     cars_list = get_cars_list()
     car_n_seats_list = []
     for car in cars_list:
@@ -50,6 +70,10 @@ def get_car_n_seats_list():
 
 
 def get_fuel_list():
+    """
+    Get the list of type of fuels saved into the database
+    :return: a list containing all the type of fuels available
+    """
     cars_list = get_cars_list()
     fuel_list = []
     for car in cars_list:
@@ -59,6 +83,10 @@ def get_fuel_list():
 
 
 def get_min_car_power_value():
+    """
+    Get the car's minimum power available
+    :return: the car's minimum power
+    """
     session = start_session()
     queryset = session.query(func.min(Car.power).label("min_value"))
     res = queryset.one()
@@ -66,6 +94,10 @@ def get_min_car_power_value():
 
 
 def get_max_car_power_value():
+    """
+    Get the car's maximum power available
+    :return: the car's maximum power
+    """
     session = start_session()
     queryset = session.query(func.max(Car.power).label("max_value"))
     res = queryset.one()
@@ -73,6 +105,10 @@ def get_max_car_power_value():
 
 
 def get_oldest_car_age():
+    """
+    Get the car's year of the oldest car
+    :return: the car's year of the oldest car
+    """
     session = start_session()
     queryset = session.query(func.min(Car.car_year).label("oldest"))
     res = queryset.one()
@@ -80,6 +116,10 @@ def get_oldest_car_age():
 
 
 def get_min_car_price_per_day():
+    """
+    Get the car's minimum price per day available
+    :return: the car's minimum price per day available
+    """
     session = start_session()
     queryset = session.query(func.min(Car.price).label("min_value"))
     res = queryset.one()
@@ -87,6 +127,10 @@ def get_min_car_price_per_day():
 
 
 def get_max_car_price_per_day():
+    """
+    Get the car's maximum price per day available
+    :return: the car's maximum price per day available
+    """
     session = start_session()
     queryset = session.query(func.max(Car.price).label("max_value"))
     res = queryset.one()
@@ -94,11 +138,34 @@ def get_max_car_price_per_day():
 
 
 def remove_duplicates_by_list(input_list):
+    """
+    Remove the duplicates from the input list
+    :param input_list: the input list
+    :return: the input list without duplicates
+    """
     return list(dict.fromkeys(input_list))
 
 
 def filter_cars_by_user_parameters(brand, car_type, n_seats, min_power, max_power, fuel, transmission, car_year_from,
                                    car_year_to, driver_age, min_price, max_price, date_from, date_to):
+    """
+    Filters the cars available by the parameters inserted by the user
+    :param brand: the brand inserted by the user
+    :param car_type: the type of the car inserted by the user
+    :param n_seats: the number of seats inserted by the user
+    :param min_power: the car's minimum power inserted by the user
+    :param max_power: the car's maximum power inserted by the user
+    :param fuel: the type of fuel inserted by the user
+    :param transmission: the car's transmission inserted by the user
+    :param car_year_from: the lower car's year bound inserted by the user
+    :param car_year_to: the upper car's year bound inserted by the user
+    :param driver_age: the driver's minimum age inserted by the user
+    :param min_price: the car's minimum price per day inserted by the user
+    :param max_price: the car's maximum price per day inserted by the user
+    :param date_from: the date in which the rent will start
+    :param date_to: the date in which the rent will end
+    :return: the list containing the cars that respect the parameters inserted by the user
+    """
     session = start_session()
     queryset = session.query(Car)
     if brand != 'all':

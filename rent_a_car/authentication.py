@@ -5,6 +5,12 @@ import uuid
 
 
 def authenticate(username, inserted_password):
+    """
+    Authenticate a user checking his credentials
+    :param username: the username inserted by the user
+    :param inserted_password: the password inserted by the user
+    :return: True if the credentials are valid, False if not
+    """
     session = start_session()
     queryset = session.query(User).filter(User.id.__eq__(username))
     session.close()
@@ -19,6 +25,11 @@ def authenticate(username, inserted_password):
 
 
 def generate_session(username):
+    """
+    Generate a new user session for the user identified by the username
+    :param username: the user's email address
+    :return: the session ID that identifies the user session just created
+    """
     session_id = str(uuid.uuid1())
     session = start_session()
     session.query(UserSession).filter(UserSession.id_user.__eq__(username)).delete()
@@ -30,6 +41,12 @@ def generate_session(username):
 
 
 def edit_session(session_id, new_username):
+    """
+    Edit the username associated to a user session
+    :param session_id: the ID of the session to edit
+    :param new_username: the new username for the session
+    :return: None
+    """
     session = start_session()
     user_session = session.query(UserSession).get(session_id)
     user_session.id_user = new_username
@@ -38,6 +55,11 @@ def edit_session(session_id, new_username):
 
 
 def delete_session(session_id):
+    """
+    Delete the user session identified by session_id
+    :param session_id: the ID of the session we want to delete
+    :return: None
+    """
     session = start_session()
     session.query(UserSession).filter(UserSession.id_session.__eq__(session_id)).delete()
     session.commit()
@@ -45,6 +67,13 @@ def delete_session(session_id):
 
 
 def check_authentication(session_id, username):
+    """
+    Check if session_id and username can uniquely identified a user session previously created in oredr
+    to authenticate a user
+    :param session_id: the ID of the user session
+    :param username: the user's email address
+    :return: True if the user can authenticate, otherwise False
+    """
     session = start_session()
     queryset = session.query(UserSession).filter(UserSession.id_session.__eq__(session_id))
     try:
@@ -58,6 +87,11 @@ def check_authentication(session_id, username):
 
 
 def get_user_by_session_id(session_id):
+    """
+    Get the the user associated to the user session identified by session_id
+    :param session_id: the ID of the session
+    :return: the username of the user associated to the user session
+    """
     session = start_session()
     queryset = session.query(UserSession).filter(UserSession.id_session.__eq__(session_id))
     try:
