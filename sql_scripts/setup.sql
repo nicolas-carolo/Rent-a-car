@@ -52,9 +52,9 @@ CREATE TABLE news(
     description      VARCHAR(1024) NOT NULL
 );
 
-INSERT INTO news(description) VALUES ('New BMW 320d Luxury available');
+INSERT INTO news(description) VALUES ('New Volkswagen e-Golf available');
 INSERT INTO news(description) VALUES ('New Mercedes A180d Automatic Premium available');
-INSERT INTO news(description) VALUES ('From 15th to 17th on September we are going to be closed');
+INSERT INTO news(description) VALUES ('New Ford Fiesta available');
 
 
 DROP TABLE IF EXISTS car_reservations;
@@ -70,10 +70,10 @@ CREATE TABLE car_reservations(
 INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (1, 'sebastian.vettel@pilot.com', '2019-08-09', '2019-08-13', 260);
 INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (3, 'lewis.hamilton@pilot.com', '2019-07-30', '2019-08-04', 420);
 INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (2, 'lewis.hamilton@pilot.com', '2019-09-01', '2019-09-07', 455);
-INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (7, 'utente40@test.com', '2019-07-10', '2019-07-12', 900);
-INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (8, 'utente40@test.com', '2019-08-01', '2019-09-30', 455);
-INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (5, 'utente40@test.com', '2020-01-01', '2020-01-15', 840);
-INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (10, 'utente30@test.com', '2019-09-05', '2019-09-05', 120);
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (7, 'valentino.rossi@motogp.com', '2019-07-10', '2019-07-12', 900);
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (8, 'valentino.rossi@motogp.com', '2019-08-01', '2019-09-30', 455);
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (5, 'valentino.rossi@motogp.com', '2020-01-01', '2020-01-15', 840);
+INSERT INTO car_reservations(id_car, id_user, date_from, date_to, price) VALUES (10, 'jeremy.clarkson@bbc.uk', '2019-09-05', '2019-09-05', 120);
 
 
 DROP TABLE IF EXISTS sessions;
@@ -97,7 +97,7 @@ INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('adm
 INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('sebastian.vettel@pilot.com', 'ferrari1', 'Sebastian', 'Vettel', '1987-07-03', false);
 INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('lewis.hamilton@pilot.com', 'mercedes', 'Lewis', 'Hamilton', '1985-01-07', false);
 INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('charles.leclerc@pilot.com', 'ferrari2', 'Charles', 'Leclerc', '1997-10-16', false);
-INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('utente30@test.com', '123', 'Utente', 'Trenta', '1989-01-01', false);
-INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('utente40@test.com', '456', 'Utente', 'Quaranta', '1979-01-01', true);
+INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('jeremy.clarkson@bbc.uk', 'speedandpower', 'Jeremy', 'Clarkson', '1960-04-11', false);
+INSERT INTO users(id, password, name, surname, birthdate, is_admin) VALUES ('valentino.rossi@motogp.com', 'Vale46', 'Valentino', 'Rossi', '1979-02-11', true);
 
 
