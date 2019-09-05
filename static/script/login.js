@@ -3,10 +3,8 @@ function badCredentials(error) {
 }
 
 function validateSession(session_id, authjs) {
-    // document.write("<p>session_id:PASS_I" + session_id + "F</p>");
     if (session_id == "" && authjs == "True") {
         var session_id = getCookie("session_id");
-        // document.write("<p>session_id:I" + session_id + "F</p>");
         if (session_id != "") {
             window.location.href="/auth_session_id?session-id=" + session_id;
         }

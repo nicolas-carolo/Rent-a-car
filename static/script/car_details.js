@@ -24,7 +24,6 @@ function show_date_error(error) {
 }
 
 function show_div_confirm_hire(isAvailable, strDateFrom, strDateTo) {
-    // show_div_hire();
     document.getElementById("div-hire").style.display = "block";
     document.getElementById("div-confirm-hire").style.display = "block";
     document.getElementById("hire-button").disabled = true;
