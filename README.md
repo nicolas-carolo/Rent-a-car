@@ -23,9 +23,17 @@ Install these packages using pip:
 ## Installation
 
 1. Install the minimum requirements
-2. Create a new Python Virtual Environment:
+2. Create the database:
+    1. Go to the directory of the project
+    (where there is `app.py`)
+    2. Run the command:
+        * Linux: `$ mysql -u root -p < sql_scripts/setup.sql`
+        * macOS: `$ /usr/local/mysql/bin/mysql -u root -p < sql_scripts/setup.sql`
+        * Windows: `$ mysql -u root -p < sql_scripts\setup.sql`
+3. Create a new Python Virtual Environment:
     * `$ python -m venv ./venv`
-3. Activate the Virtual Environment:
+4. Activate the Virtual Environment:
     * Linux and macOS: `$ source venv/bin/activate`
-4. Run the web application server:
+    * Windows: `venv\Scripts\activate.bat`
+5. Run the web application server:
     * `$ python app.py`
