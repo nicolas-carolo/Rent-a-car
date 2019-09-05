@@ -88,6 +88,11 @@ def get_user_reservations_list(user_id):
 
 
 def get_cars_user_reservations_list(reservations_list):
+    """
+    Get the list of cars associated to reservations_list
+    :param reservations_list: the list of reservations
+    :return: a list containing objects of type Car
+    """
     car_list = []
     for reservation in reservations_list:
         car_list.append(get_car_identified_by_id(reservation.id_car))
@@ -95,6 +100,11 @@ def get_cars_user_reservations_list(reservations_list):
 
 
 def get_reservations_status_list(reservations_list):
+    """
+    Get the list of status associated to reservation_list
+    :param reservations_list: the list of reservations
+    :return: a list containing the status associated to reservations
+    """
     status_list = []
     today = datetime.datetime.today().date()
     for reservation in reservations_list:
@@ -109,6 +119,11 @@ def get_reservations_status_list(reservations_list):
 
 
 def get_reservation_identified_by_id(reservation_id):
+    """
+    Get the reservation identified by the ID
+    :param reservation_id: the reservation's ID
+    :return: the object of type Reservation associated to the ID
+    """
     session = start_session()
     reservation = session.query(CarReservation).get(reservation_id)
     session.close()
@@ -116,6 +131,12 @@ def get_reservation_identified_by_id(reservation_id):
 
 
 def is_reservation_of_the_user(reservation_id, user_id):
+    """
+    Check if a reservation is accociated to the user identified by the user_id
+    :param reservation_id: the reservation's ID
+    :param user_id: the user's ID
+    :return: True if the reservation is associated to the user, False otherwise
+    """
     reservations_list = get_user_reservations_list(user_id)
     reservations_id_list = []
     for reservation in reservations_list:
@@ -127,6 +148,11 @@ def is_reservation_of_the_user(reservation_id, user_id):
 
 
 def delete_reservation(reservation_id):
+    """
+    Delete the reservation identified by reservation_id
+    :param reservation_id: the reservation's ID
+    :return: None
+    """
     session = start_session()
     session.query(CarReservation).filter(CarReservation.id_reservation.__eq__(reservation_id)).delete()
     session.commit()
@@ -134,6 +160,11 @@ def delete_reservation(reservation_id):
 
 
 def delete_user(user_id):
+    """
+    Delete the user identified by user_id
+    :param user_id: the user's ID
+    :return: None
+    """
     session = start_session()
     session.query(User).filter(User.id.__eq__(user_id)).delete()
     session.commit()
@@ -142,6 +173,11 @@ def delete_user(user_id):
 
 
 def delete_all_user_reservations(user_id):
+    """
+    Delete all reservations associated to the user identified by user_id
+    :param user_id: the user's ID
+    :return: None
+    """
     session = start_session()
     session.query(CarReservation).filter(CarReservation.id_user.__eq__(user_id)).delete()
     session.commit()
@@ -149,6 +185,11 @@ def delete_all_user_reservations(user_id):
 
 
 def is_admin_user(user_id):
+    """
+    Check if the user identified by user_id is an admin
+    :param user_id: the user's ID
+    :return: True if the user is an admin, False otherwise
+    """
     user = get_user_by_id(user_id)
     if user.is_admin:
         return True

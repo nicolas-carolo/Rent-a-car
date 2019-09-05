@@ -30,6 +30,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def home():
+    """
+    Show the home page
+    :return: the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     if check_authentication(session_id, user_id):
@@ -42,6 +46,10 @@ def home():
 
 @app.route('/cars')
 def cars():
+    """
+    Show the car hire page
+    :return: the car hire page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     cars_list = get_cars_list()
@@ -72,6 +80,10 @@ def cars():
 
 @app.route('/car_details', methods=['GET'])
 def car_details():
+    """
+    Show the page in which the user can see car's details and complete the reservation
+    :return: the page in which the user can see car's details and complete the reservation
+    """
     car_id = request.args.get('car-id', None)
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
@@ -92,6 +104,11 @@ def car_details():
 
 @app.route('/check_availability', methods=['POST', 'GET'])
 def check_car_availability():
+    """
+    Show the page in which the user can see car's details and complete the reservation, after having check if
+    the car is available in the selected period
+    :return: the page in which the user can see car's details and complete the reservation
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     today = datetime.date.today()
@@ -134,6 +151,10 @@ def check_car_availability():
 
 @app.route('/login')
 def login():
+    """
+    Show the login form
+    :return: the web page containing the login form
+    """
     template = request.args.get('back', None)
     car_id = request.args.get('car-id', None)
     return render_template('login.html', template=template, car_id=car_id)
@@ -141,6 +162,11 @@ def login():
 
 @app.route('/auth', methods=['POST', 'GET'])
 def authenticate():
+    """
+    Authenticate the user using the credentials he has inserted
+    :return: the previous web page if credentials are valid, otherwise it returns the login form
+    showing an error message
+    """
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -154,6 +180,10 @@ def authenticate():
 
 @app.route('/logout')
 def logout():
+    """
+    Logout the user
+    :return: the home page
+    """
     session_id = request.args.get('session-id', None)
     delete_session(session_id)
     return render_template('home.html', cars_list=get_cars_preview(), news_list=get_news_list(), authjs=False, preview_length=get_cars_preview().__len__())
@@ -161,6 +191,10 @@ def logout():
 
 @app.route('/auth_session_id', methods=['POST', 'GET'])
 def authenticate_by_session_id():
+    """
+    Authenticate the user if the session ID is valid
+    :return: the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = get_user_by_session_id(session_id)
     if check_authentication(session_id,user_id) and user_id is not None:
@@ -172,6 +206,13 @@ def authenticate_by_session_id():
 
 
 def after_auth_redirect(template, car_id, username):
+    """
+    Redirect the user to the page previously visited before the login
+    :param template: the page previously visited before the login
+    :param car_id: the ID of the selected car
+    :param username: the email address of the user logged in
+    :return: the page previously visited before the login
+    """
     session_id = generate_session(username)
     current_year = get_current_year()
     today = datetime.date.today()
@@ -190,11 +231,19 @@ def after_auth_redirect(template, car_id, username):
 
 @app.route('/sign-up')
 def sign_up():
+    """
+    Show the page for registering a new user account
+    :return: the sign up form
+    """
     return render_template('sign_up.html')
 
 
 @app.route('/subscribe', methods=['POST', 'GET'])
 def subscribe():
+    """
+    Create a new user account
+    :return: the home page if the registration was completed successfully, otherwise returns an error message
+    """
     if request.method == 'POST':
         surname = request.form['surname']
         name = request.form['name']
@@ -213,6 +262,11 @@ def subscribe():
 
 @app.route('/confirm_car_reservation', methods=['POST', 'GET'])
 def confirm_car_reservation():
+    """
+    Confirm the car reservation
+    :return: the page that shows the details about the reservation if the reservation was successfully completed,
+    otherwise it returns an error message
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     today = datetime.date.today()
@@ -261,6 +315,10 @@ def confirm_car_reservation():
 
 @app.route('/filter_cars', methods=['POST', 'GET'])
 def filter_cars():
+    """
+    Filter the list of cars on the base of the filters selected by the user
+    :return: the web page of car hire with the search results
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     current_year = get_current_year()
@@ -349,6 +407,10 @@ def filter_cars():
 
 @app.route('/user_area')
 def user_area():
+    """
+    Show the private area of the user
+    :return: the private area of the user if credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     edit = request.args.get('edit', None)
@@ -378,6 +440,11 @@ def user_area():
 
 @app.route('/edit_user_info', methods=['POST', 'GET'])
 def edit_user_information():
+    """
+    Save the new user's information
+    :return: the private area of the user if credentials are valid (with an error message if an error occurred),
+    otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     old_username = request.args.get('user-id', None)
     user = get_user_by_id(old_username)
@@ -411,6 +478,11 @@ def edit_user_information():
 
 @app.route('/change_pwd', methods=['POST', 'GET'])
 def change_user_password():
+    """
+    Change the user's password
+    :return: the private area of the user if credentials are valid (with an error message if an error occurred),
+    otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     user = get_user_by_id(user_id)
@@ -443,6 +515,10 @@ def change_user_password():
 
 @app.route('/reservation_details')
 def reservation_details():
+    """
+    Show the reservation's details
+    :return: the reservation's details if credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     reservation_id = request.args.get('reservation-id', None)
@@ -462,6 +538,10 @@ def reservation_details():
 
 @app.route('/delete_reservation')
 def detele_car_reservation():
+    """
+    Delete the car reservation
+    :return: the private area of the user if credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     reservation_id = request.args.get('reservation-id', None)
@@ -483,6 +563,10 @@ def detele_car_reservation():
 
 @app.route('/delete_user')
 def detele_account():
+    """
+    Delete the user account
+    :return: the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     delete_user(user_id)
@@ -493,6 +577,10 @@ def detele_account():
 
 @app.route('/admin_user_area')
 def admin_user_area():
+    """
+    Show the user area of the admin user
+    :return: the private area of the user if credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     edit = request.args.get('edit', None)
@@ -517,6 +605,10 @@ def admin_user_area():
 
 @app.route('/users_list')
 def list_all_users():
+    """
+    Show the list of all users
+    :return: the list of all users if admin credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     users_list = get_users_list()
@@ -529,6 +621,10 @@ def list_all_users():
 
 @app.route('/all_reservations_list')
 def list_all_reservations():
+    """
+    Show the list of reservations
+    :return: the list of reservations if admin credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     reservation_filter = request.args.get('reservation-filter', None)
@@ -549,6 +645,10 @@ def list_all_reservations():
 
 @app.route('/all_cars_list')
 def list_all_cars():
+    """
+    Show all cars
+    :return: the list of all cars if admin credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     cars_list = get_cars_list()
@@ -562,6 +662,10 @@ def list_all_cars():
 
 @app.route('/edit_car_view')
 def edit_car_view():
+    """
+    Show the web page for editing cars' information
+    :return: the the web page for editing car's information if admin credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     car_id = request.args.get('car-id', None)
@@ -581,6 +685,10 @@ def edit_car_view():
 
 @app.route('/delete_car')
 def admin_delete_car():
+    """
+    Delete a car
+    :return: delete the car and return admin area if admin credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     car_id = request.args.get('car-id', None)
@@ -596,6 +704,10 @@ def admin_delete_car():
 
 @app.route('/edit_car', methods=['POST', 'GET'])
 def edit_car():
+    """
+    Edit car's information
+    :return: the web page showing car's details if admin credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     car_id = request.args.get('car-id', None)
@@ -635,6 +747,10 @@ def edit_car():
 
 @app.route('/news_view')
 def news_view():
+    """
+    Show the list of news
+    :return: the list of all news if admin credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     edit_mode_string = request.args.get('edit', None)
@@ -653,6 +769,10 @@ def news_view():
 
 @app.route('/delete_news')
 def admin_delete_news():
+    """
+    Delete a news
+    :return: the list of news if admin credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     news_id = request.args.get('news-id', None)
@@ -668,6 +788,10 @@ def admin_delete_news():
 
 @app.route('/add_news', methods=['POST', 'GET'])
 def admin_add_news():
+    """
+    Save a new news into the database
+    :return: the list of all news if admin credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     if request.method == 'POST':
@@ -684,6 +808,10 @@ def admin_add_news():
 
 @app.route('/update_account_type')
 def admin_update_account_type():
+    """
+    Change the user's privileges
+    :return: the list of all users if admin credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     user_id_to_update = request.args.get('user-id-to-update', None)
@@ -699,6 +827,10 @@ def admin_update_account_type():
 
 @app.route('/add_car')
 def admin_add_car():
+    """
+    Show the web page for adding a new car
+    :return: the form for adding a new car if admin credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     if check_authentication(session_id, user_id) and is_admin_user(user_id):
@@ -711,6 +843,10 @@ def admin_add_car():
 
 @app.route('/save_new_car', methods=['POST', 'GET'])
 def save_new_car():
+    """
+    Save the new car into the database
+    :return: the new car's details if admin credentials are valid, otherwise it returns the home page
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     if request.method == 'POST':
@@ -756,6 +892,10 @@ def save_new_car():
 
 @app.route('/about')
 def about():
+    """
+    Show the information about the site
+    :return: the web page about the information
+    """
     session_id = request.args.get('session-id', None)
     user_id = request.args.get('user-id', None)
     if check_authentication(session_id, user_id):
@@ -765,6 +905,11 @@ def about():
 
 
 def allowed_file(filename):
+    """
+    Check if a file has a supported format in order to be uploaded
+    :param filename: the name of the file
+    :return: True if the file is allowed, False otherwise
+    """
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
