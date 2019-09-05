@@ -268,11 +268,12 @@ div.car-details input[type=text], div.car-details input[type=number] {
 
 div.car-details input[type=file] {
     width: 61%;
+    font-size: 0.8em;
 }
 
 div.car-details select {
     margin: 5px auto 5px;
-    width: 62%;
+    width: 63%;
     float: right;
     background-color: white;
     color: black;
