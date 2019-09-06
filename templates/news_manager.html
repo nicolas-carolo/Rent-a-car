@@ -3,6 +3,7 @@
 {% block admin_view %}
     <div class="news-list" id="div-news-list">
         {% if edit_mode %}
+            <h2 class="div-title">Add news</h2>
             <form method="post" action="/add_news?session-id={{ session_id }}&user-id={{ user }}">
                 <textarea id="news-content" name="news-content" cols="50" rows="5" required></textarea><br>
                 <input type="submit" id="save-news" name="save-news" value="Save">

@@ -5,6 +5,7 @@
         <script>alert("Error! Please insert a valid car's image (.jpeg or .jpg).")</script>
     {% endif %}
     <div class="car-details" id="div-details">
+        <h2 class="div-title">Add car</h2>
         <form method="post" action="/save_new_car?session-id={{ session_id }}&user-id={{ user }}" enctype="multipart/form-data">
             <table>
                 <tr>
